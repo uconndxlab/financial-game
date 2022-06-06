@@ -8,7 +8,7 @@
     <nav>
       <ul>
         <li><NuxtLink to="/housing/location" >&lt; Back</NuxtLink></li>
-        <li><NuxtLink v-if="roommate !== null" to="/housing/roommate" >Continue...</NuxtLink></li>
+        <li><NuxtLink v-if="roommate !== null" to="/housing/apartment" >Continue...</NuxtLink></li>
       </ul>
     </nav>
 

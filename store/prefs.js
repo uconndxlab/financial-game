@@ -1,6 +1,7 @@
 export const state = () => ({
   location: null,
-  roommate: null
+  roommate: null,
+  apartment: null
 })
 
 export const mutations = {
@@ -9,5 +10,8 @@ export const mutations = {
   },
   setRoommate(state, val) {
     state.roommate = Boolean(val)
+  },
+  setApartment(state, obj) {
+    state.apartment = obj
   },
 }
