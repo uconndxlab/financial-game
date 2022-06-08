@@ -30,12 +30,12 @@ export default {
   },
   computed: {
     location() {
-      return this.$store.state.prefs.location
+      return this.$store.state.budget.prefs.location
     }
   },
   methods: {
     ...mapMutations({
-      setLocation: 'prefs/setLocation'
+      setLocation: 'budget/setLocation'
     })
   }
 }

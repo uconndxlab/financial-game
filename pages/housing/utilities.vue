@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     apartment() {
-      return this.$store.state.prefs.apartment
+      return this.$store.state.budget.prefs.apartment
     }
   },
   methods: {

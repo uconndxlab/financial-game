@@ -3,7 +3,7 @@
     <h1>Housing > Apartment</h1>
     <p>Choose an apartment: (Hardcoded to Danbury for now)</p>
     <div v-for="option in apartmentOptions['Danbury']" :key="option.id">
-      <label><input type="radio" name="apartment" :checked="apartment !== null && apartment.id == option.id" @change="setApartment(option)"> {{option.type}} (${{option.rent}})</label>
+      <label><input type="radio" name="apartment" :checked="apartment !== null && apartment.id == option.id" @change="updateSelection(option)"> {{option.type}} (${{option.rent}})</label>
     </div>
     <nav>
       <ul>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'HousingApartment',
@@ -125,12 +125,25 @@ export default {
   },
   computed: {
     apartment() {
-      return this.$store.state.prefs.apartment
+      return this.$store.state.budget.prefs.apartment
+    },
+    roommate(){
+      return this.$store.state.budget.prefs.roommate
     }
   },
   methods: {
+    updateSelection(option){
+      this.setApartment(option)
+      this.updateBudget({
+        prop: 'apartment',
+        value: this.apartment.rent
+      })
+    },
     ...mapMutations({
-      setApartment: 'prefs/setApartment'
+      setApartment: 'budget/setApartment'
+    }),
+    ...mapActions({
+      updateBudget: 'budget/update'
     })
   }
 }

@@ -30,12 +30,12 @@ export default {
   },
   computed: {
     roommate() {
-      return this.$store.state.prefs.roommate
+      return this.$store.state.budget.prefs.roommate
     }
   },
   methods: {
     ...mapMutations({
-      setRoommate: 'prefs/setRoommate'
+      setRoommate: 'budget/setRoommate'
     })
   }
 }

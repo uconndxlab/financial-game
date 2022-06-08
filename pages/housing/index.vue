@@ -7,7 +7,22 @@
 </template>
 
 <script>
+import { mapMutations, mapActions } from 'vuex'
+
 export default {
   name: 'HousingIndex',
+  mounted() {
+    // Reset the store
+    this.reset()
+  },
+  methods: {
+    ...mapMutations({
+      setApartment: 'prefs/setApartment'
+    }),
+    ...mapActions({
+      reset: 'budget/reset'
+    })
+  }
+
 }
 </script>

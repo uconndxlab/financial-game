@@ -2,7 +2,7 @@
   <div>
 
     <Nuxt />
-    <nav>
+    <nav id="primary">
       <ul>
         <li><NuxtLink to="/housing">Housing</NuxtLink></li>
         <li><NuxtLink to="/transportation">Transportation</NuxtLink></li>
@@ -12,20 +12,51 @@
         <li><NuxtLink to="/clothing">Clothing</NuxtLink></li>
         <li><NuxtLink to="/lifestyle">Lifestyle</NuxtLink></li>
         <li><NuxtLink to="/activities">Activities</NuxtLink></li>
+        <li> {{ monthlyBudget }}</li>
       </ul>
     </nav>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'DefaultLayout'
+// https://currency.js.org/
+import currency from 'currency.js'
 
+// Formmating options for Currency lib
+const currencyOptions = {
+  separator: ',',
+  precision: 0
+}
+
+export default {
+  name: 'DefaultLayout',
+  computed: {
+    balance(){
+      return this.$store.state.budget.balance
+    },
+    monthlyBudget() {
+
+      return currency(this.balance, currencyOptions).format()
+    }
+  },
 }
 </script>
 
 <style>
 @import url(https://unpkg.com/mvp.css);
+
+nav#primary > ul {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+nav#primary > ul li:last-child {
+  text-align: right;
+  flex-grow: 1;
+  font-size: 3em;
+}
+
 
 body {
   padding:0;
