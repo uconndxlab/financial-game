@@ -3,7 +3,7 @@
     <h1>Housing > Utilities</h1>
     <p>Pay your utilities!</p>
 
-    <button>Pay Utilities</button>
+    <v-btn color="primary">Pay Utilities</v-btn>
 
     <nav>
       <ul>

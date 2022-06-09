@@ -1,21 +1,15 @@
 <template>
-  <div>
 
-    <Nuxt />
-    <nav id="primary">
-      <ul>
-        <li><NuxtLink to="/housing">Housing</NuxtLink></li>
-        <li><NuxtLink to="/transportation">Transportation</NuxtLink></li>
-        <li><NuxtLink to="/insurance">Insurance</NuxtLink></li>
-        <li><NuxtLink to="/communications">Communications</NuxtLink></li>
-        <li><NuxtLink to="/food">Food</NuxtLink></li>
-        <li><NuxtLink to="/clothing">Clothing</NuxtLink></li>
-        <li><NuxtLink to="/lifestyle">Lifestyle</NuxtLink></li>
-        <li><NuxtLink to="/activities">Activities</NuxtLink></li>
-        <li> {{ monthlyBudget }}</li>
-      </ul>
-    </nav>
-  </div>
+  <v-app>
+    <v-main>
+      <Nuxt />
+
+      <v-breadcrumbs large :items="navItems"></v-breadcrumbs>
+      <div class="budget-display">{{ monthlyBudget }}</div>
+
+
+    </v-main>
+  </v-app>
 </template>
 
 <script>
@@ -30,6 +24,20 @@ const currencyOptions = {
 
 export default {
   name: 'DefaultLayout',
+  data() {
+    return {
+      navItems: [
+        { text: 'Housing', to: '/housing', disabled: false, exact: true},
+        { text: 'Tranportation', to: '/transportation', disabled: true},
+        { text: 'Insurance', to: '/insurance', disabled: true},
+        { text: 'Communications', to: '/communications', disabled: true},
+        { text: 'Food', to: '/food', disabled: true},
+        { text: 'Clothing', to: '/clothing', disabled: true},
+        { text: 'Lifestyle', to: '/lifestyle', disabled: true},
+        { text: 'Activities', to: '/activities', disabled: true}
+      ]
+    }
+  },
   computed: {
     balance(){
       return this.$store.state.budget.balance
@@ -43,15 +51,11 @@ export default {
 </script>
 
 <style>
-@import url(https://unpkg.com/mvp.css);
 
-nav#primary > ul {
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-
-nav#primary > ul li:last-child {
+.budget-display {
+  position: absolute;
+  top: 0px;
+  right: 0px;
   text-align: right;
   flex-grow: 1;
   font-size: 3em;

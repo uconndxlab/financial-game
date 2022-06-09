@@ -2,12 +2,12 @@
   <div>
     <h1>Level 1: Housing</h1>
     <p>*Make of CT goes here*</p>
-    <NuxtLink to="/housing/location">Play</NuxtLink>
+    <v-btn color="primary" to="/housing/location">Play</v-btn>
   </div>
 </template>
 
 <script>
-import { mapMutations, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'HousingIndex',
@@ -16,9 +16,6 @@ export default {
     this.reset()
   },
   methods: {
-    ...mapMutations({
-      setApartment: 'prefs/setApartment'
-    }),
     ...mapActions({
       reset: 'budget/reset'
     })
