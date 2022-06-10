@@ -1,12 +1,14 @@
 // Initial State
-const initialState = {
-  prefs: {
-    location: null,
-    roommate: null,
-    apartment: null
-  },
-  initial: 3000,
-  balance: 0
+function initialState(){
+  return {
+    prefs: {
+      location: null,
+      roommate: null,
+      apartment: null
+    },
+    initial: 3000,
+    balance: 0
+  }
 }
 
 // These are the only props that can be modified
@@ -16,9 +18,20 @@ const publicProps = [
   'utilities'
 ]
 
-export const state = () => initialState
+export const state = () => initialState()
 
 export const mutations = {
+  reset(state){
+
+    // Reset public props
+    publicProps.forEach(val => delete state[val])
+
+    // Reset other values to initial state
+    const s = initialState()
+    Object.keys(s).forEach(key => {
+        state[key] = s[key]
+    })
+  },
   update(state, {prop, value}){
     state[prop] = Number(value)
   },
@@ -61,8 +74,8 @@ export const actions = {
    * Resets to the initial state
    * @param {*} {state, commit}
    */
-  reset( {state, dispatch} ){
-    state = initialState
+  reset( {state, dispatch, commit} ){
+    commit('reset')
     dispatch('total')
   }
 }

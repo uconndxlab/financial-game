@@ -5,14 +5,22 @@
       <Nuxt />
 
       <v-breadcrumbs large :items="navItems"></v-breadcrumbs>
-      <div class="budget-display">{{ monthlyBudget }}</div>
-
+      <div class="budget-display">
+        <animated-number
+          :value="monthlyBudget"
+          :format-value="formatNumber"
+          :duration="500"
+        />
+      </div>
 
     </v-main>
+    <v-footer app>&nbsp;</v-footer>
   </v-app>
 </template>
 
 <script>
+import AnimatedNumber from "animated-number-vue";
+
 // https://currency.js.org/
 import currency from 'currency.js'
 
@@ -24,6 +32,9 @@ const currencyOptions = {
 
 export default {
   name: 'DefaultLayout',
+  components: {
+    AnimatedNumber
+  },
   data() {
     return {
       navItems: [
@@ -43,10 +54,14 @@ export default {
       return this.$store.state.budget.balance
     },
     monthlyBudget() {
-
-      return currency(this.balance, currencyOptions).format()
+      return this.balance
     }
   },
+  methods: {
+    formatNumber(val){
+      return currency(val, currencyOptions).format()
+    }
+  }
 }
 </script>
 
