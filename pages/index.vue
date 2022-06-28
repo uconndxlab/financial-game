@@ -1,5 +1,5 @@
 <template>
-  <p>sdfdsf</p>
+  <v-btn to="/housing" color="primary">Housing</v-btn>
 </template>
 
 <script>

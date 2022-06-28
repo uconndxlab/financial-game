@@ -1,14 +1,19 @@
 <template>
   <div>
     <h1>Housing > Utilities</h1>
-    <p>Pay your utilities!</p>
+    <p v-if="!paid">Pay your utilities!</p>
+    <p v-else>Utilities Paid!</p>
 
-    <v-btn color="primary">Pay Utilities</v-btn>
+    <v-btn color="primary" @click="payUtilities" :disabled="paid">Pay Utilities</v-btn>
 
     <nav>
       <ul>
-        <li><NuxtLink to="/housing/apartment" >&lt; Back</NuxtLink></li>
-        <li><NuxtLink v-if="apartment !== null" to="/housing/utilities" >Continue...</NuxtLink></li>
+        <li>
+          <v-btn to="/housing/apartment">&lt; Back</v-btn>
+        </li>
+        <li>
+          <v-btn :disabled="!paid" to="/transportation" color="secondary">Continue...</v-btn>
+        </li>
       </ul>
     </nav>
 
@@ -16,19 +21,36 @@
 </template>
 
 <script>
-// import { mapMutations } from 'vuex'
+import {  mapActions } from 'vuex'
 
 export default {
-  name: 'HousingApartment',
+  name: 'HousingUtilities',
   data(){
-    return {}
+    return {
+      monthlyUtilityCost: 100,
+      paid: true
+    }
   },
   computed: {
-    apartment() {
-      return this.$store.state.budget.prefs.apartment
+    utilities() {
+      return this.$store.state.budget.utilities
     }
   },
   methods: {
+    payUtilities() {
+    
+      this.updateBudget({
+        prop: 'utilities',
+        value: this.monthlyUtilityCost
+      })
+      this.paid = true
+    },
+    ...mapActions({
+      updateBudget: 'budget/update'
+    })
+  },
+  mounted(){
+    this.paid = this.utilities !== 0
   }
 }
 </script>

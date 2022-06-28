@@ -2,57 +2,25 @@
   <div>
     <h1>Housing > Location</h1>
     <p>Where would you like to live?</p>
-    <v-slide-group
-      v-model="selection"
-
-      class="pa-4"
-      center-active
-      show-arrows
-      @change="setLocation(selection)"
-
-    >
-      <v-slide-item
-        v-for="loc in locations"
-        :key="loc.title"
-        v-slot="{ active, toggle }"
-        :value="loc.title"
-
-      >
-        <v-card
-          width="300"
-          class="ma-4"
-          :color="active ? 'grey lighten-2' : 'white'"
-
-          @click="toggle"
-        >
-          <v-img
-            height="250"
-            :src="`${loc.image}?location=${loc.title}`"
-          ></v-img>
+    <v-slide-group v-model="selection" class="pa-4" center-active show-arrows @change="setLocation(selection)">
+      <v-slide-item v-for="loc in locations" :key="loc.title" v-slot="{ active, toggle }" :value="loc.title">
+        <v-card width="300" class="ma-4" :color="active ? 'grey lighten-2' : 'white'" @click="toggle">
+          <v-img height="250" :src="`${loc.image}?location=${loc.title}`"></v-img>
           <v-card-title>{{loc.title}}</v-card-title>
           <v-card-subtitle>{{loc.priceRange}}</v-card-subtitle>
           <v-card-text>
             {{loc.description}}
           </v-card-text>
-          <v-row
-            class="fill-height"
-            align="center"
-            justify="center"
-          >
+          <v-row class="fill-height" align="center" justify="center">
             <v-scale-transition>
-              <v-icon
-                v-if="active"
-                color="white"
-                size="48"
-                v-text="'mdi-close-circle-outline'"
-              ></v-icon>
+              <v-icon v-if="active" color="white" size="48" v-text="'mdi-close-circle-outline'"></v-icon>
             </v-scale-transition>
           </v-row>
         </v-card>
       </v-slide-item>
     </v-slide-group>
 
-    <NuxtLink v-if="selection !== null" to="/housing/roommate" >Continue...</NuxtLink>
+    <v-btn :disabled="selection === null" to="/housing/roommate" color="secondary">Continue...</v-btn>
   </div>
 </template>
 

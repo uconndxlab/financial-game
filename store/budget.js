@@ -7,6 +7,7 @@ function initialState(){
       apartment: null
     },
     initial: 3000,
+    utilities: 0,
     balance: 0
   }
 }
@@ -41,8 +42,11 @@ export const mutations = {
   setRoommate(state, roommate){
     state.prefs.roommate = Boolean(roommate)
   },
-  setApartment(state, apartment){
+  setApartment(state, apartment) {
     state.prefs.apartment = apartment
+  },
+  setUtilities(state, cost) {
+    state.prefs.utilities = cost
   },
 }
 
