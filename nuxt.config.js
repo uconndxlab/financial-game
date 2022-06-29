@@ -39,6 +39,12 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+
+    // https://github.com/supabase-community/nuxt-supabase
+    ['nuxt-supabase', {
+      supabaseUrl: process.env.SUPABASE_URL,
+      supabaseKey: process.env.SUPABASE_KEY
+    }]
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
