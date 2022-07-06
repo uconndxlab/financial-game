@@ -6,7 +6,7 @@ function initialState(){
       roommate: null,
       apartment: null
     },
-    initial: 3000,
+    initial: 0,
     utilities: 0,
     balance: 0
   }
@@ -16,7 +16,8 @@ function initialState(){
 // directly thru mutations. Rest are protected. (sort of)
 const publicProps = [
   'apartment',
-  'utilities'
+  'utilities',
+  'initial'
 ]
 
 export const state = () => initialState()
@@ -33,20 +34,20 @@ export const mutations = {
         state[key] = s[key]
     })
   },
-  update(state, {prop, value}){
+  property(state, {prop, value}){
     state[prop] = Number(value)
   },
-  setLocation(state, location){
+  setLocationPref(state, location){
     state.prefs.location = String(location)
   },
-  setRoommate(state, roommate){
+  setRoommatePref(state, roommate){
     state.prefs.roommate = Boolean(roommate)
   },
-  setApartment(state, apartment) {
+  setApartmentPref(state, apartment) {
     state.prefs.apartment = apartment
   },
-  setUtilities(state, cost) {
-    state.prefs.utilities = cost
+  setOccupationPref(state, obj) {
+    state.prefs.occupation = obj
   },
 }
 
@@ -54,9 +55,9 @@ export const actions = {
   update({ commit, state, getters, dispatch }, payload) {
     const { prop } = payload
     if(publicProps.includes(prop)){
-      commit('update', payload)
+      commit('property', payload)
     }
-    dispatch('total')
+    // dispatch('total')
   },
 
   /**
@@ -65,13 +66,19 @@ export const actions = {
    * @param {*} {state, commit}
    */
   total( {state, commit} ){
-    let runningTotal = 0;
-    for(const prop of publicProps){
-      if(typeof state[prop] !== 'undefined'){
-        runningTotal += state[prop]
-      }
+    let balance = 0
+
+      // Salary
+    if(state.prefs?.occupation){
+      balance = state.prefs.occupation.monthly_gross - state.prefs.occupation.monthly_taxes;
     }
-    commit('update', {prop: 'balance', value: state.initial - runningTotal })
+    // Apartment
+    if(state.prefs?.apartment){
+      balance = balance - state.prefs.apartment.rent
+    }
+
+    // commit('property', {prop: 'balance', value: state.initial - runningTotal })
+    return balance
   },
 
   /**
@@ -83,3 +90,4 @@ export const actions = {
     dispatch('total')
   }
 }
+

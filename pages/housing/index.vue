@@ -7,19 +7,9 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 
 export default {
   name: 'HousingIndex',
-  mounted() {
-    // Reset the store
-    this.reset()
-  },
-  methods: {
-    ...mapActions({
-      reset: 'budget/reset'
-    })
-  }
 
 }
 </script>

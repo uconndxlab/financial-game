@@ -70,7 +70,7 @@ export default {
       this.dialog = true
     },
     ...mapMutations({
-      setRoommate: 'budget/setRoommate'
+      setRoommate: 'budget/setRoommatePref'
     })
   },
   mounted(){

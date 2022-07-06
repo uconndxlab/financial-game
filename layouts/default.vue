@@ -7,8 +7,8 @@
       <v-breadcrumbs large :items="navItems"></v-breadcrumbs>
       <div class="budget-display">
         <animated-number
-          :value="monthlyBudget"
-          :format-value="formatNumber"
+          :value="balance"
+          :format-value="$money"
           :duration="500"
         />
       </div>
@@ -20,15 +20,7 @@
 
 <script>
 import AnimatedNumber from "animated-number-vue";
-
-// https://currency.js.org/
-import currency from 'currency.js'
-
-// Formmating options for Currency lib
-const currencyOptions = {
-  separator: ',',
-  precision: 0
-}
+import {  mapActions } from 'vuex'
 
 export default {
   name: 'DefaultLayout',
@@ -37,7 +29,9 @@ export default {
   },
   data() {
     return {
+      balance: 0,
       navItems: [
+        { text: 'Home', to: '/', disabled: false},
         { text: 'Housing', to: '/housing', disabled: false, exact: true},
         { text: 'Tranportation', to: '/transportation', disabled: true},
         { text: 'Insurance', to: '/insurance', disabled: true},
@@ -50,17 +44,30 @@ export default {
     }
   },
   computed: {
-    balance(){
-      return this.$store.state.budget.balance
-    },
-    monthlyBudget() {
-      return this.balance
-    }
+    // balance(){
+    //   return this.$store.state.budget.balance
+    // },
+    // monthlyBudget() {
+    //   return this.balance
+    // }
   },
   methods: {
-    formatNumber(val){
-      return currency(val, currencyOptions).format()
-    }
+    // formatNumber(val){
+    //   return currency(val, currencyOptions).format()
+    // }
+    ...mapActions({
+      calculateBudget: 'budget/total'
+    })
+  },
+  mounted(){
+    this.$store.subscribe( async (mutation, state) => {
+      if(mutation.type.includes('Pref')){
+
+        this.balance = await this.calculateBudget()
+        console.warn('0Updating balance')
+
+      }
+    })
   }
 }
 </script>

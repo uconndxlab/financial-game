@@ -100,7 +100,7 @@ export default {
 
   methods: {
     ...mapMutations({
-      setLocation: 'budget/setLocation'
+      setLocation: 'budget/setLocationPref'
     })
   }
 }

@@ -165,7 +165,7 @@ export default {
       })
     },
     ...mapMutations({
-      setApartment: 'budget/setApartment'
+      setApartment: 'budget/setApartmentPref'
     }),
     ...mapActions({
       updateBudget: 'budget/update'
