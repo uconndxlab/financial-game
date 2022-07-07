@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <h1>Welcome to $APPNAME</h1>
+        <h1>Welcome to Breadwinner</h1>
         <p>About the game...</p>
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi saepe nesciunt sapiente, culpa ex
           ratione, quo eius in blanditiis dolorum voluptates quam illo eum praesentium reprehenderit sit, ipsum atque?

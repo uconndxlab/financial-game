@@ -33,7 +33,7 @@ export default {
       navItems: [
         { text: 'Home', to: '/', disabled: false},
         { text: 'Housing', to: '/housing', disabled: false, exact: true},
-        { text: 'Tranportation', to: '/transportation', disabled: true},
+        { text: 'Transportation', to: '/transportation', disabled: false, exact: true},
         { text: 'Insurance', to: '/insurance', disabled: true},
         { text: 'Communications', to: '/communications', disabled: true},
         { text: 'Food', to: '/food', disabled: true},
