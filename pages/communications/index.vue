@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>Level 3: Insurance</h1>
+    <h1>Level 4: Communications</h1>
     <p>*Make of CT goes here*</p>
-    <v-btn color="primary" to="/insurance/health">Play</v-btn>
+    <v-btn color="primary" to="/communications/landline">Play</v-btn>
   </div>
 </template>
 
@@ -10,7 +10,7 @@
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'InsuranceIndex',
+  name: 'CommunicationsIndex',
   mounted() {
     // Reset the store
     // this.reset()

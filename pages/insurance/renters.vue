@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1>Transportation > Downpayment</h1>
-    <p>Choose downpayment amount:</p>
+    <h1>Insurance > Renters Insurance</h1>
+    <p>Do you want renters insurance?</p>
     <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">
-      <div v-for="option in downpaymentOptions" :key="option.name" class="ma-4">
+      <div v-for="option in rentersOptions" :key="option.name" class="ma-4">
         <v-btn width="100%" left>{{option.name}}</v-btn>
       </div>
 
@@ -11,10 +11,10 @@
     <nav>
       <ul>
         <li>
-          <v-btn to="/transportation/vehicles">&lt; Back</v-btn>
+          <v-btn to="/insurance/auto">&lt; Back</v-btn>
         </li>
         <li>
-          <v-btn v-if="downpaymenttype !== null" to="/transportation/loanterm" color="secondary">Continue...</v-btn>
+          <v-btn v-if="renterstype !== null" to="/insurance/life" color="secondary">Continue...</v-btn>
         </li>
       </ul>
     </nav>
@@ -23,14 +23,14 @@
       <v-card>
         <v-card-title color="primary" dark>Did You Know?</v-card-title>
         <v-card-text>
-          <!-- If user chose either downpayment: -->
+          <!-- If user gets renters insurance -->
           <p v-if="selection">
-            Choosing a higher downpayment can save money from loan interest later on.
+            Renters insurance costs an average of $19 a month.
           </p>
 
-          <!-- If user chose 0 downpayment -->
+          <!-- If user is not getting renters insurance -->
           <p v-else>
-            No down payment can result in a higher total cost due to loan interest rates.
+            Renters insurance can cover theft, water backup damage, certain natural disasters, bodily injuries and more in a rented property.
           </p>
         </v-card-text>
         <v-card-actions class="justify-end">
@@ -45,23 +45,22 @@
 <script>
 
 export default {
-  name: 'TransportationType',
+  name: 'RentersType',
   data(){
     return {
       selection: null,
       dialog: false,
-      downpaymenttype: null,
-      downpaymentOptions: [
-        { name: '$0', value: true},
-        { name: '$2500', value: false},
-        { name: '$4000', value:false}
+      renterstype: null,
+      rentersOptions: [
+        { name: 'No', value: false},
+        { name: 'Yes', value: true}
 
       ],
     }
   },
   methods: {
     selectionChanged(){
-      this.downpaymenttype = this.selection
+      this.renterstype = this.selection
       this.dialog = true
     }
   },

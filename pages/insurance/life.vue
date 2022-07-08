@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1>Transportation > Downpayment</h1>
-    <p>Choose downpayment amount:</p>
+    <h1>Insurance > Life Insurance</h1>
+    <p>Do you want life insurance?</p>
     <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">
-      <div v-for="option in downpaymentOptions" :key="option.name" class="ma-4">
+      <div v-for="option in lifeOptions" :key="option.name" class="ma-4">
         <v-btn width="100%" left>{{option.name}}</v-btn>
       </div>
 
@@ -11,10 +11,10 @@
     <nav>
       <ul>
         <li>
-          <v-btn to="/transportation/vehicles">&lt; Back</v-btn>
+          <v-btn to="/insurance/renters">&lt; Back</v-btn>
         </li>
         <li>
-          <v-btn v-if="downpaymenttype !== null" to="/transportation/loanterm" color="secondary">Continue...</v-btn>
+          <v-btn v-if="lifetype !== null" to="/communications" color="secondary">Continue...</v-btn>
         </li>
       </ul>
     </nav>
@@ -23,14 +23,14 @@
       <v-card>
         <v-card-title color="primary" dark>Did You Know?</v-card-title>
         <v-card-text>
-          <!-- If user chose either downpayment: -->
+          <!-- If user chose either insurance: -->
           <p v-if="selection">
-            Choosing a higher downpayment can save money from loan interest later on.
+            Choosing a higher life insurance provides more for your dependents if you die, but costs more monthly.
           </p>
 
-          <!-- If user chose 0 downpayment -->
+          <!-- If user chose 0 insurance -->
           <p v-else>
-            No down payment can result in a higher total cost due to loan interest rates.
+            No life insurance can result in financial loss for dependents in case of your death.
           </p>
         </v-card-text>
         <v-card-actions class="justify-end">
@@ -50,18 +50,18 @@ export default {
     return {
       selection: null,
       dialog: false,
-      downpaymenttype: null,
-      downpaymentOptions: [
-        { name: '$0', value: true},
-        { name: '$2500', value: false},
-        { name: '$4000', value:false}
+      lifetype: null,
+      lifeOptions: [
+        { name: 'No', value: true},
+        { name: '$100,000 Term Life', value: false},
+        { name: '$250,000 Term Life', value:false}
 
       ],
     }
   },
   methods: {
     selectionChanged(){
-      this.downpaymenttype = this.selection
+      this.lifetype = this.selection
       this.dialog = true
     }
   },

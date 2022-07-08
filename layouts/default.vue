@@ -34,7 +34,7 @@ export default {
         { text: 'Home', to: '/', disabled: false},
         { text: 'Housing', to: '/housing', disabled: false, exact: true},
         { text: 'Transportation', to: '/transportation', disabled: false, exact: true},
-        { text: 'Insurance', to: '/insurance', disabled: true},
+        { text: 'Insurance', to: '/insurance', disabled: false, exact: true},
         { text: 'Communications', to: '/communications', disabled: true},
         { text: 'Food', to: '/food', disabled: true},
         { text: 'Clothing', to: '/clothing', disabled: true},
