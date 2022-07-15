@@ -5,7 +5,7 @@
       <Nuxt />
 
       <v-breadcrumbs large :items="navItems"></v-breadcrumbs>
-      <div class="budget-display">
+      <div class="budget-display" v-if="$route.name !== 'index'">
         <animated-number
           :value="balance"
           :format-value="$money"
@@ -64,15 +64,20 @@ export default {
       if(mutation.type.includes('Pref')){
 
         this.balance = await this.calculateBudget()
-        console.warn('0Updating balance')
+        console.warn('Updating balance')
 
       }
     })
+
+    console.log(this.$route)
   }
 }
 </script>
 
 <style>
+:root {
+  --primary: #1f4664
+}
 
 .budget-display {
   position: absolute;
@@ -87,6 +92,8 @@ export default {
 body {
   padding:0;
   margin: 40px;
+  /* background-color: var(--primary) */
+
 }
 
 body > h1 {

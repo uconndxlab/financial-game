@@ -65,7 +65,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-btn :disabled="occupation.length < 1" to="/housing" color="secondary">Continue...</v-btn>
+        <v-btn :disabled="occupation.length < 1" to="/occupation" color="secondary">Continue...</v-btn>
       </v-col>
     </v-row>
   </v-container>
