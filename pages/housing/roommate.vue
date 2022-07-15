@@ -14,7 +14,7 @@
           <v-btn to="/housing/location">&lt; Back</v-btn>
         </li>
         <li>
-          <v-btn v-if="roommate !== null" to="/housing/apartment" color="secondary">Continue...</v-btn>
+          <v-btn v-if="roommate !== null" to="/housing/apartment" color="primary">Continue...</v-btn>
         </li>
       </ul>
     </nav>

@@ -11,7 +11,7 @@
 
         <!-- UX Note: This might work better as a search box and results instead of autocomplete -->
         <v-autocomplete v-model="chosenOccupation" :items="entries" :loading="isLoading" :search-input.sync="search"
-          hide-no-data hide-selected item-text="name" label="Occupations" placeholder="Start typing to Search"
+          hide-no-data hide-selected item-text="name" label="Occupation" placeholder="Start typing to Search"
           prepend-icon="mdi-magnify" chips clearable return-object @change="changed"></v-autocomplete>
 
       </v-col>
@@ -49,7 +49,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-btn :disabled="chosenOccupation === null" to="/housing" color="secondary">Continue...</v-btn>
+        <v-btn :disabled="chosenOccupation === null" to="/housing" color="primary">Continue...</v-btn>
 
       </v-col>
     </v-row>

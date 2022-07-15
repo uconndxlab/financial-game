@@ -20,7 +20,7 @@
       </v-slide-item>
     </v-slide-group>
 
-    <v-btn :disabled="selection === null" to="/housing/roommate" color="secondary">Continue...</v-btn>
+    <v-btn :disabled="selection === null" to="/housing/roommate" color="primary">Continue...</v-btn>
   </div>
 </template>
 

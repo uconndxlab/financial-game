@@ -3,16 +3,21 @@
   <v-app>
     <v-main>
       <Nuxt />
-
+      <v-container class="bottom-display">
+      <v-row>
+      <v-col cols="auto" class="breadcrumbs">
       <v-breadcrumbs large :items="navItems"></v-breadcrumbs>
-      <div class="budget-display">
+      </v-col>
+      <v-col  class="budget-display">
         <animated-number
           :value="balance"
           :format-value="$money"
           :duration="500"
         />
-      </div>
-
+      
+      </v-col>
+      </v-row>
+      </v-container>
     </v-main>
     <v-footer app>&nbsp;</v-footer>
   </v-app>
@@ -75,9 +80,6 @@ export default {
 <style>
 
 .budget-display {
-  position: absolute;
-  top: 0px;
-  right: 0px;
   text-align: right;
   flex-grow: 1;
   font-size: 3em;

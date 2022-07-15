@@ -10,7 +10,7 @@
     <v-slide-group v-model="apartmentSelection" class="pa-4" center-active show-arrows @change="updateSelection(apartmentSelection)">
       <v-slide-item v-for="opt in apartmentOptions['Danbury']" :key="opt.id" v-slot="{ active, toggle }"
         :value="opt">
-        <v-card width="300" class="ma-4" :color="active ? 'grey lighten-2' : 'white'" @click="toggle">
+        <v-card width="300" class="ma-4" :color="active ? 'blue lighten-2' : 'white'" @click="toggle">
           <!-- <v-img height="250" :src="`${opt.image}?optation=${opt.title}`"></v-img> -->
           <v-card-title>{{opt.type}}</v-card-title>
           <v-card-subtitle>{{opt.reny}}</v-card-subtitle>
@@ -31,7 +31,7 @@
           <v-btn to="/housing/roommate">&lt; Back</v-btn>
         </li>
         <li>
-          <v-btn :disabled="apartment === null" to="/housing/utilities" color="secondary">Continue...</v-btn>
+          <v-btn :disabled="apartment === null" to="/housing/utilities" color="primary">Continue...</v-btn>
         </li>
       </ul>
     </nav>
