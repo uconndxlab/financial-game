@@ -1,20 +1,17 @@
 <template>
 
   <v-app>
-    <v-main>
+    <v-main fill-height fluid>
       <Nuxt />
 
-      <v-breadcrumbs large :items="navItems"></v-breadcrumbs>
       <div class="budget-display" v-if="$route.name !== 'index'">
-        <animated-number
-          :value="balance"
-          :format-value="$money"
-          :duration="500"
-        />
+        <animated-number :value="balance" :format-value="$money" :duration="500" />
       </div>
 
     </v-main>
-    <v-footer app>&nbsp;</v-footer>
+    <v-footer app >
+      <v-breadcrumbs large :items="navItems"></v-breadcrumbs>
+    </v-footer>
   </v-app>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <h1>Transportation > Downpayment</h1>
     <p>Choose downpayment amount:</p>
     <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">
@@ -8,38 +8,33 @@
       </div>
 
     </v-btn-toggle>
-    <nav>
-      <ul>
-        <li>
-          <v-btn to="/transportation/vehicles">&lt; Back</v-btn>
-        </li>
-        <li>
+    <v-row>
+      <v-col>
+        <v-btn to="/transportation/vehicles">&lt; Back</v-btn>
           <v-btn v-if="downpaymenttype !== null" to="/transportation/loanterm" color="secondary">Continue...</v-btn>
-        </li>
-      </ul>
-    </nav>
+      </v-col>
+      </v-row>
+        <v-dialog v-model="dialog" transition="dialog-top-transition" max-width="600">
+          <v-card>
+            <v-card-title color="primary" dark>Did You Know?</v-card-title>
+            <v-card-text>
+              <!-- If user chose either downpayment: -->
+              <p v-if="selection">
+                Choosing a higher downpayment can save money from loan interest later on.
+              </p>
 
-    <v-dialog v-model="dialog" transition="dialog-top-transition" max-width="600">
-      <v-card>
-        <v-card-title color="primary" dark>Did You Know?</v-card-title>
-        <v-card-text>
-          <!-- If user chose either downpayment: -->
-          <p v-if="selection">
-            Choosing a higher downpayment can save money from loan interest later on.
-          </p>
+              <!-- If user chose 0 downpayment -->
+              <p v-else>
+                No down payment can result in a higher total cost due to loan interest rates.
+              </p>
+            </v-card-text>
+            <v-card-actions class="justify-end">
+              <v-btn text @click="dialog = false">Okay</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
 
-          <!-- If user chose 0 downpayment -->
-          <p v-else>
-            No down payment can result in a higher total cost due to loan interest rates.
-          </p>
-        </v-card-text>
-        <v-card-actions class="justify-end">
-          <v-btn text @click="dialog = false">Okay</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-
-  </div>
+  </v-container>
 </template>
 
 <script>

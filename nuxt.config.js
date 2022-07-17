@@ -47,7 +47,9 @@ export default {
     ['nuxt-supabase', {
       supabaseUrl: process.env.SUPABASE_URL,
       supabaseKey: process.env.SUPABASE_KEY
-    }]
+    }],
+    // https://github.com/schlunsen/nuxt-leaflet
+    'nuxt-leaflet',
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <h1>Transportation > Transportation Type</h1>
     <p>Choose alternative transportation:</p>
     <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">
@@ -8,20 +8,16 @@
       </div>
 
     </v-btn-toggle>
-    <nav>
-      <ul>
-        <li>
-          <v-btn to="/transportation/transportationtype">&lt; Back</v-btn>
-        </li>
-        <li>
-          <v-btn v-if="transporttype === 0" to="/transportation/public" color="secondary">Continue...</v-btn>
-          <v-btn v-if="transporttype === 1" to="/transportation/private" color="secondary">Continue...</v-btn>          
-          <v-btn v-if="transporttype === 2 || transporttype === 3" to="/insurance" color="secondary">Continue...</v-btn>
-        </li>
-      </ul>
-    </nav>
+    <v-row>
+      <v-col>
+        <v-btn to="/transportation/transportationtype">&lt; Back</v-btn>
+        <v-btn v-if="transporttype === 0" to="/transportation/public" color="secondary">Continue...</v-btn>
+        <v-btn v-if="transporttype === 1" to="/transportation/private" color="secondary">Continue...</v-btn>
+        <v-btn v-if="transporttype === 2 || transporttype === 3" to="/insurance" color="secondary">Continue...</v-btn>
+      </v-col>
+    </v-row>
 
-  </div>
+  </v-container>
 </template>
 
 <script>

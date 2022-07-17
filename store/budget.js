@@ -38,7 +38,7 @@ export const mutations = {
     state[prop] = Number(value)
   },
   setLocationPref(state, location){
-    state.prefs.location = String(location)
+    state.prefs.location = location
   },
   setRoommatePref(state, roommate){
     state.prefs.roommate = Boolean(roommate)

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <h1>Transportation > Transportation Type</h1>
     <p>Choose a vehicle:</p>
     <v-slide-group v-model="selection" class="pa-4" center-active show-arrows>
@@ -19,13 +19,13 @@
         </v-card>
       </v-slide-item>
     </v-slide-group>
-    <li>
-          <v-btn to="/transportation/transportationtype">&lt; Back</v-btn>
-    </li>
-    <li>
-        <v-btn :disabled="selection === null" to="/transportation/downpayment" color="secondary">Continue...</v-btn>
-    </li>
-  </div>
+    <v-row>
+      <v-col>
+        <v-btn to="/transportation/transportationtype">&lt; Back</v-btn>
+          <v-btn :disabled="selection === null" to="/transportation/downpayment" color="secondary">Continue...</v-btn>
+  </v-col>
+  </v-row>
+  </v-container>
 </template>
 
 <script>
