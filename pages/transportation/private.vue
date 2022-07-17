@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <h1>Transportation > Transportation Type</h1>
     <p>Choose private transportation:</p>
     <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">
@@ -19,7 +19,7 @@
       </ul>
     </nav>
 
-  </div>
+  </v-container>
 </template>
 
 <script>

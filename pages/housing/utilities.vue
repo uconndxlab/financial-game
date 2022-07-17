@@ -1,23 +1,25 @@
 <template>
-  <div>
+  <v-container>
     <h1>Housing > Utilities</h1>
-    <p v-if="!paid">Pay your utilities!</p>
-    <p v-else>Utilities Paid!</p>
 
-    <v-btn color="primary" @click="payUtilities" :disabled="paid">Pay Utilities</v-btn>
+    <v-row>
+      <v-col>
+        <p v-if="!paid">Pay your utilities!</p>
+        <p v-else>Utilities Paid!</p>
+        <v-btn color="primary" @click="payUtilities" :disabled="paid">Pay Utilities</v-btn>
+      </v-col>
 
-    <nav>
-      <ul>
-        <li>
-          <v-btn to="/housing/apartment">&lt; Back</v-btn>
-        </li>
-        <li>
-          <v-btn :disabled="!paid" to="/transportation" color="secondary">Continue...</v-btn>
-        </li>
-      </ul>
-    </nav>
+    </v-row>
 
-  </div>
+    <v-row>
+      <v-col>
+        <v-btn to="/housing/apartment">&lt; Back</v-btn>
+        <v-btn :disabled="!paid" to="/transportation" color="secondary">Continue...</v-btn>
+      </v-col>
+    </v-row>
+
+
+  </v-container>
 </template>
 
 <script>

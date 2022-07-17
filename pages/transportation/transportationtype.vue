@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <h1>Transportation > Transportation Type</h1>
     <p>Choose transportation type:</p>
     <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">
@@ -40,7 +40,7 @@
       </v-card>
     </v-dialog>
 
-  </div>
+  </v-container>
 </template>
 
 <script>
