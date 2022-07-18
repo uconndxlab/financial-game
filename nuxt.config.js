@@ -35,7 +35,25 @@ export default {
     '@nuxtjs/eslint-module',
 
     // Vuetify: https://github.com/nuxt-community/vuetify-module#readme
-    ['@nuxtjs/vuetify', { /* module options */ }]
+    ['@nuxtjs/vuetify', { 
+      theme: {
+        options: {
+          customProperties: true
+        },
+        dark: true,
+        themes: {
+          dark: {
+            primary: '#1f4664',
+            secondary: '#424242',
+            accent: '#FF4081',
+            error: '#FF5252',
+            info: '#2196F3',
+            success: '#4CAF50',
+            warning: '#FB8C00'
+          }
+        },
+      },
+    }]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

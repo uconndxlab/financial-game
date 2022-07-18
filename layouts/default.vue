@@ -9,8 +9,8 @@
       </div>
 
     </v-main>
-    <v-footer app >
-      <v-breadcrumbs large :items="navItems"></v-breadcrumbs>
+    <v-footer app class="d-flex justify-center" >
+      <v-breadcrumbs large :items="navItems" divider=""></v-breadcrumbs>
     </v-footer>
   </v-app>
 </template>
@@ -72,10 +72,6 @@ export default {
 </script>
 
 <style>
-:root {
-  --primary: #1f4664
-}
-
 .budget-display {
   position: absolute;
   top: 0px;
@@ -89,7 +85,6 @@ export default {
 body {
   padding:0;
   margin: 40px;
-  /* background-color: var(--primary) */
 
 }
 
@@ -100,5 +95,6 @@ body > h1 {
 .nuxt-link-active {
   text-decoration: underline;
 }
+
 
 </style>
