@@ -41,7 +41,7 @@
 
 <script>
 import 'leaflet/dist/leaflet.css';
-import { mapMutations } from 'vuex'
+import { mapActions } from 'vuex'
 export default {
   name: 'HousingLocation', 
   components: {
@@ -69,7 +69,7 @@ export default {
   },
   computed: {
     location() {
-      return this.$store.state.budget.prefs.location
+      return this.$store.state.budget.location
     }
   },
   mounted(){
@@ -77,9 +77,15 @@ export default {
   },
 
   methods: {
-    ...mapMutations({
-      setLocation: 'budget/setLocationPref'
-    })
+    ...mapActions({
+      update: 'budget/update'
+    }),
+    setLocation(location){
+      this.update({
+        prop: 'location',
+        value: location
+      })
+    }
   }
 }
 </script>

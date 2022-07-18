@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'HousingRoommate',
@@ -68,16 +68,19 @@ export default {
   },
   computed: {
     roommate() {
-      return this.$store.state.budget.prefs.roommate
+      return this.$store.state.budget.roommate
     }
   },
   methods: {
     selectionChanged(){
-      this.setRoommate(this.selection)
+      this.update({
+        prop: 'roommate',
+        value: this.selection === 1
+      })
       this.dialog = true
     },
-    ...mapMutations({
-      setRoommate: 'budget/setRoommatePref'
+    ...mapActions({
+      update: 'budget/update'
     })
   },
   mounted(){

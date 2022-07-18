@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'IndexPage',
@@ -83,18 +83,13 @@ export default {
   },
   methods: {
     changed({ item: occupation}){
-      console.log('changed',occupation)
-      this.set(occupation)
 
       // Set the new starting amount (zero $ if null)
       this.update({
-        prop: 'initial',
-        value: (occupation?.monthly_gross - occupation?.monthly_taxes) || 0
+        prop: 'occupation',
+        value: occupation
       })
-    }, 
-    ...mapMutations({
-      set: 'budget/setOccupationPref',
-    }),
+    },
     ...mapActions({
       update: 'budget/update',
       reset: 'budget/reset'
