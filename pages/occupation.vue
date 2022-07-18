@@ -48,7 +48,7 @@ export default {
     name: 'OccupationPage',
     data() {
         return {
-            occupation: this.$store.state.budget.prefs.occupation
+            occupation: this.$store.state.budget.occupation
         }
     }
 }

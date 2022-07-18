@@ -58,23 +58,14 @@ export default {
   },
   mounted(){
     this.$store.subscribe( async (mutation, state) => {
-      if(mutation.type.includes('Pref')){
-
-        this.balance = await this.calculateBudget()
-        console.warn('Updating balance')
-
-      }
+      this.balance = await this.calculateBudget()
+      console.warn('Updating balance')
     })
-
-    console.log(this.$route)
   }
 }
 </script>
 
 <style>
-:root {
-  --primary: #1f4664
-}
 
 .budget-display {
   position: absolute;

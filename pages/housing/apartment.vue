@@ -7,7 +7,7 @@
       <v-col v-for="opt in apartmentOptions['Danbury']" :key="opt.id" cols="12" sm=6 lg="4" xl="3">
         <v-card class="ma-1">
           <!-- <v-img height="250" :src="`${opt.image}?optation=${opt.title}`"></v-img> -->
-          <v-card-title>{{opt.type}}</v-card-title>
+          <v-card-title>{{opt.type}}, ${{opt.rent}}</v-card-title>
           <v-card-subtitle>{{opt.reny}}</v-card-subtitle>
           <v-card-text>
             {{opt.features}}
@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'HousingApartment',
@@ -162,25 +162,21 @@ export default {
   },
   computed: {
     apartment() {
-      return this.$store.state.budget.prefs.apartment
+      return this.$store.state.budget.apartment
     },
     roommate(){
-      return this.$store.state.budget.prefs.roommate
+      return this.$store.state.budget.roommate
     }
   },
   methods: {
     updateSelection(option){
-      this.setApartment(option)
-      this.updateBudget({
+      this.update({
         prop: 'apartment',
-        value: this.apartment.rent
+        value: option
       })
     },
-    ...mapMutations({
-      setApartment: 'budget/setApartmentPref'
-    }),
     ...mapActions({
-      updateBudget: 'budget/update'
+      update: 'budget/update'
     })
   },
   mounted() {
