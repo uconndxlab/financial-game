@@ -1,6 +1,8 @@
 <template>
+<v-container>
   <div>
     <h1>Housing > Roommate</h1>
+    <div class="choice-boxes text-center">
     <p>Do you want a roommate?</p>
     <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">
       <div v-for="option in roommateOptions" :key="option.name" class="ma-4">
@@ -8,8 +10,9 @@
       </div>
 
     </v-btn-toggle>
+    </div>
     <nav>
-      <ul>
+      <ul class="nav-buttons">
         <li>
           <v-btn to="/housing/location">&lt; Back</v-btn>
         </li>
@@ -42,6 +45,7 @@
     </v-dialog>
 
   </div>
+</v-container>
 </template>
 
 <script>

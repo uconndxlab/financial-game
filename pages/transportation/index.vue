@@ -1,9 +1,11 @@
 <template>
+<v-container>
   <div>
     <h1>Level 2: Tranportation</h1>
     <p>*Make of CT goes here*</p>
     <v-btn color="primary" to="/transportation/transportationtype">Play</v-btn>
   </div>
+</v-container>
 </template>
 
 <script>

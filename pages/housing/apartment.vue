@@ -1,4 +1,5 @@
 <template>
+<v-container>
   <div>
     <h1>Housing > Apartment</h1>
     <p>Choose an apartment: (Hardcoded to Danbury for now)</p>
@@ -10,7 +11,7 @@
     <v-slide-group v-model="apartmentSelection" class="pa-4" center-active show-arrows @change="updateSelection(apartmentSelection)">
       <v-slide-item v-for="opt in apartmentOptions['Danbury']" :key="opt.id" v-slot="{ active, toggle }"
         :value="opt">
-        <v-card width="300" class="ma-4" :color="active ? 'blue lighten-2' : 'white'" @click="toggle">
+        <v-card width="300" class="ma-4" :color="active ? 'primary' : 'white'" @click="toggle">
           <!-- <v-img height="250" :src="`${opt.image}?optation=${opt.title}`"></v-img> -->
           <v-card-title>{{opt.type}}</v-card-title>
           <v-card-subtitle>{{opt.reny}}</v-card-subtitle>
@@ -26,7 +27,7 @@
       </v-slide-item>
     </v-slide-group>
     <nav>
-      <ul>
+      <ul class="nav-buttons">
         <li>
           <v-btn to="/housing/roommate">&lt; Back</v-btn>
         </li>
@@ -37,6 +38,7 @@
     </nav>
 
   </div>
+</v-container>
 </template>
 
 <script>

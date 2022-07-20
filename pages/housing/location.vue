@@ -1,10 +1,11 @@
 <template>
+<v-container>
   <div>
     <h1>Housing > Location</h1>
     <p>Where would you like to live?</p>
     <v-slide-group v-model="selection" class="pa-4" center-active show-arrows @change="setLocation(selection)">
       <v-slide-item v-for="loc in locations" :key="loc.title" v-slot="{ active, toggle }" :value="loc.title">
-        <v-card width="300" class="ma-4" :color="active ? 'grey lighten-2' : 'white'" @click="toggle">
+        <v-card width="300" class="ma-4" :color="active ? 'primary' : 'white'" @click="toggle">
           <v-img height="250" :src="`${loc.image}?location=${loc.title}`"></v-img>
           <v-card-title>{{loc.title}}</v-card-title>
           <v-card-subtitle>{{loc.priceRange}}</v-card-subtitle>
@@ -19,9 +20,15 @@
         </v-card>
       </v-slide-item>
     </v-slide-group>
-
-    <v-btn :disabled="selection === null" to="/housing/roommate" color="primary">Continue...</v-btn>
+  <ul class="nav-buttons">
+        <li>
+        </li>
+        <li>
+          <v-btn :disabled="selection === null" to="/housing/roommate" color="primary">Continue...</v-btn>
+        </li>
+      </ul>
   </div>
+</v-container>
 </template>
 
 <script>

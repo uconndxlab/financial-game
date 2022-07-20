@@ -1,6 +1,8 @@
 <template>
+<v-container>
   <div>
     <h1>Insurance > Life Insurance</h1>
+    <div class="choice-boxes text-center">
     <p>Do you want life insurance?</p>
     <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">
       <div v-for="option in lifeOptions" :key="option.name" class="ma-4">
@@ -8,8 +10,9 @@
       </div>
 
     </v-btn-toggle>
+    </div>
     <nav>
-      <ul>
+      <ul class="nav-buttons">
         <li>
           <v-btn to="/insurance/renters">&lt; Back</v-btn>
         </li>
@@ -40,6 +43,7 @@
     </v-dialog>
 
   </div>
+</v-container>
 </template>
 
 <script>

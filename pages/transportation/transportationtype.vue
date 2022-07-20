@@ -1,6 +1,8 @@
 <template>
+<v-container>
   <div>
     <h1>Transportation > Transportation Type</h1>
+    <div class="choice-boxes text-center">
     <p>Choose transportation type:</p>
     <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">
       <div v-for="option in transportationOptions" :key="option.name" class="ma-4">
@@ -8,10 +10,10 @@
       </div>
 
     </v-btn-toggle>
+    </div>
     <nav>
-      <ul>
+      <ul class="nav-buttons">
         <li>
-          <v-btn to="/transportation">&lt; Back</v-btn>
         </li>
         <li>
           <v-btn v-if="transportationtype !== null && selection" to="/transportation/alternative" color="secondary">Continue...</v-btn>
@@ -41,6 +43,7 @@
     </v-dialog>
 
   </div>
+</v-container>
 </template>
 
 <script>

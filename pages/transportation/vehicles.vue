@@ -1,10 +1,11 @@
 <template>
+<v-container>
   <div>
     <h1>Transportation > Transportation Type</h1>
     <p>Choose a vehicle:</p>
     <v-slide-group v-model="selection" class="pa-4" center-active show-arrows>
       <v-slide-item v-for="vehicle in vehicles" :key="vehicle.title" v-slot="{ active, toggle }" :value="vehicle.title">
-        <v-card width="300" class="ma-4" :color="active ? 'grey lighten-2' : 'white'" @click="toggle">
+        <v-card width="300" class="ma-4" :color="active ? 'primary' : 'white'" @click="toggle">
           <v-img height="250" :src="`${vehicle.image}?vehicle=${vehicle.title}`"></v-img>
           <v-card-title>{{vehicle.title}}</v-card-title>
           <v-card-subtitle>{{vehicle.priceRange}}</v-card-subtitle>
@@ -19,13 +20,16 @@
         </v-card>
       </v-slide-item>
     </v-slide-group>
+    <ul class="nav-buttons">
     <li>
           <v-btn to="/transportation/transportationtype">&lt; Back</v-btn>
     </li>
     <li>
         <v-btn :disabled="selection === null" to="/transportation/downpayment" color="secondary">Continue...</v-btn>
     </li>
+    </ul>
   </div>
+</v-container>
 </template>
 
 <script>

@@ -1,13 +1,14 @@
 <template>
+<v-container>
   <div>
     <h1>Insurance > Auto Insurance</h1>
     <p v-if="!paid">Pay your auto insurance!</p>
     <p v-else>Auto insurance Paid!</p>
 
-    <v-btn color="primary" @click="payUtilities" :disabled="paid">Pay auto insurance</v-btn>
+    <v-btn class="mb-5" color="primary" @click="payUtilities" :disabled="paid">Pay auto insurance</v-btn>
 
     <nav>
-      <ul>
+      <ul class="nav-buttons">
         <li>
           <v-btn to="/insurance/health">&lt; Back</v-btn>
         </li>
@@ -18,6 +19,7 @@
     </nav>
 
   </div>
+</v-container>
 </template>
 
 <script>

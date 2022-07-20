@@ -1,13 +1,14 @@
 <template>
+<v-container>
   <div>
     <h1>Housing > Utilities</h1>
     <p v-if="!paid">Pay your utilities!</p>
     <p v-else>Utilities Paid!</p>
 
-    <v-btn color="primary" @click="payUtilities" :disabled="paid">Pay Utilities</v-btn>
+    <v-btn class="mb-5" color="primary" @click="payUtilities" :disabled="paid">Pay Utilities</v-btn>
 
     <nav>
-      <ul>
+      <ul class="nav-buttons">
         <li>
           <v-btn to="/housing/apartment">&lt; Back</v-btn>
         </li>
@@ -18,6 +19,7 @@
     </nav>
 
   </div>
+</v-container>
 </template>
 
 <script>
