@@ -2,11 +2,12 @@
 <v-container>
   <div>
     <h1>Insurance > Auto Insurance</h1>
+        <div class="text-center">
     <p v-if="!paid">Pay your auto insurance!</p>
     <p v-else>Auto insurance Paid!</p>
 
     <v-btn class="mb-5" color="primary" @click="payUtilities" :disabled="paid">Pay auto insurance</v-btn>
-
+  </div>
     <nav>
       <ul class="nav-buttons">
         <li>

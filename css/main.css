@@ -113,6 +113,15 @@ ul{
     justify-content: space-between;
     width: 100%;
     padding-left:0px!important;
+    max-width: 520px;
+    margin: auto;
+}
+
+.nav-buttons-extended{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-left:0px!important;
 }
 
 .theme--dark.v-btn--active:hover::before, .theme--dark.v-btn--active::before{
@@ -131,11 +140,7 @@ ul{
 }
 
 .choice-boxes p{
-    background-color:#5ED1C7;
-    color:#173349;
     font-weight:500;
-    padding:25px;
-    border-radius:10px;
-    margin-left: 16px;
-    margin-right:16px;
+    padding-top:25px;
+    font-size:20px;
 }

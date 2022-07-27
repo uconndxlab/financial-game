@@ -2,11 +2,12 @@
 <v-container>
   <div>
     <h1>Housing > Utilities</h1>
+    <div class="text-center">
     <p v-if="!paid">Pay your utilities!</p>
     <p v-else>Utilities Paid!</p>
 
     <v-btn class="mb-5" color="primary" @click="payUtilities" :disabled="paid">Pay Utilities</v-btn>
-
+    </div>
     <nav>
       <ul class="nav-buttons">
         <li>

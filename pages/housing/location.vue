@@ -20,7 +20,7 @@
         </v-card>
       </v-slide-item>
     </v-slide-group>
-  <ul class="nav-buttons">
+  <ul class="nav-buttons-extended">
         <li>
         </li>
         <li>
