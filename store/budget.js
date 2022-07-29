@@ -1,32 +1,17 @@
 // Initial State
 function initialState(){
   return {
-    prefs: {
-      location: null,
-      roommate: null,
-      apartment: null
-    },
-    initial: 0,
+    location: null,
+    roommate: null,
+    apartment: null,
     utilities: 0,
-    balance: 0
   }
 }
-
-// These are the only props that can be modified
-// directly thru mutations. Rest are protected. (sort of)
-const publicProps = [
-  'apartment',
-  'utilities',
-  'initial'
-]
 
 export const state = () => initialState()
 
 export const mutations = {
   reset(state){
-
-    // Reset public props
-    publicProps.forEach(val => delete state[val])
 
     // Reset other values to initial state
     const s = initialState()
@@ -34,30 +19,15 @@ export const mutations = {
         state[key] = s[key]
     })
   },
+  // Property mutations
   property(state, {prop, value}){
-    state[prop] = Number(value)
-  },
-  setLocationPref(state, location){
-    state.prefs.location = String(location)
-  },
-  setRoommatePref(state, roommate){
-    state.prefs.roommate = Boolean(roommate)
-  },
-  setApartmentPref(state, apartment) {
-    state.prefs.apartment = apartment
-  },
-  setOccupationPref(state, obj) {
-    state.prefs.occupation = obj
+    state[prop] = value
   },
 }
 
 export const actions = {
   update({ commit, state, getters, dispatch }, payload) {
-    const { prop } = payload
-    if(publicProps.includes(prop)){
-      commit('property', payload)
-    }
-    // dispatch('total')
+    commit('property', payload)
   },
 
   /**
@@ -69,12 +39,19 @@ export const actions = {
     let balance = 0
 
       // Salary
-    if(state.prefs?.occupation){
-      balance = state.prefs.occupation.monthly_gross - state.prefs.occupation.monthly_taxes;
+    if(state?.occupation){
+      balance = state.occupation.monthly_gross - state.occupation.monthly_taxes;
     }
     // Apartment
-    if(state.prefs?.apartment){
-      balance = balance - state.prefs.apartment.rent
+    if(state?.apartment){
+      // Calculate rent
+      const rent = state.roommate === true ? state.apartment.rent / 2 : state.apartment.rent;
+      balance = balance - rent
+    }
+
+    // Utilities
+    if(state?.utilities){
+      balance = balance - state.utilities
     }
 
     // commit('property', {prop: 'balance', value: state.initial - runningTotal })

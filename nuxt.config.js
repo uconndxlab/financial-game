@@ -22,7 +22,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/money.js'
+    '~/plugins/money.js',
+    '~/plugins/persistedState.client.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -53,7 +54,9 @@ export default {
     ['nuxt-supabase', {
       supabaseUrl: process.env.SUPABASE_URL,
       supabaseKey: process.env.SUPABASE_KEY
-    }]
+    }],
+    // https://github.com/schlunsen/nuxt-leaflet
+    'nuxt-leaflet',
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

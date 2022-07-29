@@ -3,11 +3,11 @@
   <div>
     <h1>Housing > Location</h1>
     <p>Where would you like to live?</p>
-    <v-slide-group v-model="selection" class="pa-4" center-active show-arrows @change="setLocation(selection)">
-      <v-slide-item v-for="loc in locations" :key="loc.title" v-slot="{ active, toggle }" :value="loc.title">
-        <v-card width="300" class="ma-4" :color="active ? 'primary' : 'white'" @click="toggle">
+    <!-- <v-slide-group v-model="selection" class="pa-4" center-active show-arrows @change="setLocation(selection)">
+      <v-slide-item v-for="loc in locations" :key="loc.id" v-slot="{ active, toggle }" :value="loc">
+        <v-card width="300" class="ma-4" :color="active ? 'grey lighten-2' : 'white'" @click="toggle">
           <v-img height="250" :src="`${loc.image}?location=${loc.title}`"></v-img>
-          <v-card-title>{{loc.title}}</v-card-title>
+          <v-card-title>{{loc.city}}</v-card-title>
           <v-card-subtitle>{{loc.priceRange}}</v-card-subtitle>
           <v-card-text>
             {{loc.description}}
@@ -19,86 +19,59 @@
           </v-row>
         </v-card>
       </v-slide-item>
-    </v-slide-group>
-  <ul class="nav-buttons-extended">
-        <li>
-        </li>
-        <li>
-          <v-btn :disabled="selection === null" to="/housing/roommate" color="primary">Continue...</v-btn>
-        </li>
-      </ul>
+    </v-slide-group> -->
+
+    <l-map 
+      class="mb-5"
+      style="height: 600px" 
+      :zoom="9" 
+      :center="centerOfConnecticut"
+      :attribution="attribution">
+      <l-tile-layer :url="tileUrl" :attribution="attribution"></l-tile-layer>
+      <l-marker v-for="loc in locations" :key="loc.id" :lat-lng="[loc.latitude, loc.longitude]" @click="setLocation(loc)">
+        <l-popup>
+          <v-btn color=primary>Choose {{loc.city}}</v-btn>
+        </l-popup>
+      </l-marker>
+    </l-map>
+
+
+    <v-btn :disabled="location == null" to="/housing/roommate" color="secondary">Continue...</v-btn>
   </div>
 </v-container>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import 'leaflet/dist/leaflet.css';
+import { mapActions } from 'vuex'
 export default {
-  name: 'HousingLocation',
+  name: 'HousingLocation', 
+  components: {
+  },
+  async asyncData({ $supabase }) {
+    let result
+    try {
+      result = await $supabase.from('locations').select('*').not('latitude', 'is', null)
+    } catch (error) {
+      console.log(error)
+    }
+    console.log(result)
+    return {
+      locations: result.data,
+    }
+  },
   data(){
     return {
-      selection: null,
-      locations: [
-        {
-          title: 'Danbury',
-          image: 'https://placeimg.com/640/480/arch',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas sed tempus urna et.',
-          priceRange: '$1500 - 2500'
-        },
-        {
-          title: 'Hartford',
-          image: 'https://placeimg.com/640/480/arch',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas sed tempus urna et.',
-          priceRange: '$1500 - 2000'
-        },
-        {
-          title: 'Meriden',
-          image: 'https://placeimg.com/640/480/arch',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas sed tempus urna et.',
-          priceRange: '$1500 - 2000'
-        },
-        {
-          title: 'New Britain/Newington',
-          image: 'https://placeimg.com/640/480/arch',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas sed tempus urna et.',
-          priceRange: '$1500 - 2000'
-        },
-        {
-          title: 'New Haven/West Haven/Hamden',
-          image: 'https://placeimg.com/640/480/arch',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas sed tempus urna et.',
-          priceRange: '$1500 - 2000'
-        },
-        {
-          title: 'Norwich/New London',
-          image: 'https://placeimg.com/640/480/arch',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas sed tempus urna et.',
-          priceRange: '$1500 - 2000'
-        },
-        {
-          title: 'Stamford/Norwalk',
-          image: 'https://placeimg.com/640/480/arch',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas sed tempus urna et.',
-          priceRange: '$1500 - 2000'
-        },
-        {
-          title: 'Waterbury/Naugatuck',
-          image: 'https://placeimg.com/640/480/arch',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas sed tempus urna et.',
-          priceRange: '$1500 - 2000'
-        },
-        {
-          title: 'Willimantic/Willington/Mansfield',
-          image: 'https://placeimg.com/640/480/arch',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas sed tempus urna et.',
-          priceRange: '$1500 - 2000'
-        }
-      ]
+      // Approx Lat/Long to center the CT map
+      centerOfConnecticut: [41.628041, -72.630817],
+      tileUrl:'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      attribution:'&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      locations: []
     }
   },
   computed: {
     location() {
-      return this.$store.state.budget.prefs.location
+      return this.$store.state.budget.location
     }
   },
   mounted(){
@@ -106,9 +79,15 @@ export default {
   },
 
   methods: {
-    ...mapMutations({
-      setLocation: 'budget/setLocationPref'
-    })
+    ...mapActions({
+      update: 'budget/update'
+    }),
+    setLocation(location){
+      this.update({
+        prop: 'location',
+        value: location
+      })
+    }
   }
 }
 </script>

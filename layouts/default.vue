@@ -1,25 +1,20 @@
 <template>
 
   <v-app>
-    <v-main>
+    <v-main fill-height fluid>
       <Nuxt />
       <v-container class="bottom-display">
-      <v-row>
-      <v-col cols="auto" class="breadcrumbs">
-      <v-breadcrumbs large :items="navItems"></v-breadcrumbs>
-      </v-col>
-      <v-col  class="budget-display">
-        <animated-number
-          :value="balance"
-          :format-value="$money"
-          :duration="500"
-        />
-      
-      </v-col>
-      </v-row>
+
       </v-container>
+
+      <div class="budget-display" v-if="$route.name !== 'index'">
+        <animated-number :value="balance" :format-value="$money" :duration="500" />
+      </div>
+
     </v-main>
-    <v-footer app>&nbsp;</v-footer>
+    <v-footer app >
+      <v-breadcrumbs large :items="navItems"></v-breadcrumbs>
+    </v-footer>
   </v-app>
 </template>
 
@@ -66,12 +61,8 @@ export default {
   },
   mounted(){
     this.$store.subscribe( async (mutation, state) => {
-      if(mutation.type.includes('Pref')){
-
-        this.balance = await this.calculateBudget()
-        console.warn('0Updating balance')
-
-      }
+      this.balance = await this.calculateBudget()
+      console.warn('Updating balance')
     })
   }
 }
@@ -80,15 +71,20 @@ export default {
 <style>
 
 .budget-display {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
   text-align: right;
   flex-grow: 1;
   font-size: 3em;
+  z-index:100
 }
-
 
 body {
   padding:0;
   margin: 40px;
+  /* background-color: var(--primary) */
+
 }
 
 body > h1 {

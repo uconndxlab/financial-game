@@ -1,18 +1,32 @@
 <template>
-<v-container>
-  <div>
+  <v-container>
     <h1>Housing > Apartment</h1>
     <p>Choose an apartment: (Hardcoded to Danbury for now)</p>
-    <!-- <div v-for="option in apartmentOptions['Danbury']" :key="option.id">
-      <label><input type="radio" name="apartment" :checked="apartment !== null && apartment.id == option.id"
-          @change="updateSelection(option)"> {{option.type}} (${{option.rent}})</label>
-    </div> -->
 
-    <v-slide-group v-model="apartmentSelection" class="pa-4" center-active show-arrows @change="updateSelection(apartmentSelection)">
-      <v-slide-item v-for="opt in apartmentOptions['Danbury']" :key="opt.id" v-slot="{ active, toggle }"
-        :value="opt">
-        <v-card width="300" class="ma-4" :color="active ? 'primary' : 'white'" @click="toggle">
+    <v-row>
+      <v-col v-for="opt in apartmentOptions['Danbury']" :key="opt.id" cols="12" sm=6 lg="4" xl="3">
+        <v-card class="ma-1">
           <!-- <v-img height="250" :src="`${opt.image}?optation=${opt.title}`"></v-img> -->
+          <v-card-title>{{opt.type}}, ${{opt.rent}}</v-card-title>
+          <v-card-subtitle>{{opt.reny}}</v-card-subtitle>
+          <v-card-text>
+            {{opt.features}}
+          </v-card-text>
+          <v-card-actions>
+            <v-btn text @click="updateSelection(opt)">
+              Select
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+
+      </v-col>
+
+
+    </v-row>
+    <!-- <v-slide-group v-model="apartmentSelection" class="pa-4" center-active show-arrows
+      @change="updateSelection(apartmentSelection)">
+      <v-slide-item v-for="opt in apartmentOptions['Danbury']" :key="opt.id" v-slot="{ active, toggle }" :value="opt">
+        <v-card width="300" class="ma-4" :color="active ? 'grey lighten-2' : 'white'" @click="toggle">
           <v-card-title>{{opt.type}}</v-card-title>
           <v-card-subtitle>{{opt.reny}}</v-card-subtitle>
           <v-card-text>
@@ -25,24 +39,20 @@
           </v-row>
         </v-card>
       </v-slide-item>
-    </v-slide-group>
-    <nav>
-      <ul class="nav-buttons-extended">
-        <li>
-          <v-btn to="/housing/roommate">&lt; Back</v-btn>
-        </li>
-        <li>
-          <v-btn :disabled="apartment === null" to="/housing/utilities" color="primary">Continue...</v-btn>
-        </li>
-      </ul>
-    </nav>
+    </v-slide-group> -->
 
-  </div>
-</v-container>
+    <v-row>
+      <v-col>
+        <v-btn to="/housing/roommate">&lt; Back</v-btn>
+        <v-btn :disabled="apartment === null" to="/housing/utilities" color="secondary">Continue...</v-btn>
+      </v-col>
+    </v-row>
+
+  </v-container>
 </template>
 
 <script>
-import { mapMutations, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'HousingApartment',
@@ -152,25 +162,21 @@ export default {
   },
   computed: {
     apartment() {
-      return this.$store.state.budget.prefs.apartment
+      return this.$store.state.budget.apartment
     },
     roommate(){
-      return this.$store.state.budget.prefs.roommate
+      return this.$store.state.budget.roommate
     }
   },
   methods: {
     updateSelection(option){
-      this.setApartment(option)
-      this.updateBudget({
+      this.update({
         prop: 'apartment',
-        value: this.apartment.rent
+        value: option
       })
     },
-    ...mapMutations({
-      setApartment: 'budget/setApartmentPref'
-    }),
     ...mapActions({
-      updateBudget: 'budget/update'
+      update: 'budget/update'
     })
   },
   mounted() {

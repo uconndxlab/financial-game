@@ -1,6 +1,5 @@
 <template>
-<v-container>
-  <div>
+  <v-container>
     <h1>Transportation > Loan Term Length</h1>
     <div class="choice-boxes text-center">
     <p>Choose loan term length:</p>
@@ -42,8 +41,7 @@
       </v-card>
     </v-dialog>
 
-  </div>
-</v-container>
+  </v-container>
 </template>
 
 <script>
