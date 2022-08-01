@@ -2,81 +2,95 @@
   <v-container>
     <h1>Transportation > Transportation Type</h1>
     <p>Choose a vehicle:</p>
-    <v-slide-group v-model="selection" class="pa-4" center-active show-arrows>
-      <v-slide-item v-for="vehicle in vehicles" :key="vehicle.title" v-slot="{ active, toggle }" :value="vehicle.title">
-        <v-card width="300" class="ma-4" :color="active ? 'primary' : 'white'" @click="toggle">
-          <v-img height="250" :src="`${vehicle.image}?vehicle=${vehicle.title}`"></v-img>
-          <v-card-title>{{vehicle.title}}</v-card-title>
-          <v-card-subtitle>{{vehicle.priceRange}}</v-card-subtitle>
-          <v-card-text>
-            {{vehicle.description}}
-          </v-card-text>
-          <v-row class="fill-height" align="center" justify="center">
-            <v-scale-transition>
-              <v-icon v-if="active" color="white" size="48" v-text="'mdi-close-circle-outline'"></v-icon>
-            </v-scale-transition>
+    <v-row class="mb-5">
+      <v-col v-for="option in vehicles" :key="option.id" cols="12" sm=6 lg="4" xl="3">
+        <v-card class="ma-1 d-flex flex-column" fill-height height="100%">
+          <!-- <v-img height="250" :src="`${opt.image}?optation=${opt.title}`"></v-img> -->
+          <v-row>
+            <v-col>
+              <v-card-title>{{ option.make}} {{ option.model }}</v-card-title>
+            </v-col>
+            <v-col>
+              <v-card-title class="justify-end">{{ $money(option.price) }}</v-card-title>
+            </v-col>
           </v-row>
+          <v-card-subtitle></v-card-subtitle>
+          <v-card-text>
+            <div class=subtitle-2>{{ option.year }}</div>
+            <p><strong>MPG Highway</strong>: {{ option.mpg_highway }}</p>
+            <p><strong>MPG City</strong>: {{ option.mpg_city}}</p>
+
+
+            <!-- <v-divider class="my-5"></v-divider>
+            <template v-if="option.utilities">
+              <div><strong>Utilities</strong>:</div>
+              <v-chip v-for="utility in option.utilities" :key="utility" class="ma-1">
+                {{utility}}
+              </v-chip>
+            </template> -->
+          </v-card-text>
+          <v-card-actions>
+            <v-btn text @click="updateSelection(option)">
+              Select
+            </v-btn>
+          </v-card-actions>
         </v-card>
-      </v-slide-item>
-    </v-slide-group>
+
+      </v-col>
+
+
+    </v-row>
+
     <nav>
       <ul class="nav-buttons-extended">
         <li>
-        <v-btn to="/transportation/transportationtype">&lt; Back</v-btn>
+          <v-btn to="/transportation/transportationtype">&lt; Back</v-btn>
         </li>
         <li>
-        <v-btn :disabled="selection === null" to="/transportation/downpayment" color="secondary">Continue...</v-btn>
+          <v-btn :disabled="selection === null" to="/transportation/downpayment" color="secondary">Continue...</v-btn>
         </li>
-  </ul>
-  </nav>
+      </ul>
+    </nav>
   </v-container>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'VehicleType',
   data(){
     return {
       selection: null,
-      vehicles: [
-        {
-          title: 'NEW Honda Civic',
-          image: 'https://images.hgmsites.net/hug/2022-honda-civic-sdn_100810827_h.jpg',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas sed tempus urna et.',
-          priceRange: '$1500 - 2500'
-        },
-        {
-          title: 'NEW Kia Sportage',
-          image: 'https://cdn.jdpower.com/JDP_2023%20Kia%20Sportage%20X-Pro%20Prestige%20Front%20Quarter%20View.JPG',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas sed tempus urna et.',
-          priceRange: '$1500 - 2000'
-        },
-        {
-          title: 'NEW Jeep Wrangler Sport',
-          image: 'https://media.ed.edmunds-media.com/jeep/wrangler/2020/oem/2020_jeep_wrangler_convertible-suv_willys_fq_oem_1_600.jpg',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas sed tempus urna et.',
-          priceRange: '$1500 - 2000'
-        },
-        {
-          title: 'USED BMW 335i',
-          image: 'https://www.tuningblog.eu/wp-content/uploads/2022/04/BMW-335i-E92-Singelturbo-Tuning-2.jpg',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas sed tempus urna et.',
-          priceRange: '$1500 - 2000'
-        },
-        {
-          title: 'USED Ford Mustang',
-          image: 'https://s1.cdn.autoevolution.com/images/news/gallery/here-are-the-reasons-why-the-mustang-outsold-the-camaro-two-to-one-last-year_6.jpg',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas sed tempus urna et.',
-          priceRange: '$1500 - 2000'
-        },
-        {
-          title: 'USED Ford Focus SE',
-          image: 'https://media.ed.edmunds-media.com/ford/focus/2013/oem/2013_ford_focus_sedan_titanium_fq_oem_1_1600.jpg',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas sed tempus urna et.',
-          priceRange: '$1500 - 2000'
-        }
-      ]
+      vehicles: []
     }
-  }
+  },
+  computed:{
+    vehicle() {
+      return this.$store.state.budget.vehicle
+    },
+  },
+  methods: {
+    updateSelection(option) {
+      this.update({
+        prop: 'vehicle',
+        value: option
+      })
+    },
+    ...mapActions({
+      update: 'budget/update'
+    })
+  },
+  async mounted() {
+    let result
+    try {
+      result = await this.$supabase.from('vehicles').select('*').order('price')
+    } catch (error) {
+      console.log(error)
+    }
+    console.log(result)
+    this.vehicles = result.data
+    this.selection = this.vehicle
+  },
 }
 </script>

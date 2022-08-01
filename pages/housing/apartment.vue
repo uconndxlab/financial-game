@@ -1,29 +1,46 @@
 <template>
   <v-container>
     <h1>Housing > Apartment</h1>
-    <p>Choose an apartment: (Hardcoded to Danbury for now)</p>
+    <p>Choose an apartment in {{location.city}}</p>
 
     <v-row class="mb-5">
-      <v-col v-for="opt in apartmentOptions['Danbury']" :key="opt.id" cols="12" sm=6 lg="4" xl="3" >
-        <v-card class="ma-1">
-          <!-- <v-img height="250" :src="`${opt.image}?optation=${opt.title}`"></v-img> -->
-          <v-card-title>{{opt.type}}, ${{opt.rent}}</v-card-title>
-          <v-card-subtitle>{{opt.reny}}</v-card-subtitle>
-          <v-card-text>
-            {{opt.features}}
-          </v-card-text>
-          <v-card-actions>
-            <v-btn text @click="updateSelection(opt)">
-              Select
-            </v-btn>
-          </v-card-actions>
-        </v-card>
+      <v-col v-for="apt in apartments" :key="apt.id" cols="12" sm=6 lg="4" xl="3">
+        <v-card class="ma-1 d-flex flex-column" fill-height height="100%">
+                <!-- <v-img height="250" :src="`${opt.image}?optation=${opt.title}`"></v-img> -->
+                <v-row>
+                  <v-col>
+                    <v-card-title>{{ apt.type}}</v-card-title>
+                  </v-col>
+                  <v-col>
+                    <v-card-title class="justify-end">{{ $money(apt.rent) }}</v-card-title>
+                  </v-col>
+                </v-row>
+                <v-card-subtitle></v-card-subtitle>
+                <v-card-text>
+                  <div class=subtitle-2>{{ apt.location.city }}</div>
+                  {{ apt.features}}
 
-      </v-col>
+
+                  <v-divider class="my-5"></v-divider>
+                  <template v-if="apt.utilities">
+                    <div><strong>Utilities</strong>:</div>
+                    <v-chip v-for="utility in apt.utilities" :key="utility" class="ma-1">
+                      {{utility}}
+                    </v-chip>
+                  </template>
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn text @click="updateSelection(apt)">
+                    Select
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+
+            </v-col>
 
 
-    </v-row>
-    <!-- <v-slide-group v-model="apartmentSelection" class="pa-4" center-active show-arrows
+          </v-row>
+          <!-- <v-slide-group v-model="apartmentSelection" class="pa-4" center-active show-arrows
       @change="updateSelection(apartmentSelection)">
       <v-slide-item v-for="opt in apartmentOptions['Danbury']" :key="opt.id" v-slot="{ active, toggle }" :value="opt">
         <v-card width="300" class="ma-4" :color="active ? 'grey lighten-2' : 'white'" @click="toggle">
@@ -41,12 +58,16 @@
       </v-slide-item>
     </v-slide-group> -->
 
-    <nav>
-      <ul class="nav-buttons-extended">
-        <li><v-btn to="/housing/roommate">&lt; Back</v-btn></li>
-        <li><v-btn :disabled="apartment === null" to="/housing/utilities" color="secondary">Continue...</v-btn></li>
-      </ul>
-    </nav>
+          <nav>
+            <ul class="nav-buttons-extended">
+              <li>
+                <v-btn to="/housing/roommate">&lt; Back</v-btn>
+              </li>
+              <li>
+                <v-btn :disabled="apartment === null" to="/housing/utilities" color="secondary">Continue...</v-btn>
+              </li>
+            </ul>
+          </nav>
 
   </v-container>
 </template>
@@ -56,108 +77,10 @@ import { mapActions } from 'vuex'
 
 export default {
   name: 'HousingApartment',
-  data(){
+  data() {
     return {
+      apartments: [],
       apartmentSelection: null,
-      apartmentOptions: {
-        'Danbury':[
-          {
-            id: 1,
-            type: 'Studio 1 Bath',
-            sqft: 530,
-            location: 'Danbury (Near Metro North Train Station)',
-            features: 'Dogs/ Cats Allowed, Max Weight: 25 pounds, Dog Fee $249, Dog rent: $40, Cat Fee $149, Cat Rent $25, Air Conditioning, Laundry Facility, Fitness Center, Cable Ready, Walking Distance to Downtown Dining and Entertainment, Assigned Parking',
-            rent: 1210,
-            appFee: 50,
-            utilities: null
-          },
-          {
-            id: 2,
-            type: '1 Bed 1 Bath',
-            sqft: 737,
-            location: 'Danbury',
-            features: 'Dogs/Cats Allowed, Air Conditioning, Oversized Closets, Balcony, Deck, Patio, Pet Park, Clubhouse, Cable Ready, Extra Storage, Laundry Facility, Swimming Pool, Disability Access, Public Transportation',
-            rent: 1695,
-            utilities: null
-          },
-          {
-            id: 3,
-            type: '2 Beds, 2 Baths',
-            sqft: 1165,
-            location: 'Danbury (Near Route 84)',
-            features: 'Dogs/Cats Allowed, Air Conditioning, Oversized Closets, Washer and Dryer in Unit, High-Speed Internet Access, Clubhouse, Cable Ready, Extra Storage, Laundry Facility, Playground, Fitness Center, Pool, Surface Lot Parking',
-            rent: 1852,
-            utilities: null
-          },
-          {
-            id: 4,
-            type: 'Studio 1 Bath',
-            sqft: 560,
-            location: 'Danbury',
-            features: 'Dogs Allowed, Max Weight: 25 Pounds, Dog Fee $249, Dog rent $40, Cat Fee $149, Cat Rent $25 Air Conditioning, Washer & Dryer in Unit, Cable Ready, Assigned Parking, Fitness Center, Trail',
-            rent: 1275,
-            appFee: 75,
-            utilities: null
-          },
-          {
-            id: 5,
-            type: 'Studio 1 Bath',
-            sqft: 530,
-            location: 'Danbury (Near Metro North Train Station)',
-            features: 'Dogs/ Cats Allowed, Max Weight: 25 pounds, Dog Fee $249, Dog rent: $40, Cat Fee $149, Cat Rent $25, Air Conditioning, Laundry Facility, Fitness Center, Cable Ready, Walking Distance to Downtown Dining and Entertainment, Assigned Parking',
-            rent: 1210,
-            utilities: null
-          },
-        ],
-        'Hartford': [
-          {
-            id: 1,
-            type: 'Studio 1 Bath',
-            sqft: 530,
-            location: 'Hartford',
-            features: 'Dogs/ Cats Allowed, Max Weight: 25 pounds, Dog Fee $249, Dog rent: $40, Cat Fee $149, Cat Rent $25, Air Conditioning, Laundry Facility, Fitness Center, Cable Ready, Walking Distance to Downtown Dining and Entertainment, Assigned Parking',
-            rent: 1210,
-            appFee: 75,
-            utilities: null
-          },
-          {
-            id: 2,
-            type: '1 Bed 1 Bath',
-            sqft: 737,
-            location: 'Hartford',
-            features: 'Dogs/Cats Allowed, Air Conditioning, Oversized Closets, Balcony, Deck, Patio, Pet Park, Clubhouse, Cable Ready, Extra Storage, Laundry Facility, Swimming Pool, Disability Access, Public Transportation',
-            rent: 1695,
-            utilities: null
-          },
-          {
-            id: 3,
-            type: '2 Beds, 2 Baths',
-            sqft: 1165,
-            location: 'Hartford (Near Route 84)',
-            features: 'Dogs/Cats Allowed, Air Conditioning, Oversized Closets, Washer and Dryer in Unit, High-Speed Internet Access, Clubhouse, Cable Ready, Extra Storage, Laundry Facility, Playground, Fitness Center, Pool, Surface Lot Parking',
-            rent: 1852,
-            utilities: null
-          },
-          {
-            id: 4,
-            type: 'Studio 1 Bath',
-            sqft: 560,
-            location: 'East Hartford',
-            features: 'Dogs Allowed, Max Weight: 25 Pounds, Dog Fee $249, Dog rent $40, Cat Fee $149, Cat Rent $25 Air Conditioning, Washer & Dryer in Unit, Cable Ready, Assigned Parking, Fitness Center, Trail',
-            rent: 1275,
-            utilities: null
-          },
-          {
-            id: 5,
-            type: 'Studio 1 Bath',
-            sqft: 530,
-            location: 'Hartford',
-            features: 'Dogs/ Cats Allowed, Max Weight: 25 pounds, Dog Fee $249, Dog rent: $40, Cat Fee $149, Cat Rent $25, Air Conditioning, Laundry Facility, Fitness Center, Cable Ready, Walking Distance to Downtown Dining and Entertainment, Assigned Parking',
-            rent: 1210,
-            utilities: null
-          },
-        ]
-      },
     }
   },
   computed: {
@@ -166,7 +89,25 @@ export default {
     },
     roommate(){
       return this.$store.state.budget.roommate
+    }, 
+    location() {
+      return this.$store.state.budget.location
     }
+  },
+  async mounted() {
+    let result
+    try {
+      // result = await $supabase.from('apartments').select('*, location(city)').order('rent')
+      result = await this.$supabase.from('apartments').select('*, location(city)').eq('location', this.$store.state.budget.location.id).order('rent')
+    } catch (error) {
+      console.log(error)
+    }
+    console.log(result)
+    this.apartments = result.data
+    // return {
+    //   apartments: result.data,
+    // }
+    this.apartmentSelection = this.apartment
   },
   methods: {
     updateSelection(option){
@@ -178,9 +119,6 @@ export default {
     ...mapActions({
       update: 'budget/update'
     })
-  },
-  mounted() {
-    this.apartmentSelection = this.apartment
-  },
+  }
 }
 </script>

@@ -4,7 +4,7 @@ import currency from 'currency.js'
 // Formmating options for Currency lib
 const currencyOptions = {
     separator: ',',
-    precision: 2
+    precision: 0
 }
 
 export default ({ app }, inject) => {
