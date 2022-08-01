@@ -23,7 +23,7 @@
 
                   <v-divider class="my-5"></v-divider>
                   <template v-if="apt.utilities">
-                    <strong>Utilities</strong>:
+                    <div><strong>Utilities</strong>:</div>
                     <v-chip v-for="utility in apt.utilities" :key="utility" class="ma-1">
                       {{utility}}
                     </v-chip>
