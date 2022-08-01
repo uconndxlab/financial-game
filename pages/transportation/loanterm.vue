@@ -1,15 +1,17 @@
 <template>
   <v-container>
     <h1>Transportation > Loan Term Length</h1>
-    <p>Choose downpayment amount:</p>
+    <div class="choice-boxes text-center">
+    <p>Choose loan term length:</p>
     <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">
       <div v-for="option in loanOptions" :key="option.name" class="ma-4">
         <v-btn width="100%" left>{{option.name}}</v-btn>
       </div>
 
     </v-btn-toggle>
+    </div>
     <nav>
-      <ul>
+      <ul class="nav-buttons">
         <li>
           <v-btn to="/transportation/downpayment">&lt; Back</v-btn>
         </li>

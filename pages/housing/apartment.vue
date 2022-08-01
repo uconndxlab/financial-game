@@ -3,8 +3,8 @@
     <h1>Housing > Apartment</h1>
     <p>Choose an apartment: (Hardcoded to Danbury for now)</p>
 
-    <v-row>
-      <v-col v-for="opt in apartmentOptions['Danbury']" :key="opt.id" cols="12" sm=6 lg="4" xl="3">
+    <v-row class="mb-5">
+      <v-col v-for="opt in apartmentOptions['Danbury']" :key="opt.id" cols="12" sm=6 lg="4" xl="3" >
         <v-card class="ma-1">
           <!-- <v-img height="250" :src="`${opt.image}?optation=${opt.title}`"></v-img> -->
           <v-card-title>{{opt.type}}, ${{opt.rent}}</v-card-title>
@@ -41,12 +41,12 @@
       </v-slide-item>
     </v-slide-group> -->
 
-    <v-row>
-      <v-col>
-        <v-btn to="/housing/roommate">&lt; Back</v-btn>
-        <v-btn :disabled="apartment === null" to="/housing/utilities" color="secondary">Continue...</v-btn>
-      </v-col>
-    </v-row>
+    <nav>
+      <ul class="nav-buttons-extended">
+        <li><v-btn to="/housing/roommate">&lt; Back</v-btn></li>
+        <li><v-btn :disabled="apartment === null" to="/housing/utilities" color="secondary">Continue...</v-btn></li>
+      </ul>
+    </nav>
 
   </v-container>
 </template>

@@ -1,4 +1,5 @@
 <template>
+<v-container>
   <div>
     <h1>Housing > Location</h1>
     <p>Where would you like to live?</p>
@@ -37,6 +38,7 @@
 
     <v-btn :disabled="location == null" to="/housing/roommate" color="secondary">Continue...</v-btn>
   </div>
+</v-container>
 </template>
 
 <script>
