@@ -19,12 +19,16 @@
         </v-card>
       </v-slide-item>
     </v-slide-group>
-    <v-row>
-      <v-col>
+    <nav>
+      <ul class="nav-buttons-extended">
+        <li>
         <v-btn to="/transportation/transportationtype">&lt; Back</v-btn>
-          <v-btn :disabled="selection === null" to="/transportation/downpayment" color="secondary">Continue...</v-btn>
-  </v-col>
-  </v-row>
+        </li>
+        <li>
+        <v-btn :disabled="selection === null" to="/transportation/downpayment" color="secondary">Continue...</v-btn>
+        </li>
+  </ul>
+  </nav>
   </v-container>
 </template>
 

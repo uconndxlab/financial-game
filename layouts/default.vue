@@ -4,17 +4,20 @@
     <v-main fill-height fluid>
       <Nuxt />
       <v-container class="bottom-display">
-
-      </v-container>
-
-      <div class="budget-display" v-if="$route.name !== 'index'">
+      <v-row>
+      <v-col cols="auto" class="breadcrumbs">
+      <v-breadcrumbs large :items="navItems"></v-breadcrumbs>
+      </v-col>
+      <v-col>
+        <div class="budget-display" v-if="$route.name !== 'index'">
         <animated-number :value="balance" :format-value="$money" :duration="500" />
       </div>
 
+      </v-col>
+      </v-row>
+      </v-container>
     </v-main>
-    <v-footer app >
-      <v-breadcrumbs large :items="navItems"></v-breadcrumbs>
-    </v-footer>
+    
   </v-app>
 </template>
 
@@ -71,13 +74,9 @@ export default {
 <style>
 
 .budget-display {
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
   text-align: right;
   flex-grow: 1;
   font-size: 3em;
-  z-index:100
 }
 
 body {

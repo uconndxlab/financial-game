@@ -4,6 +4,7 @@
     <v-row>
       <v-col>
         <h1>Housing > Roommate</h1>
+        <div class="choice-boxes text-center">
         <p>Do you want a roommate?</p>
         <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">
           <div v-for="option in roommateOptions" :key="option.name" class="ma-4">
@@ -11,20 +12,22 @@
           </div>
 
         </v-btn-toggle>
+        </div>
 
       </v-col>
 
     </v-row>
 
-    <v-row>
+    <nav>
 
-      <v-col>
-        <v-btn to="/housing/location">&lt; Back</v-btn>
-        <v-btn v-if="roommate !== null" to="/housing/apartment" color="secondary">Continue...</v-btn>
+      <ul class="nav-buttons">
+        
+        <li><v-btn to="/housing/location">&lt; Back</v-btn></li>
+        <li><v-btn v-if="roommate !== null" to="/housing/apartment" color="secondary">Continue...</v-btn></li>
 
 
-      </v-col>
-    </v-row>
+      </ul>
+    </nav>
 
     <v-dialog v-model="dialog" transition="dialog-top-transition" max-width="600">
       <v-card>

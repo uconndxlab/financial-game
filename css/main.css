@@ -144,3 +144,8 @@ ul{
     padding-top:25px;
     font-size:20px;
 }
+
+.theme--dark.v-data-table tbody tr.v-data-table__selected{
+    background:#5ED1C7!important;
+    color:#173349!important;
+}
