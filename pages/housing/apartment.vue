@@ -3,44 +3,44 @@
     <h1>Housing > Apartment</h1>
     <p>Choose an apartment in {{location.city}}</p>
 
-    <v-row>
+    <v-row class="mb-5">
       <v-col v-for="apt in apartments" :key="apt.id" cols="12" sm=6 lg="4" xl="3">
         <v-card class="ma-1 d-flex flex-column" fill-height height="100%">
-          <!-- <v-img height="250" :src="`${opt.image}?optation=${opt.title}`"></v-img> -->
-          <v-row>
-            <v-col>
-              <v-card-title>{{ apt.type}}</v-card-title>
+                <!-- <v-img height="250" :src="`${opt.image}?optation=${opt.title}`"></v-img> -->
+                <v-row>
+                  <v-col>
+                    <v-card-title>{{ apt.type}}</v-card-title>
+                  </v-col>
+                  <v-col>
+                    <v-card-title class="justify-end">{{ $money(apt.rent) }}</v-card-title>
+                  </v-col>
+                </v-row>
+                <v-card-subtitle></v-card-subtitle>
+                <v-card-text>
+                  <div class=subtitle-2>{{ apt.location.city }}</div>
+                  {{ apt.features}}
+
+
+                  <v-divider class="my-5"></v-divider>
+                  <template v-if="apt.utilities">
+                    <strong>Utilities</strong>:
+                    <v-chip v-for="utility in apt.utilities" :key="utility" class="ma-1">
+                      {{utility}}
+                    </v-chip>
+                  </template>
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn text @click="updateSelection(apt)">
+                    Select
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+
             </v-col>
-            <v-col>
-              <v-card-title class="justify-end">{{ $money(apt.rent) }}</v-card-title>
-            </v-col>
+
+
           </v-row>
-          <v-card-subtitle></v-card-subtitle>
-          <v-card-text>
-            <div class=subtitle-2>{{ apt.location.city }}</div>
-            {{ apt.features}}
-
-
-            <v-divider class="my-5"></v-divider>
-            <template v-if="apt.utilities">
-              <strong>Utilities</strong>:
-              <v-chip v-for="utility in apt.utilities" :key="utility" class="ma-1">
-                {{utility}}
-              </v-chip>
-            </template>
-          </v-card-text>
-          <v-card-actions>
-            <v-btn text @click="updateSelection(apt)">
-              Select
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-
-      </v-col>
-
-
-    </v-row>
-    <!-- <v-slide-group v-model="apartmentSelection" class="pa-4" center-active show-arrows
+          <!-- <v-slide-group v-model="apartmentSelection" class="pa-4" center-active show-arrows
       @change="updateSelection(apartmentSelection)">
       <v-slide-item v-for="opt in apartmentOptions['Danbury']" :key="opt.id" v-slot="{ active, toggle }" :value="opt">
         <v-card width="300" class="ma-4" :color="active ? 'grey lighten-2' : 'white'" @click="toggle">
@@ -58,12 +58,16 @@
       </v-slide-item>
     </v-slide-group> -->
 
-    <v-row>
-      <v-col>
-        <v-btn to="/housing/roommate">&lt; Back</v-btn>
-        <v-btn :disabled="apartment === null" to="/housing/utilities" color="secondary">Continue...</v-btn>
-      </v-col>
-    </v-row>
+          <nav>
+            <ul class="nav-buttons-extended">
+              <li>
+                <v-btn to="/housing/roommate">&lt; Back</v-btn>
+              </li>
+              <li>
+                <v-btn :disabled="apartment === null" to="/housing/utilities" color="secondary">Continue...</v-btn>
+              </li>
+            </ul>
+          </nav>
 
   </v-container>
 </template>

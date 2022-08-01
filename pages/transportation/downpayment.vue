@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <h1>Transportation > Downpayment</h1>
+    <div class="choice-boxes text-center">
     <p>Choose downpayment amount:</p>
     <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">
       <div v-for="option in downpaymentOptions" :key="option.name" class="ma-4">
@@ -8,12 +9,16 @@
       </div>
 
     </v-btn-toggle>
-    <v-row>
-      <v-col>
+    </div>
+    <nav>
+      <ul class="nav-buttons">
+        <li>
         <v-btn to="/transportation/vehicles">&lt; Back</v-btn>
-          <v-btn v-if="downpaymenttype !== null" to="/transportation/loanterm" color="secondary">Continue...</v-btn>
-      </v-col>
-      </v-row>
+        </li><li>
+        <v-btn v-if="downpaymenttype !== null" to="/transportation/loanterm" color="secondary">Continue...</v-btn>
+        </li>
+      </ul>
+      </nav>
         <v-dialog v-model="dialog" transition="dialog-top-transition" max-width="600">
           <v-card>
             <v-card-title color="primary" dark>Did You Know?</v-card-title>
@@ -54,14 +59,15 @@ export default {
       ],
     }
   },
+  mounted() {
+    this.dialog = false
+  },
   methods: {
     selectionChanged(){
       this.downpaymenttype = this.selection
       this.dialog = true
     }
   },
-  mounted(){
-    this.dialog = false
-  }
+
 }
 </script>
