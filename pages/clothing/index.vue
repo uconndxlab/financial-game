@@ -1,9 +1,9 @@
 <template>
 <v-container>
   <div>
-    <h1>Level 5: Food</h1>
+    <h1>Level 6: Clothing</h1>
     <p>*Make of CT goes here*</p>
-    <v-btn color="primary" to="/food/dietchoice">Play</v-btn>
+    <v-btn color="primary" to="/clothing/purchase">Play</v-btn>
   </div>
 </v-container>
 </template>
@@ -12,7 +12,7 @@
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'FoodIndex',
+  name: 'ClothingIndex',
   mounted() {
     // Reset the store
     // this.reset()
