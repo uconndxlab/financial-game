@@ -40,9 +40,9 @@ export default {
         { text: 'Insurance', to: '/insurance', disabled: false, exact: true},
         { text: 'Communications', to: '/communications', disabled: false, exact: true},
         { text: 'Food', to: '/food', disabled: false, exact: true},
-        { text: 'Clothing', to: '/clothing', disabled: true},
-        { text: 'Lifestyle', to: '/lifestyle', disabled: true},
-        { text: 'Activities', to: '/activities', disabled: true}
+        { text: 'Clothing', to: '/clothing', disabled: false, exact: true},
+        { text: 'Lifestyle', to: '/lifestyle', disabled: false, exact: true},
+        { text: 'Activities', to: '/activities', disabled: false, exact: true}
       ]
     }
   },
