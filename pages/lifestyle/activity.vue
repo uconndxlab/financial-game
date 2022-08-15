@@ -41,7 +41,7 @@
         <li>
         </li>
         <li>
-          <v-btn :disabled="selection === null" to="/miscactivities" color="secondary">Continue...</v-btn>
+          <v-btn :disabled="selection === null" to="/activities" color="secondary">Continue...</v-btn>
         </li>
       </ul>
     </nav>

@@ -1,9 +1,9 @@
 <template>
 <v-container>
   <div>
-    <h1>Level 8: Misc. Activities</h1>
+    <h1>Level 8: Activities</h1>
     <p>*Make of CT goes here*</p>
-    <v-btn color="primary" to="/misc/activity">Play</v-btn>
+    <v-btn color="primary" to="/activities/pet">Play</v-btn>
   </div>
 </v-container>
 </template>
