@@ -1,11 +1,11 @@
 <template>
-<v-container>
-  <div>
-    <h1>Level 7: Lifestyle</h1>
-    <p>*Make of CT goes here*</p>
-    <v-btn color="primary" to="/lifestyle/activity">Play</v-btn>
-  </div>
-</v-container>
+  <v-container>
+    <LevelStarter 
+      title="Level 7:" 
+      subtitle="Lifestyle" 
+      to="/lifestyle/activity">
+    </LevelStarter>  
+  </v-container>
 </template>
 
 <script>

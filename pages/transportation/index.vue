@@ -1,8 +1,6 @@
 <template>
   <v-container>
-    <h1>Level 2: Tranportation</h1>
-    <p>*Make of CT goes here*</p>
-    <v-btn color="primary" to="/transportation/transportationtype">Play</v-btn>
+    <LevelStarter title="Level 2:" subtitle="Transportation" to="/transportation/transportationtype"></LevelStarter>
   </v-container>
 </template>
 
@@ -10,16 +8,16 @@
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'TransportationIndex',
-  mounted() {
-    // Reset the store
-    // this.reset()
-  },
-  methods: {
-    ...mapActions({
-      reset: 'budget/reset'
-    })
-  }
+    name: "TransportationIndex",
 
+    mounted() {
+        // Reset the store
+        // this.reset()
+    },
+    methods: {
+        ...mapActions({
+            reset: "budget/reset"
+        })
+    },
 }
 </script>

@@ -1,12 +1,10 @@
 <template>
   <v-container>
-  <div>
-    <h1>Level 1: Housing</h1>
-    <NuxtLink to="/housing/location" class="d-block pa-6">
-      <img src="~/static/images/level-1.png" />
-      </NuxtLink>
-      <!-- <v-btn color="primary" to="/housing/location">Play</v-btn> -->
-  </div>
+    <LevelStarter 
+      title="Level 1:" 
+      subtitle="Housing" 
+      to="/housing/location">
+    </LevelStarter>
   </v-container>
 </template>
 

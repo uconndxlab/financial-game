@@ -1,10 +1,10 @@
 <template>
 <v-container>
-  <div>
-    <h1>Level 4: Communications</h1>
-    <p>*Make of CT goes here*</p>
-    <v-btn color="primary" to="/communications/landline">Play</v-btn>
-  </div>
+    <LevelStarter 
+      title="Level 4:" 
+      subtitle="Communications" 
+      to="/communications/landline">
+    </LevelStarter>
 </v-container>
 </template>
 
