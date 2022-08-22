@@ -10,7 +10,7 @@
         <h2>Begin by Choosing an Occupation</h2>
 
         <v-data-table v-model="occupation" :items="occupations" :headers="table.headers" single-select
-          @item-selected="changed" show-select class="elevation-1" :search="search">
+          @item-selected="changed" show-select :search="search">
           <template v-slot:top>
 
             <v-text-field v-model="search" append-icon="mdi-magnify" label="Filter by Occupation" single-line

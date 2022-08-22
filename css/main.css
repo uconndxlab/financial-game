@@ -104,6 +104,10 @@ a.v-breadcrumbs__item {
     color:#173349!important;
 }
 
+.theme--dark.v-icon{
+    color:inherit!important;
+}
+
 ul{
     list-style-type:none;
 }
