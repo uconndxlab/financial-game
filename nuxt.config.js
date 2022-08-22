@@ -70,6 +70,8 @@ export default {
     manifest: {
       lang: 'en',
     },
+    // Don't need icon when using SVG file
+    icon: false
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
