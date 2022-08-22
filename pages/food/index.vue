@@ -1,10 +1,10 @@
 <template>
 <v-container>
-  <div>
-    <h1>Level 5: Food</h1>
-    <p>*Make of CT goes here*</p>
-    <v-btn color="primary" to="/food/dietchoice">Play</v-btn>
-  </div>
+    <LevelStarter 
+      title="Level 5:" 
+      subtitle="Food" 
+      to="/food/dietchoice">
+    </LevelStarter>
 </v-container>
 </template>
 

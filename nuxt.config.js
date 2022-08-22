@@ -14,7 +14,7 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/ct-breadwinner-plain.svg' }]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -35,14 +35,20 @@ export default {
     '@nuxtjs/eslint-module',
 
     // Vuetify: https://github.com/nuxt-community/vuetify-module#readme
-    ['@nuxtjs/vuetify', {theme: {dark: true,
-      themes: {
-          dark: {
-              primary: '#5ed1c7',
-              secondary: '#173349'
-          }
+    ['@nuxtjs/vuetify', {
+      theme: {
+        options: {
+          customProperties: true,
+        },
+        dark: true,
+        themes: {
+            dark: {
+                primary: '#5ed1c7',
+                secondary: '#173349'
+            }
+        }
       }
-  }}]
+    }]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -64,6 +70,8 @@ export default {
     manifest: {
       lang: 'en',
     },
+    // Don't need icon when using SVG file
+    icon: false
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

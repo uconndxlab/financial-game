@@ -1,11 +1,11 @@
 <template>
-<v-container>
-  <div>
-    <h1>Level 3: Insurance</h1>
-    <p>*Make of CT goes here*</p>
-    <v-btn color="primary" to="/insurance/health">Play</v-btn>
-  </div>
-</v-container>
+  <v-container>
+        <LevelStarter 
+        title="Level 3:" 
+        subtitle="Insurance" 
+        to="/insurance/health">
+      </LevelStarter>
+  </v-container>
 </template>
 
 <script>
