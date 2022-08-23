@@ -54,6 +54,11 @@ export const actions = {
       balance = balance - state.utilities
     }
 
+    // Transportation
+    if(state?.transport){
+      balance = balance - state.transport
+    }    
+
     // commit('property', {prop: 'balance', value: state.initial - runningTotal })
     return balance
   },

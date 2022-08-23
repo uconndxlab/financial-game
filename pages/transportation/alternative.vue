@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'TransportationType',
@@ -33,20 +34,39 @@ export default {
     return {
       selection: null,
       dialog: false,
-      transporttype: null,
+      transporttype: 0,
+      monthlyTransportCost: 0,
       transportOptions: [
-        { name: 'Public', value: false},
-        { name: 'Private', value: false},
-        { name: 'Scooter & Helmet', value:false},
-        { name: 'Commuter bike with helmet & lock', value:false}
+        { name: 'Public', value: 0},
+        { name: 'Private', value: 0},
+        { name: 'Scooter & Helmet', value:100},
+        { name: 'Commuter bike with helmet & lock', value:10}
 
       ],
+    }
+  },
+  computed: {
+    transport() {
+      return this.$store.state.budget.transport
     }
   },
   methods: {
     selectionChanged(){
       this.transporttype = this.selection
-    }
+      this.monthlyTransportCost = this.transportOptions[this.selection].value
+      this.update({
+        prop: 'transport',
+        value: this.monthlyTransportCost
+      })
+      this.dialog = true
+    },
+    ...mapActions({
+      update: 'budget/update'
+    })
+  },
+  mounted(){
+    this.dialog = false
   }
 }
+
 </script>
