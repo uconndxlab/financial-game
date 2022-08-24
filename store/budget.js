@@ -59,6 +59,26 @@ export const actions = {
       balance = balance - state.transport
     }    
 
+    // Health Insurance
+    if(state?.health){
+      balance = balance - state.health
+    }
+
+    // Auto Insurance
+    if(state?.auto){
+      balance = balance - state.auto
+    }
+
+    // Renters Insurance
+    if(state?.renters){
+      balance = balance - state.renters
+    }
+
+    // Life Insurance
+    if(state?.life){
+      balance = balance - state.life
+    }
+
     // commit('property', {prop: 'balance', value: state.initial - runningTotal })
     return balance
   },

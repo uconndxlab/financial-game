@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'RentersType',
@@ -54,22 +55,37 @@ export default {
     return {
       selection: null,
       dialog: false,
-      renterstype: null,
+      renterstype: 0,
+      montlyRenters: 0,
       rentersOptions: [
-        { name: 'No', value: false},
-        { name: 'Yes', value: true}
+        { name: 'No', value: 0},
+        { name: 'Yes', value: 19}
 
       ],
+    }
+  },
+  computed: {
+    renters() {
+      return this.$store.state.budget.renters
     }
   },
   methods: {
     selectionChanged(){
       this.renterstype = this.selection
+      this.monthlyRenters = this.rentersOptions[this.selection].value
+      this.update({
+        prop: 'renters',
+        value: this.monthlyRenters
+      })
       this.dialog = true
-    }
+    },
+    ...mapActions({
+      update: 'budget/update'
+    })
   },
   mounted(){
     this.dialog = false
   }
 }
+
 </script>
