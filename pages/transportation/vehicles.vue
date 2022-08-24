@@ -74,7 +74,7 @@ export default {
     updateSelection(option) {
       this.update({
         prop: 'transport',
-        value: option.price
+        value: 0 // option.price
       })
     },
     ...mapActions({

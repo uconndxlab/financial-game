@@ -16,7 +16,7 @@
           <v-btn to="/transportation/downpayment">&lt; Back</v-btn>
         </li>
         <li>
-          <v-btn v-if="downpaymenttype !== null" to="/insurance" color="secondary">Continue...</v-btn>
+          <v-btn v-if="loantype !== null" to="/insurance" color="secondary">Continue...</v-btn>
         </li>
       </ul>
     </nav>
