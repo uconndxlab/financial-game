@@ -73,8 +73,8 @@ export default {
   methods: {
     updateSelection(option) {
       this.update({
-        prop: 'vehicle',
-        value: option
+        prop: 'transport',
+        value: option.price
       })
     },
     ...mapActions({
