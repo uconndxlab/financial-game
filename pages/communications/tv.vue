@@ -43,15 +43,27 @@ export default {
     return {
       selection: null,
       dialog: false,
-      tv: null,
+      tv: 0,
+      monthlyTV:0,
       tvOptions: [
-        { name: 'Cable', value: false },
-        { name: 'Satelitte', value: true}
+        { name: 'Cable', value: 0 },
+        { name: 'Satellite', value: 55}
       ],
+    }
+  },
+  computed: {
+    tvtype() {
+      return this.$store.state.budget.tv
     }
   },
   methods: {
     selectionChanged(){
+      this.tv = this.selection
+      this.monthlyTV = this.tvOptions[this.selection].value
+      this.update({
+        prop: 'tv',
+        value: this.monthlyTV
+      })
       this.dialog = true
     },
     ...mapActions({
@@ -59,8 +71,8 @@ export default {
     })
   },
   mounted(){
-    this.tv = this.selection
     this.dialog = false
   }
 }
+
 </script>

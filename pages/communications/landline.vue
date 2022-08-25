@@ -41,15 +41,27 @@ export default {
     return {
       selection: null,
       dialog: false,
-      landline: null,
+      landlinetype: 0,
+      monthlyLandline: 0,
       landlineOptions: [
-        { name: 'Yes landline phone', value: false },
-        { name: 'No landline phone', value: true}
+        { name: 'Yes landline phone', value: 40},
+        { name: 'No landline phone', value: 0}
       ],
+    }
+  },
+  computed: {
+    landline() {
+      return this.$store.state.budget.landlinetype
     }
   },
   methods: {
     selectionChanged(){
+      this.landlinetype = this.selection
+      this.monthlylandline = this.landlineOptions[this.selection].value
+      this.update({
+        prop: 'landline',
+        value: this.monthlylandline
+      })
       this.dialog = true
     },
     ...mapActions({
@@ -57,8 +69,8 @@ export default {
     })
   },
   mounted(){
-    this.landline = this.selection
     this.dialog = false
   }
 }
+
 </script>

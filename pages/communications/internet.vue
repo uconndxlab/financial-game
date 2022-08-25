@@ -24,18 +24,36 @@
 </template>
 
 <script>
+import {  mapActions } from 'vuex'
 
 export default {
   name: 'InternetCost',
   data(){
     return {
-      paid: false
+      monthlyInternetCost: 100,
+      paid: true
     }
   },
-  methods: {
-    payInternet() {
-      this.paid = true
+  computed: {
+      internet() {
+        return this.$store.state.budget.internet
+      }
+    },
+    methods: {
+      payInternet() {
+      
+        this.updateBudget({
+          prop: 'internet',
+          value: this.monthlyInternetCost
+        })
+        this.paid = true
+      },
+      ...mapActions({
+        updateBudget: 'budget/update'
+      })
+    },
+    mounted(){
+      this.paid = this.internet !== 0
     }
-  }
 }
 </script>

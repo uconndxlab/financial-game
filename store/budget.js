@@ -5,6 +5,16 @@ function initialState(){
     roommate: null,
     apartment: null,
     utilities: 0,
+    transport: null,
+    vehicle: null,
+    health: 0,
+    life: 0,
+    auto: 0,
+    renters: 0,
+    landline: null,
+    dataplan: null,
+    tv: null,
+    internet: 0
   }
 }
 
@@ -59,6 +69,11 @@ export const actions = {
       balance = balance - state.transport
     }    
 
+    // Vehicle
+    if(state?.vehicle){
+      balance = balance - state.vehicle
+    }    
+
     // Health Insurance
     if(state?.health){
       balance = balance - state.health
@@ -78,6 +93,27 @@ export const actions = {
     if(state?.life){
       balance = balance - state.life
     }
+
+    // Landline
+    if(state?.landline){
+      balance = balance - state.landline
+    }
+
+    // Data plan
+    if(state?.dataplan){
+      balance = balance - state.dataplan
+    }
+
+    // TV
+    if(state?.tv){
+      balance = balance - state.tv
+    }
+
+    // Internet
+    if(state?.internet){
+      balance = balance - state.internet
+    }
+
 
     // commit('property', {prop: 'balance', value: state.initial - runningTotal })
     return balance
