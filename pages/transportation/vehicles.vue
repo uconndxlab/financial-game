@@ -67,7 +67,7 @@ export default {
   },
   computed:{
     vehicle() {
-      return this.$store.state.budget.vehicle
+      return this.$store.state.budget.transport
     },
   },
   methods: {

@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'FoodBudget',
@@ -33,19 +34,39 @@ export default {
       selection: null,
       dialog: false,
       budgetplan: null,
+      monthlyBudget: 0,
       budgetOptions: [
-        { name: 'Thrifty', value: false},
-        { name: 'Low', value: false},
-        { name: 'Moderate', value:false},
-        { name: 'Liberal', value:false}
+        { name: 'Thrifty', value: 0},
+        { name: 'Low', value: 1},
+        { name: 'Moderate', value:2},
+        { name: 'Liberal', value:3}
 
       ],
+    }
+  },
+  computed: {
+    food() {
+      return this.$store.state.budget.food
     }
   },
   methods: {
     selectionChanged(){
       this.budgetplan = this.selection
-    }
+      this.monthlyBudget = this.budgetOptions[this.selection].value
+      this.update({
+        prop: 'food',
+        value: this.monthlyBudget
+      })
+      this.dialog = true
+    },
+    ...mapActions({
+      update: 'budget/update'
+    })
+  },
+  mounted(){
+    this.dialog = false
   }
 }
+
+
 </script>
