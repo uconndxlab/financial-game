@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'GamingType',
@@ -32,19 +33,35 @@ export default {
     return {
       selection: null,
       dialog: false,
-      gamingtype: null,
+      monthlyGaming: null,
       gameOptions: [
-        { name: 'Pay to play', value: false},
-        { name: 'Free to play', value: false},
-        { name: 'No gaming', value:false}
+        { name: 'Pay to play', value: 15},
+        { name: 'Free to play', value: 12},
+        { name: 'No gaming', value:0}
 
       ],
     }
   },
+  computed: {
+    gaming() {
+      return this.$store.state.budget.gaming
+    }
+  },
   methods: {
     selectionChanged(){
-      this.gamingtype = this.selection
-    }
+      this.monthlyGaming = this.gameOptions[this.selection].value
+      this.update({
+        prop: 'gaming',
+        value: this.monthlyGaming
+      })
+      this.dialog = true
+    },
+    ...mapActions({
+      update: 'budget/update'
+    })
+  },
+  mounted(){
+    this.dialog = false
   }
 }
 </script>

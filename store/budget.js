@@ -18,7 +18,14 @@ function initialState(){
     diet: null,
     food: null,
     consignment: null,
-    clothing: null
+    clothing: null,
+    activity: null,
+    pet: null,
+    streaming: null,
+    gaming: null,
+    reading: null,
+    haircut: null,
+    nails: null
   }
 }
 
@@ -205,6 +212,40 @@ export const actions = {
       balance = state.consignment === true? (balance - (state.clothing * .33)) : (balance - state.clothing)
     }
 
+     // Activity
+     if(state?.activity){
+      balance = balance - state.activity
+    }
+
+     // Pet
+     if(state?.pet){
+      balance = balance - state.pet
+    }
+
+     // Streaming
+     if(state?.streaming){
+      balance = balance - state.streaming
+    }
+
+    // Gaming
+    if(state?.gaming){
+      balance = balance - state.gaming
+    }
+
+    // Reading
+    if(state?.reading){
+      balance = balance - state.reading
+    }
+
+    // Haircut
+    if(state?.haircut){
+      balance = balance - state.haircut
+    }
+
+    // Nails
+    if(state?.nails){
+      balance = balance - state.nails
+    }
 
 
     // commit('property', {prop: 'balance', value: state.initial - runningTotal })

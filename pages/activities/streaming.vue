@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'StreamingOption',
@@ -32,17 +33,34 @@ export default {
     return {
       selection: null,
       dialog: false,
-      streaminglan: null,
+      monthlyStreaming: null,
       streamingOptions: [
-        { name: 'Paid Online Streaming Service', value: false},
-        { name: 'No streaming service', value: false}
+        { name: 'Paid Online Streaming Service', value: 11},
+        { name: 'No streaming service', value: 0}
       ],
+    }
+  },
+  computed: {
+    streaming() {
+      return this.$store.state.budget.streaming
     }
   },
   methods: {
     selectionChanged(){
-      this.streamingplan = this.selection
-    }
+      this.monthlyStreaming = this.streamingOptions[this.selection].value
+      this.update({
+        prop: 'streaming',
+        value: this.monthlyStreaming
+      })
+      this.dialog = true
+    },
+    ...mapActions({
+      update: 'budget/update'
+    })
+  },
+  mounted(){
+    this.dialog = false
   }
 }
+
 </script>

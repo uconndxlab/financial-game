@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'PetType',
@@ -31,21 +32,40 @@ export default {
     return {
       selection: null,
       dialog: false,
-      pettype: null,
+      pettype: 0,
+      monthlyPet: 0,
       petOptions: [
-        { name: 'Dog', value: false},
-        { name: 'Cat', value: false},
-        { name: 'Rabbit', value: false},
-        { name: 'Fish', value:false},
-        { name: 'No pet', value:false}
+        { name: 'Dog', value: 0},
+        { name: 'Cat', value: 90},
+        { name: 'Rabbit', value: 92},
+        { name: 'Fish', value:23},
+        { name: 'No pet', value:0}
 
       ],
+    }
+  },
+  computed: {
+    pet() {
+      return this.$store.state.budget.pet
     }
   },
   methods: {
     selectionChanged(){
       this.pettype = this.selection
-    }
+      this.monthlyPet = this.petOptions[this.selection].value
+      this.update({
+        prop: 'pet',
+        value: this.monthlyPet
+      })
+      this.dialog = true
+    },
+    ...mapActions({
+      update: 'budget/update'
+    })
+  },
+  mounted(){
+    this.dialog = false
   }
 }
+
 </script>

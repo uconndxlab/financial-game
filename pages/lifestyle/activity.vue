@@ -25,7 +25,7 @@
           </v-col>
           </v-row>
           <v-card-actions>
-            <v-btn text >
+            <v-btn text @click="selectionChanged(option.value)">
               Select
             </v-btn>
           </v-card-actions>
@@ -56,28 +56,43 @@ export default {
   data(){
     return {
       selection: null,
-      activity: [{name:'Movie',description:'The smell of popcorn, the excitement of seeing something new, the movies are the place to be!'},
-      {name:'Concert',description:'Whether it is jamming out at a rock concert or screaming for your favorite pop star, concerts are a great place to go with friends and make new ones.'},
-      {name:'Sports Event',description:'Batter up! Watch your favorite sports stars play as you root for your team.'},
-      {name:'Fitness Club Membership',description:'By yourself or with friends, the gym is a great place for personal development.'},
-      {name:'Sports Participation',description:'Why just watch? Join a local sports team to keep active and have some fun.'},
-      {name:'Coffee Date',description:'But first, coffee.'},
-      {name:'Ice Cream Treat',description:'Hot days, cold days, rainy days, any day is great for ice cream!'},
-      {name:'Breakfast Out',description:'Eggs, bacon, and toast!'},
-      {name:'Lunch Out',description:'Grab a quick bite!'},
-      {name:'Dinner Out',description:'Try something new or go to your favorite resturant, treat yourself!'},
-      {name:'Night Out with Friends',description:'Hit the streets with your friends, catch up on old times and make new memories.'},
-      {name:'Host a Party',description:'Did someone say buffalo dip? Get your hosting shoes on and send out some invites!'},
-      {name:'Weekend Getaway',description:'Relax and enjoy some time away.'}]
+      activitychoice: null,
+      monthlyActivity: 0,
+      activity: [{name:'Movie',description:'The smell of popcorn, the excitement of seeing something new, the movies are the place to be!', value: 23},
+      {name:'Concert',description:'Whether it is jamming out at a rock concert or screaming for your favorite pop star, concerts are a great place to go with friends and make new ones.', value: 95},
+      {name:'Sports Event',description:'Batter up! Watch your favorite sports stars play as you root for your team.', value: 30},
+      {name:'Fitness Club Membership',description:'By yourself or with friends, the gym is a great place for personal development.', value: 58},
+      {name:'Sports Participation',description:'Why just watch? Join a local sports team to keep active and have some fun.', value: 20},
+      {name:'Coffee Date',description:'But first, coffee.', value: 4},
+      {name:'Ice Cream Treat',description:'Hot days, cold days, rainy days, any day is great for ice cream!', value: 6},
+      {name:'Breakfast Out',description:'Eggs, bacon, and toast!', value: 12},
+      {name:'Lunch Out',description:'Grab a quick bite!', value: 11},
+      {name:'Dinner Out',description:'Try something new or go to your favorite resturant, treat yourself!', value: 13},
+      {name:'Night Out with Friends',description:'Hit the streets with your friends, catch up on old times and make new memories.', value: 80},
+      {name:'Host a Party',description:'Did someone say buffalo dip? Get your hosting shoes on and send out some invites!', value: 197},
+      {name:'Weekend Getaway',description:'Relax and enjoy some time away.', value: 395}]
     }
   },
-  
+  computed: {
+    activityChoice() {
+      return this.$store.state.budget.activity
+    }
+  },
+  methods: {
+    selectionChanged(option){
+      this.update({
+        prop: 'activity',
+        value: option
+      })
+      this.selection = true
+    },
     ...mapActions({
       update: 'budget/update'
     })
-  ,
-mounted() {
-    this.selection = this.activity
   },
+  mounted(){
+    this.selection = false
+  }
 }
+
 </script>
