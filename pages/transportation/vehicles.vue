@@ -62,7 +62,6 @@ export default {
   data(){
     return {
       selection: null,
-      dialog: false,
       vehicles: []
     }
   },
@@ -78,7 +77,6 @@ export default {
         prop: 'transport',
         value: 0
       })
-      this.dialog = true
     },
     ...mapActions({
       update: 'budget/update'
@@ -92,7 +90,6 @@ export default {
       console.log(error)
     }
     this.vehicles = result.data
-    this.dialog = false
   },
 }
 </script>
