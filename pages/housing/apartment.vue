@@ -15,7 +15,7 @@
                     <v-card-title class="justify-end">{{ $money(apt.rent) }}</v-card-title>
                   </v-col>
                 </v-row>
-                <v-card-subtitle></v-card-subtitle>
+                <!--<v-card-subtitle></v-card-subtitle>-->
                 <v-card-text>
                   <div class=subtitle-2>{{ apt.location.city }}</div>
                   {{ apt.features}}

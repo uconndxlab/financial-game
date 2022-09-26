@@ -6,7 +6,7 @@
     <p v-if="!paid">Pay your auto insurance!</p>
     <p v-else>Auto insurance Paid!</p>
 
-    <v-btn class="mb-5" color="primary" @click="payUtilities" :disabled="paid">Pay auto insurance</v-btn>
+    <v-btn class="mb-5" color="primary" @click="payAuto" :disabled="paid">Pay auto insurance</v-btn>
   </div>
     <nav>
       <ul class="nav-buttons">
@@ -24,18 +24,38 @@
 </template>
 
 <script>
+import {  mapActions } from 'vuex'
 
 export default {
   name: 'AutoInsurance',
   data(){
     return {
-      paid: false
+      monthlyAutoCost: 100,
+      paid: true
     }
   },
-  methods: {
-    payUtilities() {
-      this.paid = true
+  computed: {
+      auto() {
+        return this.$store.state.budget.auto
+      }
+    },
+    methods: {
+      payAuto() {
+      
+        this.updateBudget({
+          prop: 'auto',
+          value: this.monthlyAutoCost
+        })
+        this.paid = true
+      },
+      ...mapActions({
+        updateBudget: 'budget/update'
+      })
+    },
+    mounted(){
+      this.paid = this.auto !== 0
     }
-  }
+  
 }
+
 </script>

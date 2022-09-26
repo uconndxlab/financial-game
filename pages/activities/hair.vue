@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'HairType',
@@ -32,18 +33,34 @@ export default {
     return {
       selection: null,
       dialog: false,
-      hairtype: null,
+      monthlyHair: null,
       hairOptions: [
-        { name: 'Hair Salon/Barber', value: false},
-        { name: 'Self Cut', value: false}
+        { name: 'Hair Salon/Barber', value: 30},
+        { name: 'Self Cut', value: 0}
 
       ],
     }
   },
+  computed: {
+    hair() {
+      return this.$store.state.budget.hair
+    }
+  },
   methods: {
     selectionChanged(){
-      this.hairtype = this.selection
-    }
+      this.monthlyHair = this.hairOptions[this.selection].value
+      this.update({
+        prop: 'haircut',
+        value: this.monthlyHair
+      })
+      this.dialog = true
+    },
+    ...mapActions({
+      update: 'budget/update'
+    })
+  },
+  mounted(){
+    this.dialog = false
   }
 }
 </script>

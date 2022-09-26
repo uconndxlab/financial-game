@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'DietChoice',
@@ -32,18 +33,37 @@ export default {
       selection: null,
       dialog: false,
       dietplan: null,
+      monthlyDiet: 0,
       dietOptions: [
-        { name: 'No Diet', value: false},
-        { name: 'Organic', value: false},
-        { name: 'Gluten Free', value:false}
+        { name: 'No Diet', value: 0},
+        { name: 'Organic', value: 1},
+        { name: 'Gluten Free', value:2}
 
       ],
+    }
+  },
+  computed: {
+    diet() {
+      return this.$store.state.budget.diet
     }
   },
   methods: {
     selectionChanged(){
       this.dietplan = this.selection
-    }
+      this.monthlyDiet = this.dietOptions[this.selection].value
+      this.update({
+        prop: 'diet',
+        value: this.monthlyDiet
+      })
+      this.dialog = true
+    },
+    ...mapActions({
+      update: 'budget/update'
+    })
+  },
+  mounted(){
+    this.dialog = false
   }
 }
+
 </script>

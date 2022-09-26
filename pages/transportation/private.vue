@@ -16,7 +16,7 @@
           <v-btn to="/transportation/alternative">&lt; Back</v-btn>
         </li>
         <li>
-          <v-btn v-if="transporttype !== null" to="/insurance" color="secondary">Continue...</v-btn>          
+          <v-btn to="/insurance" color="secondary">Continue...</v-btn>          
         </li>
       </ul>
     </nav>
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'TransportationType',
@@ -32,17 +33,34 @@ export default {
     return {
       selection: null,
       dialog: false,
-      transporttype: null,
+      monthlyTransportCost: 25,
       transportOptions: [
-        { name: 'Uber', value: false},
-        { name: 'Lyft', value: false}
+        { name: 'Uber', value: 25},
+        { name: 'Lyft', value: 20}
       ],
+    }
+  },
+  computed: {
+    transport() {
+      return this.$store.state.budget.transport
     }
   },
   methods: {
     selectionChanged(){
-      this.transporttype = this.selection
-    }
+      this.monthlyTransportCost = this.transportOptions[this.selection].value
+      this.update({
+          prop: 'transport',
+          value: this.monthlyTransportCost
+        })
+        this.dialog = true
+    },
+    ...mapActions({
+      update: 'budget/update'
+    })
+  },
+  mounted(){
+    this.dialog = false
   }
 }
+
 </script>

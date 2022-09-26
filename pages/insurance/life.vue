@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'TransportationType',
@@ -54,20 +55,34 @@ export default {
     return {
       selection: null,
       dialog: false,
-      lifetype: null,
+      lifetype: 0,
+      monthlyLife: 0,
       lifeOptions: [
-        { name: 'No', value: true},
-        { name: '$100,000 Term Life', value: false},
-        { name: '$250,000 Term Life', value:false}
+        { name: 'No', value: 0},
+        { name: '$100,000 Term Life', value: 12},
+        { name: '$250,000 Term Life', value:15}
 
       ],
+    }
+  },
+  computed: {
+    renters() {
+      return this.$store.state.budget.life
     }
   },
   methods: {
     selectionChanged(){
       this.lifetype = this.selection
+      this.monthlyLife = this.lifeOptions[this.selection].value
+      this.update({
+        prop: 'life',
+        value: this.monthlyLife
+      })
       this.dialog = true
-    }
+    },
+    ...mapActions({
+      update: 'budget/update'
+    })
   },
   mounted(){
     this.dialog = false

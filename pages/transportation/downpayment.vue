@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'TransportationType',
@@ -50,24 +51,38 @@ export default {
     return {
       selection: null,
       dialog: false,
-      downpaymenttype: null,
+      downpaymenttype: 0,
+      downpaymentAmount:0,
       downpaymentOptions: [
-        { name: '$0', value: true},
-        { name: '$2500', value: false},
-        { name: '$4000', value:false}
+        { name: '$0', value: 0},
+        { name: '$2500', value: 2500},
+        { name: '$4000', value:4000}
 
       ],
     }
   },
-  mounted() {
-    this.dialog = false
+  computed: {
+    transport() {
+      return this.$store.state.budget.transport
+    }
   },
   methods: {
     selectionChanged(){
-      this.downpaymenttype = this.selection
+      this.transporttype = this.selection
+      this.downpaymentAmount = this.downpaymentOptions[this.selection].value
+      this.update({
+        prop: 'transport',
+        value: this.downpaymentAmount
+      })
       this.dialog = true
-    }
+    },
+    ...mapActions({
+      update: 'budget/update'
+    })
   },
+  mounted(){
+    this.dialog = false
+  }
 
 }
 </script>

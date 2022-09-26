@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'PhoneDataType',
@@ -32,20 +33,38 @@ export default {
     return {
       selection: null,
       dialog: false,
-      dataplan: null,
+      dataplan: 0,
+      monthlyData:0,
       dataOptions: [
-        { name: '3GB', value: false},
-        { name: '8GB', value: false},
-        { name: '12GB', value:false},
-        { name: 'Unlimited', value:false}
-
+        { name: '3GB', value: 30},
+        { name: '8GB', value: 35},
+        { name: '12GB', value:40},
+        { name: 'Unlimited', value:45}
       ],
+    }
+  },
+  computed: {
+    datatype() {
+      return this.$store.state.budget.dataplan
     }
   },
   methods: {
     selectionChanged(){
       this.dataplan = this.selection
-    }
+      this.monthlyData = this.dataOptions[this.selection].value
+      this.update({
+        prop: 'dataplan',
+        value: this.monthlyData
+      })
+      this.dialog = true
+    },
+    ...mapActions({
+      update: 'budget/update'
+    })
+  },
+  mounted(){
+    this.dialog = false
   }
 }
+
 </script>

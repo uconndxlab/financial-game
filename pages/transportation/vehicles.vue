@@ -30,7 +30,7 @@
             </template> -->
           </v-card-text>
           <v-card-actions>
-            <v-btn text @click="updateSelection(option)">
+            <v-btn text @click="updateSelection()">
               Select
             </v-btn>
           </v-card-actions>
@@ -67,14 +67,15 @@ export default {
   },
   computed:{
     vehicle() {
-      return this.$store.state.budget.vehicle
+      return this.$store.state.budget.transport
     },
   },
   methods: {
-    updateSelection(option) {
+    updateSelection() {
+      this.selection = this.vehicle
       this.update({
-        prop: 'vehicle',
-        value: option
+        prop: 'transport',
+        value: 0
       })
     },
     ...mapActions({
@@ -88,9 +89,7 @@ export default {
     } catch (error) {
       console.log(error)
     }
-    console.log(result)
     this.vehicles = result.data
-    this.selection = this.vehicle
   },
 }
 </script>

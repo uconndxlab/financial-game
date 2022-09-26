@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'BookType',
@@ -34,18 +35,36 @@ export default {
       selection: null,
       dialog: false,
       booktype: null,
+      monthlyBook: 0,
       bookOptions: [
-        { name: 'Books', value: false},
-        { name: 'Online Books', value: false},
-        { name: 'None', value:false}
+        { name: 'Books', value: 0},
+        { name: 'Online Books', value: 5},
+        { name: 'None', value:0}
 
       ],
+    }
+  },
+  computed: {
+    book() {
+      return this.$store.state.budget.book
     }
   },
   methods: {
     selectionChanged(){
       this.booktype = this.selection
-    }
+      this.monthlyBook = this.bookOptions[this.selection].value
+      this.update({
+        prop: 'reading',
+        value: this.monthlyBook
+      })
+      this.dialog = true
+    },
+    ...mapActions({
+      update: 'budget/update'
+    })
+  },
+  mounted(){
+    this.dialog = false
   }
 }
 </script>

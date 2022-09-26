@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'NailType',
@@ -32,18 +33,34 @@ export default {
     return {
       selection: null,
       dialog: false,
-      nailtype: null,
+      monthlyNails: null,
       nailOptions: [
-        { name: 'Nail Salon', value: false},
-        { name: 'Self nail care', value: false}
+        { name: 'Nail Salon', value: 35},
+        { name: 'Self nail care', value: 0}
 
       ],
     }
   },
+  computed: {
+    nails() {
+      return this.$store.state.budget.nails
+    }
+  },
   methods: {
     selectionChanged(){
-      this.nailtype = this.selection
-    }
+      this.monthlyNails = this.nailOptions[this.selection].value
+      this.update({
+        prop: 'nails',
+        value: this.monthlyNails
+      })
+      this.dialog = true
+    },
+    ...mapActions({
+      update: 'budget/update'
+    })
+  },
+  mounted(){
+    this.dialog = false
   }
 }
 </script>
