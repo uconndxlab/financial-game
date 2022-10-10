@@ -2,7 +2,9 @@
 <v-container>
   <div>
     <h1>Housing > Location</h1>
-    <p>Where would you like to live?</p>
+    <p>Now that you have a fulltime job, where will you live? Where will you be working? There are several different
+    communities for you to choose among. Are you more of an urban dweller or do you prefer the suburbs? Will you live near
+    your family and friends? How important is it to you that you live near your workplace?</p>
     <!-- <v-slide-group v-model="selection" class="pa-4" center-active show-arrows @change="setLocation(selection)">
       <v-slide-item v-for="loc in locations" :key="loc.id" v-slot="{ active, toggle }" :value="loc">
         <v-card width="300" class="ma-4" :color="active ? 'grey lighten-2' : 'white'" @click="toggle">

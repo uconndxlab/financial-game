@@ -1,8 +1,11 @@
 <template>
   <v-container>
     <h1>Transportation > Transportation Type</h1>
+        <p>How will you get around? Will you need to buy a new or used car? Is public transportation an option for you or might
+          you
+          seek alternative transportation options such as bicycle, scooter, or ride sharing?</p>
+
     <div class="choice-boxes text-center">
-    <p>Choose transportation type:</p>
     <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">
       <div v-for="option in transportationOptions" :key="option.name" class="ma-4">
         <v-btn width="100%" left>{{option.name}}</v-btn>
@@ -54,7 +57,7 @@ export default {
       dialog: false,
       transportationtype: null,
       transportationOptions: [
-        { name: 'Purhcase a vehicle', value: false},
+        { name: 'Purchase a vehicle', value: false},
         { name: 'Alternative transportation', value: true}
 
       ],
