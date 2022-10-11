@@ -5,6 +5,12 @@
           you
           seek alternative transportation options such as bicycle, scooter, or ride sharing?</p>
 
+        <p>
+        <strong>Purchase a Vehicle:</strong><br>Having a car can be very costly, especially if you need to finance it. Then there are also other expenses such as gas, maintenance, insurance, and property taxes, and registration. 
+        </p><p>
+        <strong>Alternative Transportation:</strong><br>
+        Would an alternate transportation option work for you? You may be able to reduce your transportation costs and save the environment. Is public transportation available where you need to go? How often will you need transportation and where? If you only need rides a few times per month, ride sharing might also be an option. 
+        </p>
     <div class="choice-boxes text-center">
     <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">
       <div v-for="option in transportationOptions" :key="option.name" class="ma-4">
@@ -30,13 +36,11 @@
         <v-card-text>
           <!-- If user chose alternative transport: -->
           <p v-if="selection">
-            Positive message goes here about saving money and the environment
-          </p>
+Great choice! By choosing this means, you can save money and the environment.           </p>
 
           <!-- If user is purchasing car -->
           <p v-else>
-            You have more freedom and privacy, but owning a vehicle and maintaining it can be costly. 
-          </p>
+You will have the freedom to go where and when you want to go. However, owning, maintaining, and insuring a vehicle is very costly and a lot of responsibility.           </p>
         </v-card-text>
         <v-card-actions class="justify-end">
           <v-btn text @click="dialog = false">Okay</v-btn>

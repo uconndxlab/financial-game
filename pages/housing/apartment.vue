@@ -1,7 +1,14 @@
 <template>
   <v-container>
     <h1>Housing > Apartment</h1>
-    <p>Choose an apartment in {{location.city}}</p>
+    <p><strong>What type of apartment will you choose? </strong>
+    <br>
+
+A studio or efficiency apartment is smaller with less square footage. Typically, there is an area for a bedroom, living room, and kitchen in one open space. The bathroom is a separate room with a door. Usually, the rent is more affordable. 
+Other apartments have one or two bedrooms and one or two bathrooms. What will work best for your situation? 
+ </p><p>
+Do you want laundry facilities on site? What about parking? Do you want to have a pet? How about other amenities such as a fitness center, swimming pool, deck, or patio?</p>
+    <p>Choose an apartment in {{location.city}}:</p>
 
     <v-row class="mb-5">
       <v-col v-for="apt in apartments" :key="apt.id" cols="12" sm=6 lg="4" xl="3">

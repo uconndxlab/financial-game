@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <h1>Housing > Utilities</h1>
+    <p>Does your apartment include heat and hot water? If it is not listed in the apartment description, it is not included in your rent so you will need to pay for that now. You will need to pay for your electricity bill. You will also need to pay for your cellphone and internet service.  </p>
   <div class="text-center">
         <p v-if="!paid">Pay your utilities!</p>
         <p v-else>Utilities Paid!</p>

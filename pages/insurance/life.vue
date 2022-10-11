@@ -2,6 +2,7 @@
 <v-container>
   <div>
     <h1>Insurance > Life Insurance</h1>
+    <p>Life insurance can provide financial support to your family in the event of your passing. It can cover the cost of your funeral expenses. It is optional. When you are young, it is less expensive to purchase.  </p>
     <div class="choice-boxes text-center">
     <p>Do you want life insurance?</p>
     <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">

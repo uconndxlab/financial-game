@@ -1,8 +1,9 @@
 <template>
   <v-container>
     <h1>Transportation > Loan Term Length</h1>
+    <p>If you choose the longer period, your monthly payment will be more affordable, but you will end up paying more for your car. If you choose the shorter time, you will have less money each month for other expenses and savings, but you will finish making payments sooner and spend less to purchase your car.</p>
     <div class="choice-boxes text-center">
-    <p>Choose loan term length:</p>
+    <p>How much time will you need to finance your vehicle?</p>
     <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">
       <div v-for="option in loanOptions" :key="option.name" class="ma-4">
         <v-btn width="100%" left>{{option.name}}</v-btn>

@@ -1,8 +1,9 @@
 <template>
   <v-container>
     <h1>Transportation > Downpayment</h1>
+    <p>A down payment is money you pay at the time you purchase the vehicle. It is a portion of the total cost of the vehicle. Any remaining money owed will need to be financed. The more money you can put toward a down payment will reduce the amount of your monthly payment and total cost of your vehicle.  </p>
     <div class="choice-boxes text-center">
-    <p>Choose downpayment amount:</p>
+    <p>Will you be making a downpayment?</p>
     <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">
       <div v-for="option in downpaymentOptions" :key="option.name" class="ma-4">
         <v-btn width="100%" left>{{option.name}}</v-btn>

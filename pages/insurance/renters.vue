@@ -2,6 +2,7 @@
 <v-container>
   <div>
     <h1>Insurance > Renters Insurance</h1>
+    <p>What does renter’s insurance cover? It may provide coverage to protect you, your possessions, and in the event of a covered loss, your living arrangements. It may cover your liability should someone become injured at your home or if you damage someone’s property. There may be a deductible amount you are responsible for and a dollar limit to your coverage. Though renter’s insurance may be optional, you may find that many landlords now require proof that you have a policy prior to allowing you to move in. </p>
     <div class="choice-boxes text-center">
     <p>Do you want renters insurance?</p>
     <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">
