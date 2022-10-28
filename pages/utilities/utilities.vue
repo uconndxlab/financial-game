@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <h1>Housing > Utilities</h1>
-    <p>Does your apartment include heat and hot water? If it is not listed in the apartment description, it is not included in your rent so you will need to pay for that now. You will need to pay for your electricity bill. You will also need to pay for your cellphone and internet service.  </p>
+    <p>When you choose your apartment, did you notice whether it mentioned including your utilities such as heat, hot water, and/or gas? If it wasn’t mentioned in the ad as being included with your rent, you will need to pay for it now. </p>
   <div class="text-center">
         <p v-if="!paid">Pay your utilities!</p>
         <p v-else>Utilities Paid!</p>
@@ -10,10 +10,9 @@
     <nav>
       <ul class="nav-buttons">
         <li>
-        <v-btn to="/housing/apartment">&lt; Back</v-btn>
         </li>
         <li>
-        <v-btn :disabled="!paid" to="/transportation" color="secondary">Continue...</v-btn>
+        <v-btn :disabled="!paid" to="/communications" color="secondary">Continue...</v-btn>
         </li>
       </ul>
     </nav>

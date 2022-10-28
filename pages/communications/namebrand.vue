@@ -39,7 +39,8 @@ export default {
         { name: '10GB', value: 66},
         { name: '20GB', value: 98},
         { name: '30GB', value:130},
-        { name: '40GB', value:162}
+        { name: '40GB', value:162},
+        { name: 'Unlimited', value:200}
       ],
     }
   },

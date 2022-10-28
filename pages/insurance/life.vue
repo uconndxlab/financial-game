@@ -18,7 +18,7 @@
           <v-btn to="/insurance/renters">&lt; Back</v-btn>
         </li>
         <li>
-          <v-btn v-if="lifetype !== null" to="/communications" color="secondary">Continue...</v-btn>
+          <v-btn v-if="lifetype !== null" to="/utilities" color="secondary">Continue...</v-btn>
         </li>
       </ul>
     </nav>

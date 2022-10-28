@@ -71,7 +71,7 @@ Do you want laundry facilities on site? What about parking? Do you want to have 
                 <v-btn to="/housing/roommate">&lt; Back</v-btn>
               </li>
               <li>
-                <v-btn :disabled="apartment === null" to="/housing/utilities" color="secondary">Continue...</v-btn>
+                <v-btn :disabled="apartment === null" to="/transportation" color="secondary">Continue...</v-btn>
               </li>
             </ul>
           </nav>

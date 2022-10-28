@@ -23,8 +23,9 @@
       <ul class="nav-buttons">
         
         <li><v-btn to="/communications/mobile">&lt; Back</v-btn></li>
-        <li><v-btn v-if="mobilephone !== null && (!selection === false)" to="/communications/internet" color="secondary">Continue...</v-btn>
-            <v-btn v-if="mobilephone !== null && (!selection === true)" to="/communications/cableplan" color="secondary">Continue...</v-btn>
+        <li><v-btn v-if="tv === 0" to="/communications/cableplan" color="secondary">Continue...</v-btn>
+            <v-btn v-if="tv === 1" to="/communications/internet" color="secondary">Continue...</v-btn>
+            <v-btn v-if="tv === 2" to="/communications/streaming" color="secondary">Continue...</v-btn>
         </li>
 
 
@@ -47,7 +48,8 @@ export default {
       monthlyTV:0,
       tvOptions: [
         { name: 'Cable', value: 0 },
-        { name: 'Satellite', value: 55}
+        { name: 'Satellite', value: 55},
+        { name: 'Streaming', value: 0}
       ],
     }
   },

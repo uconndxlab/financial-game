@@ -1,7 +1,7 @@
 <template>
 <v-container>
     <LevelStarter 
-      title="Level 5:" 
+      title="Level 6:" 
       subtitle="Food" 
       to="/food/dietchoice">
     </LevelStarter>
