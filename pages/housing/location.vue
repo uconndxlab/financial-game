@@ -30,13 +30,13 @@
       <l-tile-layer :url="tileUrl" :attribution="attribution"></l-tile-layer>
       <l-marker v-for="loc in locations" :key="loc.id" :lat-lng="[loc.latitude, loc.longitude]" @click="setLocation(loc)">
         <l-popup>
-          <v-btn color=primary>Choose {{loc.city}}</v-btn>
+          <v-btn to="/housing/roommate" color=primary>Choose {{loc.city}}</v-btn>
         </l-popup>
       </l-marker>
     </l-map>
 
 
-    <v-btn :disabled="location == null" to="/housing/roommate" color="secondary">Continue...</v-btn>
+    <!--<v-btn :disabled="location == null" to="/housing/roommate" color="secondary">Continue...</v-btn>-->
   </div>
 </v-container>
 </template>

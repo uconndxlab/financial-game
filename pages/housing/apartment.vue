@@ -12,9 +12,9 @@ Do you want laundry facilities on site? What about parking? Do you want to have 
 
     <v-row class="mb-5">
       <v-col v-for="apt in apartments" :key="apt.id" cols="12" sm=6 lg="4" xl="3">
-        <v-card class="ma-1 d-flex flex-column" fill-height height="100%">
+        <v-card @click="updateSelection(apt)" class="ma-1 d-flex flex-column" fill-height height="100%" :color="active === apt.id ? 'primary':'white'">
                 <!-- <v-img height="250" :src="`${opt.image}?optation=${opt.title}`"></v-img> -->
-                <v-row>
+                <v-row >
                   <v-col>
                     <v-card-title>{{ apt.type}}</v-card-title>
                   </v-col>
@@ -27,8 +27,7 @@ Do you want laundry facilities on site? What about parking? Do you want to have 
                   <div class=subtitle-2>{{ apt.location.city }}</div>
                   {{ apt.features}}
 
-
-                  <v-divider class="my-5"></v-divider>
+                  <v-divider class="my-5" style="opacity:0" ></v-divider>
                   <template v-if="apt.utilities">
                     <div><strong>Utilities</strong>:</div>
                     <v-chip v-for="utility in apt.utilities" :key="utility" class="ma-1">
@@ -36,17 +35,12 @@ Do you want laundry facilities on site? What about parking? Do you want to have 
                     </v-chip>
                   </template>
                 </v-card-text>
-                <v-card-actions>
-                  <v-btn text @click="updateSelection(apt)">
-                    Select
-                  </v-btn>
-                </v-card-actions>
               </v-card>
 
             </v-col>
-
-
           </v-row>
+
+
           <!-- <v-slide-group v-model="apartmentSelection" class="pa-4" center-active show-arrows
       @change="updateSelection(apartmentSelection)">
       <v-slide-item v-for="opt in apartmentOptions['Danbury']" :key="opt.id" v-slot="{ active, toggle }" :value="opt">
@@ -71,7 +65,7 @@ Do you want laundry facilities on site? What about parking? Do you want to have 
                 <v-btn to="/housing/roommate">&lt; Back</v-btn>
               </li>
               <li>
-                <v-btn :disabled="apartment === null" to="/transportation" color="secondary">Continue...</v-btn>
+                <v-btn :disabled="active === -1" to="/transportation" color="secondary">Continue...</v-btn>
               </li>
             </ul>
           </nav>
@@ -86,8 +80,9 @@ export default {
   name: 'HousingApartment',
   data() {
     return {
+      active:-1,
       apartments: [],
-      apartmentSelection: null,
+      apartmentSelection: null
     }
   },
   computed: {
@@ -118,6 +113,7 @@ export default {
   },
   methods: {
     updateSelection(option){
+      this.active = option.id
       this.update({
         prop: 'apartment',
         value: option
