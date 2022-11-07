@@ -180,36 +180,37 @@ export const actions = {
 
     // Clothing
     if(state?.clothing){
-      if (state.clothing === 2){
-        state.consignment = true
-      }
-      else{
-        state.consignment = false
-      }
+      balance = balance - state.clothing
+      // if (state.clothing === 2){
+      //   state.consignment = true
+      // }
+      // else{
+      //   state.consignment = false
+      // }
 
-      if (state.occupation.monthly_gross > 5800){
-        state.clothing = 250;
-      }
-      else if (state.occupation.monthly_gross > 4000){
-        state.clothing = 200;
-      }
-      else if (state.occupation.monthly_gross > 3500){
-        state.clothing = 160;
-      }
-      else if (state.occupation.monthly_gross > 2500){
-        state.clothing = 140;
-      }
-      else if (state.occupation.monthly_gross > 1700){
-        state.clothing = 100;
-      }
-      else if (state.occupation.monthly_gross > 1200){
-        state.clothing = 70;
-      }
-      else{
-        state.clothing = 50;
-      }
+      // if (state.occupation.monthly_gross > 5800){
+      //   state.clothing = 250;
+      // }
+      // else if (state.occupation.monthly_gross > 4000){
+      //   state.clothing = 200;
+      // }
+      // else if (state.occupation.monthly_gross > 3500){
+      //   state.clothing = 160;
+      // }
+      // else if (state.occupation.monthly_gross > 2500){
+      //   state.clothing = 140;
+      // }
+      // else if (state.occupation.monthly_gross > 1700){
+      //   state.clothing = 100;
+      // }
+      // else if (state.occupation.monthly_gross > 1200){
+      //   state.clothing = 70;
+      // }
+      // else{
+      //   state.clothing = 50;
+      // }
 
-      balance = state.consignment === true? (balance - (state.clothing * .33)) : (balance - state.clothing)
+      // balance = state.consignment === true? (balance - (state.clothing * .33)) : (balance - state.clothing)
     }
 
      // Activity
