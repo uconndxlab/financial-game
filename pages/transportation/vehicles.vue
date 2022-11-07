@@ -4,7 +4,7 @@
     <p>Choose a vehicle:</p>
     <v-row class="mb-5">
       <v-col v-for="option in vehicles" :key="option.id" cols="12" sm=6 lg="4" xl="3">
-        <v-card class="ma-1 d-flex flex-column" fill-height height="100%">
+        <v-card @click="updateSelection(option)" class="ma-1 d-flex flex-column" fill-height height="100%" :color="active === option.id ? 'primary':'white'">
           <!-- <v-img height="250" :src="`${opt.image}?optation=${opt.title}`"></v-img> -->
           <v-row>
             <v-col>
@@ -14,7 +14,6 @@
               <v-card-title class="justify-end">{{ $money(option.price) }}</v-card-title>
             </v-col>
           </v-row>
-          <v-card-subtitle></v-card-subtitle>
           <v-card-text>
             <div class=subtitle-2>{{ option.year }}</div>
             <p><strong>MPG Highway</strong>: {{ option.mpg_highway }}</p>
@@ -29,11 +28,6 @@
               </v-chip>
             </template> -->
           </v-card-text>
-          <v-card-actions>
-            <v-btn text @click="updateSelection()">
-              Select
-            </v-btn>
-          </v-card-actions>
         </v-card>
 
       </v-col>
@@ -61,6 +55,7 @@ export default {
   name: 'VehicleType',
   data(){
     return {
+      active:-1,
       selection: null,
       vehicles: []
     }
@@ -71,7 +66,8 @@ export default {
     },
   },
   methods: {
-    updateSelection() {
+    updateSelection(option) {
+      this.active = option.id
       this.selection = this.vehicle
       this.update({
         prop: 'transport',

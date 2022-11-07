@@ -38,7 +38,6 @@ export default {
         { name: 'Pay to play', value: 15},
         { name: 'Free to play', value: 12},
         { name: 'No gaming', value:0}
-
       ],
     }
   },
