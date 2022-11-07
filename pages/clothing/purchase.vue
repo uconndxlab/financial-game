@@ -79,6 +79,7 @@ export default {
   },
   methods: {
     selectionChanged(){
+      this.clothing = this.selection
       this.monthlyClothing = this.clothingOptions[this.selection].value
       this.update({
         prop: 'clothing',
