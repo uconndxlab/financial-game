@@ -11,14 +11,16 @@ Do you want laundry facilities on site? What about parking? Do you want to have 
     <p>Choose an apartment in {{location.city}}:</p>
 
     <v-row class="mb-5">
-      <v-col v-for="apt in apartments" :key="apt.id" cols="12" sm=6 lg="4" xl="3">
-        <v-card @click="updateSelection(apt)" class="ma-1 d-flex flex-column" fill-height height="100%" :color="active === apt.id ? 'primary':'white'">
+      <v-col v-for="apt in apartments" :key="apt.id" cols="12" md="6" lg="4" xl="3">
+        <v-card @click="updateSelection(apt)" class="ma-1 " fill-height height="100%" :color="active === apt.id ? 'primary':'white'">
                 <!-- <v-img height="250" :src="`${opt.image}?optation=${opt.title}`"></v-img> -->
                 <v-row >
-                  <v-col>
+                  <v-col cols="6"
+        md="7">
                     <v-card-title>{{ apt.type}}</v-card-title>
                   </v-col>
-                  <v-col>
+                  <v-col cols="6"
+        md="5">
                     <v-card-title class="justify-end">{{ $money(apt.rent) }}</v-card-title>
                   </v-col>
                 </v-row>
