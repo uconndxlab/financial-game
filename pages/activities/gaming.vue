@@ -36,7 +36,7 @@ export default {
       monthlyGaming: null,
       gameOptions: [
         { name: 'Pay to play', value: 15},
-        { name: 'Free to play', value: 12},
+        { name: 'Free to play', value: 0},
         { name: 'No gaming', value:0}
       ],
     }
