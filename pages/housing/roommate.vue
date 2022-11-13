@@ -4,6 +4,8 @@
     <v-row>
       <v-col>
         <h1>Housing > Roommate</h1>
+            <p>Will you live alone? Will you have a roommate and split some expenses? What are the benefits and disadvantages of having a roommate versus living alone? </p>
+
         <div class="choice-boxes text-center">
         <p>Do you want a roommate?</p>
         <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">
@@ -35,7 +37,7 @@
         <v-card-text>
           <!-- If user chose a roommate: -->
           <p v-if="selection">
-            Positive message goes here about only paying half the rent.
+            Do you know someone who would share an apartment with you? Do you know each other well enough to know that that you will be able to get along with one another? Will this person be able to pay their portion of the rent? If they leave or are unable to pay, you may need to be prepared to pay their portion of the rent as well as your own. Pick a roommate who is trustworthy and able to meet this obligation.
           </p>
 
           <!-- If user is living alone -->

@@ -4,10 +4,15 @@
       <v-col>
         <h1>Welcome to Breadwinner</h1>
         <p>About the game...</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi saepe nesciunt sapiente, culpa ex
-          ratione, quo eius in blanditiis dolorum voluptates quam illo eum praesentium reprehenderit sit, ipsum atque?
-          Sed?</p>
+        <p>Are you ready to try out life as a young adult entering the Connecticut workforce fulltime? During this game, you’ll have a chance to make financial decisions you are likely to face. In this game, you are a young, single adult and have completed the entry level educational requirements for your chosen occupation. You will live financially independently and be responsible for all your own expenses. Once you are done, play again! Make different choices and see how they affect your finances and your lifestyle.</p>
         <h2>Begin by Choosing an Occupation</h2>
+        <p>
+
+Pick an occupation that you are interested in pursuing—work that interests you and that you can see yourself doing in
+the future. This way you will gain the most from participating. You can always go back and try it again with a different
+occupation later.
+
+        </p>
 
         <v-data-table v-model="occupation" :items="occupations" :headers="table.headers" single-select
           @item-selected="changed" show-select :search="search">

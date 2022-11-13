@@ -22,7 +22,7 @@
 
       <ul class="nav-buttons">
         
-        <li><v-btn to="/communications/landline">&lt; Back</v-btn></li>
+        <li></li>
         <li><v-btn v-if="mobilephone !== null && selection" to="/communications/lowcost" color="secondary">Continue...</v-btn>
             <v-btn v-if="mobilephone !== null && (!selection === true)" to="/communications/namebrand" color="secondary">Continue...</v-btn>
         </li>

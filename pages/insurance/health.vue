@@ -2,6 +2,11 @@
 <v-container>
   <div>
     <h1>Insurance > Health Insurance</h1>
+    <p>Health insurance can help cover certain types of expenses such as appointments with doctors, hospital stays, and medications. Covering these costs without insurance can be very costly. If you are young and healthy, you may wonder if you need health insurance. Be aware that accidents do happen and medical expenses can add up very quickly. New health conditions also can appear suddenly and may require specific care and/or equipment, supplies, or medications.  
+    </p>
+    <p>As a separate note 
+
+(Though your parents may keep you on a family plan until age 26, today, you are learning what it would cost to be financially independent and take care of all of your expenses.)</p>
     <div class="text-center">
     <p v-if="!paid">Pay your health insurance!</p>
     <p v-else>Health insurance Paid!</p>

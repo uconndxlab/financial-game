@@ -2,7 +2,7 @@
 <v-container>
   <div>
     <h1>Housing > Location</h1>
-    <p>Where would you like to live?</p>
+    <p>Now that you have a fulltime job, where will you live? There are several different communities for you to choose among. Are you more of an urban dweller? Do do you prefer the suburbs, or do you enjoy a more rural setting? Will you live near your family and friends? How important is it to you that you live near your workplace? </p>
     <!-- <v-slide-group v-model="selection" class="pa-4" center-active show-arrows @change="setLocation(selection)">
       <v-slide-item v-for="loc in locations" :key="loc.id" v-slot="{ active, toggle }" :value="loc">
         <v-card width="300" class="ma-4" :color="active ? 'grey lighten-2' : 'white'" @click="toggle">
@@ -30,13 +30,13 @@
       <l-tile-layer :url="tileUrl" :attribution="attribution"></l-tile-layer>
       <l-marker v-for="loc in locations" :key="loc.id" :lat-lng="[loc.latitude, loc.longitude]" @click="setLocation(loc)">
         <l-popup>
-          <v-btn color=primary>Choose {{loc.city}}</v-btn>
+          <v-btn to="/housing/roommate" color=primary>Choose {{loc.city}}</v-btn>
         </l-popup>
       </l-marker>
     </l-map>
 
 
-    <v-btn :disabled="location == null" to="/housing/roommate" color="secondary">Continue...</v-btn>
+    <!--<v-btn :disabled="location == null" to="/housing/roommate" color="secondary">Continue...</v-btn>-->
   </div>
 </v-container>
 </template>

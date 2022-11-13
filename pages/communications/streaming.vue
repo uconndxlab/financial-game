@@ -13,10 +13,10 @@
     <nav>
       <ul class="nav-buttons">
         <li>
-        <v-btn to="/activities/pet">&lt; Back</v-btn>
+        <v-btn to="/communications/tv">&lt; Back</v-btn>
         </li>
         <li>
-        <v-btn to="/activities/gaming" color="secondary">Continue...</v-btn>
+        <v-btn to="/communications/internet" color="secondary">Continue...</v-btn>
         </li>
       </ul>
     </nav>
@@ -33,10 +33,11 @@ export default {
     return {
       selection: null,
       dialog: false,
-      monthlyStreaming: null,
+      monthlyTV: null,
       streamingOptions: [
-        { name: 'Paid Online Streaming Service', value: 11},
-        { name: 'No streaming service', value: 0}
+        { name: 'TV shows / Movie Streaming Services', value: 15},
+        { name: 'Sports Streaming Services', value: 10},
+        { name: 'Bundled Streaming Service (TV Shows/Movies/Sports)', value: 20}
       ],
     }
   },
@@ -47,10 +48,10 @@ export default {
   },
   methods: {
     selectionChanged(){
-      this.monthlyStreaming = this.streamingOptions[this.selection].value
+      this.monthlyTV = this.streamingOptions[this.selection].value
       this.update({
-        prop: 'streaming',
-        value: this.monthlyStreaming
+        prop: 'tv',
+        value: this.monthlyTV
       })
       this.dialog = true
     },

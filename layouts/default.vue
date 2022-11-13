@@ -38,6 +38,7 @@ export default {
         { text: 'Housing', to: '/housing', disabled: false, exact: true},
         { text: 'Transportation', to: '/transportation', disabled: false, exact: true},
         { text: 'Insurance', to: '/insurance', disabled: false, exact: true},
+        { text: 'Utilities', to: '/utilities', disabled: false, exact: true},
         { text: 'Communications', to: '/communications', disabled: false, exact: true},
         { text: 'Food', to: '/food', disabled: false, exact: true},
         { text: 'Clothing', to: '/clothing', disabled: false, exact: true},

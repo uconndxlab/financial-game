@@ -15,7 +15,7 @@
         <li>
         </li><li>
         <v-btn v-if="pettype === 0" to="/activities/dog" color="secondary">Continue...</v-btn>
-        <v-btn v-else to="/activities/streaming" color="secondary">Continue...</v-btn>
+        <v-btn v-else to="/activities/gaming" color="secondary">Continue...</v-btn>
         </li>
       </ul>
     </nav>

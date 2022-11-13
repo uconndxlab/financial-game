@@ -1,17 +1,26 @@
 <template>
   <v-container>
     <h1>Housing > Apartment</h1>
-    <p>Choose an apartment in {{location.city}}</p>
+    <p><strong>What type of apartment will you choose? </strong>
+    <br>
+
+A studio or efficiency apartment is smaller with less square footage. Typically, there is an area for a bedroom, living room, and kitchen in one open space. The bathroom is a separate room with a door. Usually, the rent is more affordable. 
+Other apartments have one or two bedrooms and one or two bathrooms. What will work best for your situation? 
+ </p><p>
+Do you want laundry facilities on site? What about parking? Do you want to have a pet? How about other amenities such as a fitness center, swimming pool, deck, or patio?</p>
+    <p>Choose an apartment in {{location.city}}:</p>
 
     <v-row class="mb-5">
-      <v-col v-for="apt in apartments" :key="apt.id" cols="12" sm=6 lg="4" xl="3">
-        <v-card class="ma-1 d-flex flex-column" fill-height height="100%">
+      <v-col v-for="apt in apartments" :key="apt.id" cols="12" md="6" lg="4" xl="3">
+        <v-card @click="updateSelection(apt)" class="ma-1 " fill-height height="100%" :color="active === apt.id ? 'primary':'white'">
                 <!-- <v-img height="250" :src="`${opt.image}?optation=${opt.title}`"></v-img> -->
-                <v-row>
-                  <v-col>
+                <v-row >
+                  <v-col cols="6"
+        md="7">
                     <v-card-title>{{ apt.type}}</v-card-title>
                   </v-col>
-                  <v-col>
+                  <v-col cols="6"
+        md="5">
                     <v-card-title class="justify-end">{{ $money(apt.rent) }}</v-card-title>
                   </v-col>
                 </v-row>
@@ -20,8 +29,7 @@
                   <div class=subtitle-2>{{ apt.location.city }}</div>
                   {{ apt.features}}
 
-
-                  <v-divider class="my-5"></v-divider>
+                  <v-divider class="my-5" style="opacity:0" ></v-divider>
                   <template v-if="apt.utilities">
                     <div><strong>Utilities</strong>:</div>
                     <v-chip v-for="utility in apt.utilities" :key="utility" class="ma-1">
@@ -29,17 +37,12 @@
                     </v-chip>
                   </template>
                 </v-card-text>
-                <v-card-actions>
-                  <v-btn text @click="updateSelection(apt)">
-                    Select
-                  </v-btn>
-                </v-card-actions>
               </v-card>
 
             </v-col>
-
-
           </v-row>
+
+
           <!-- <v-slide-group v-model="apartmentSelection" class="pa-4" center-active show-arrows
       @change="updateSelection(apartmentSelection)">
       <v-slide-item v-for="opt in apartmentOptions['Danbury']" :key="opt.id" v-slot="{ active, toggle }" :value="opt">
@@ -64,7 +67,7 @@
                 <v-btn to="/housing/roommate">&lt; Back</v-btn>
               </li>
               <li>
-                <v-btn :disabled="apartment === null" to="/housing/utilities" color="secondary">Continue...</v-btn>
+                <v-btn :disabled="active === -1" to="/transportation" color="secondary">Continue...</v-btn>
               </li>
             </ul>
           </nav>
@@ -79,8 +82,9 @@ export default {
   name: 'HousingApartment',
   data() {
     return {
+      active:-1,
       apartments: [],
-      apartmentSelection: null,
+      apartmentSelection: null
     }
   },
   computed: {
@@ -111,6 +115,7 @@ export default {
   },
   methods: {
     updateSelection(option){
+      this.active = option.id
       this.update({
         prop: 'apartment',
         value: option
