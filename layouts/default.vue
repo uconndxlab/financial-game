@@ -5,15 +5,14 @@
       <Nuxt />
       <v-container class="bottom-display">
       <v-row>
-      <v-col cols="auto" class="breadcrumbs">
-      <v-breadcrumbs large :items="navItems"></v-breadcrumbs>
-      </v-col>
-      <v-col>
-        <div class="budget-display" v-if="$route.name !== 'index'">
-        <animated-number :value="balance" :format-value="$money" :duration="500" />
-      </div>
-
-      </v-col>
+        <v-col cols="auto" class="breadcrumbs" v-if="showNavigation()">
+          <v-breadcrumbs large :items="navItems"></v-breadcrumbs>
+        </v-col>
+        <v-col>
+          <div class="budget-display" v-if="showBalance()">
+            <animated-number :value="balance" :format-value="$money" :duration="500" />
+          </div>
+        </v-col>
       </v-row>
       </v-container>
     </v-main>
@@ -61,7 +60,15 @@ export default {
     // }
     ...mapActions({
       calculateBudget: 'budget/total'
-    })
+    }),
+    showBalance(){
+      const routeNames = ['index', 'results']
+      return !routeNames.includes(this.$route.name)
+    },
+    showNavigation(){
+      const routeNames = ['results']
+      return !routeNames.includes(this.$route.name)   
+    }
   },
   mounted(){
     this.$store.subscribe( async (mutation, state) => {

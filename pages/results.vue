@@ -1,19 +1,17 @@
 <template>
   <v-container >
-    <v-row>
+    <v-row class="mb-5">
       <v-col>
-        <h1>Congratulations!</h1>
-        <h2>Let's see how you did!</h2>
+        <h1 class="text-center">Congratulations!</h1>
+        <h2 class="text-center">Let's see how you did!</h2>
       </v-col>
     </v-row>
 
-    <v-row class="space-between">
-
+    <v-row class="space-between mb-5">
       <v-col>
-
         <figure>
             <div id="yellow" class="counter yellow-bg">
-              0
+              <animated-number :value="balance" :format-value="$money" :duration="500" />
             </div>
             <figcaption>
               Remaining Budget
@@ -25,7 +23,7 @@
           <v-col>
           <figure>
             <div id="green" class="counter green-bg">
-              <animated-number :value="1000" :format-value="$money" :duration="500" />
+              <animated-number :value="2589" :format-value="$money" :duration="500" />
             </div>
             <figcaption>
               Remaining Savings
@@ -38,7 +36,8 @@
           <v-col>
           <figure>
             <div id="red" class="counter red-bg">
-              0
+              <animated-number :value="1358" :format-value="$money" :duration="500" />
+
             </div>
             <figcaption>
               Interest Costs
@@ -47,18 +46,17 @@
       </v-col>
     </v-row>
 
-    <h2>Spending Breakdown</h2>
-    <Doughnut
-      :chart-options="chartOptions"
-      :chart-data="chartData"
-      :chart-id="chartId"
-      :dataset-id-key="datasetIdKey"
-      :plugins="plugins"
-      :css-classes="cssClasses"
-      :styles="styles"
-      :width="width"
-      :height="height"
-    />
+    <h2 class="text-center py-6 mt-6 ">Spending Breakdown</h2>
+    <v-row class="center mb-5">
+  
+      <v-col>
+        <Doughnut :chart-options="chartOptions" :chart-data="chartData" 
+          :width="600"
+      
+        />
+      </v-col>
+    </v-row>
+
 
     </v-container>
 </template>
@@ -80,6 +78,7 @@ import {
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale)
 
+ChartJS.defaults.plugins.legend.labels.color = '#999'
 
 
 export default {
@@ -102,6 +101,7 @@ export default {
   },
   data(){
     return {
+        balance: 0,
        chartData: {
         labels: ['Transportation', 'Groceries', 'Utilities', 'Activities', 'Insurance', 'Housting', 'Other'],
         datasets: [
@@ -146,9 +146,7 @@ export default {
     }
   },
   methods: {
-    balance(){
-      this.total()
-    },
+
 
     ...mapActions({
       update: 'budget/update',
@@ -156,6 +154,9 @@ export default {
       total: 'budget/total'
     }),
 
+  },
+  async mounted() {
+    this.balance = await this.$store.dispatch('budget/total')
   }
 
 }
@@ -199,5 +200,7 @@ figure {
 
 canvas {
 max-height: 500px;
+max-width: 800px;
+margin: 0 auto;
 }
 </style>
