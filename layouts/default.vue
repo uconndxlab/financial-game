@@ -1,23 +1,31 @@
 <template>
 
+<div>
+  <uconn-banner></uconn-banner>
   <v-app>
+
     <v-main fill-height fluid>
       <Nuxt />
       <v-container class="bottom-display">
       <v-row>
-        <v-col cols="auto" class="breadcrumbs" v-if="showNavigation()">
+        <v-col v-if="showNavigation()" cols="auto" class="breadcrumbs">
           <v-breadcrumbs large :items="navItems"></v-breadcrumbs>
         </v-col>
         <v-col>
-          <div class="budget-display" v-if="showBalance()">
+          <div v-if="showBalance()" class="budget-display">
             <animated-number :value="balance" :format-value="$money" :duration="500" />
           </div>
         </v-col>
       </v-row>
       </v-container>
     </v-main>
-    
+
   </v-app>
+
+
+</div>
+
+
 </template>
 
 <script>
@@ -67,7 +75,7 @@ export default {
     },
     showNavigation(){
       const routeNames = ['results']
-      return !routeNames.includes(this.$route.name)   
+      return !routeNames.includes(this.$route.name)
     }
   },
   mounted(){
@@ -89,7 +97,7 @@ export default {
 
 body {
   padding:0;
-  margin: 40px;
+  /* margin: 40px; */
   /* background-color: var(--primary) */
 
 }
