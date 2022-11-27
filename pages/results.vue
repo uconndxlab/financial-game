@@ -36,7 +36,7 @@
           <v-col>
           <figure>
             <div id="red" class="counter red-bg">
-              <animated-number :value="1358" :format-value="$money" :duration="500" />
+              <animated-number :value="$store.state.budget.loan.interestSum" :format-value="$money" :duration="500" />
 
             </div>
             <figcaption>
@@ -48,11 +48,12 @@
 
     <h2 class="text-center py-6 mt-6 ">Spending Breakdown</h2>
     <v-row class="center mb-5">
-  
+
       <v-col>
-        <Doughnut :chart-options="chartOptions" :chart-data="chartData" 
+        <Doughnut
+:chart-options="chartOptions" :chart-data="chartData"
           :width="600"
-      
+
         />
       </v-col>
     </v-row>
@@ -103,7 +104,7 @@ export default {
     return {
         balance: 0,
        chartData: {
-        labels: ['Transportation', 'Groceries', 'Utilities', 'Activities', 'Insurance', 'Housting', 'Other'],
+        labels: ['Transportation', 'Groceries', 'Utilities', 'Activities', 'Insurance', 'Housing', 'Other'],
         datasets: [
           {
             label: 'Dataset 1',
@@ -145,6 +146,9 @@ export default {
       // ]
     }
   },
+  async mounted() {
+    this.balance = await this.$store.dispatch('budget/total')
+  },
   methods: {
 
 
@@ -154,9 +158,6 @@ export default {
       total: 'budget/total'
     }),
 
-  },
-  async mounted() {
-    this.balance = await this.$store.dispatch('budget/total')
   }
 
 }

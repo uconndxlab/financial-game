@@ -5800,6 +5800,11 @@ loader-utils@^2.0.0:
     emojis-list "^3.0.0"
     json5 "^2.1.2"
 
+loanjs@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/loanjs/-/loanjs-1.0.8.tgz#018508a43ccfe86b286ba08b1ebff1157b7fce3f"
+  integrity sha512-4yAEl7UQaesEJa9jftZfkuR/NyY3GGp+D5/OnRxuovi5Is5/3EmsyUKcu6ucZ3KULqEaMcPDK3S3a0j+r+B2UA==
+
 local-or-home-npmrc@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/local-or-home-npmrc/-/local-or-home-npmrc-1.1.0.tgz"
@@ -9304,12 +9309,7 @@ ua-parser-js@^0.7.28:
 
 "uconn-banner@git+https://github.com/uconn/banner.git":
   version "2.0.2"
-  uid "2d6713436552ed0d7cc33b7565851e4d3bef05e4"
   resolved "git+https://github.com/uconn/banner.git#2d6713436552ed0d7cc33b7565851e4d3bef05e4"
-
-"uconn-banner@github:uconn/banner":
-  version "2.0.2"
-  resolved "git+ssh://git@github.com/uconn/banner.git#2d6713436552ed0d7cc33b7565851e4d3bef05e4"
 
 ufo@^0.7.4:
   version "0.7.11"

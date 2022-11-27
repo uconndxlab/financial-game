@@ -72,7 +72,7 @@ export default {
       this.transporttype = this.selection
       this.downpaymentAmount = this.downpaymentOptions[this.selection].value
       this.update({
-        prop: 'transport',
+        prop: 'downpayment',
         value: this.downpaymentAmount
       })
       this.dialog = true
