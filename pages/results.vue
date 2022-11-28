@@ -59,6 +59,14 @@
     </v-row>
 
 
+    <div class="d-flex justify-center mt-6" style="gap:50px">
+
+        <v-btn to="/">Play Again!<v-icon right>mdi-refresh</v-icon></v-btn>
+
+        <v-btn @click="share()">Share Results<v-icon right>mdi-share</v-icon></v-btn>
+    </div>
+
+
     </v-container>
 </template>
 
@@ -131,7 +139,12 @@ export default {
         }
 
       },
-      plugins: [ 'legend' ]
+      plugins: [ 'legend' ],
+      shareData: {
+        title: 'Breadwinner',
+        text: 'Are you ready to try out life as a young adult entering the Connecticut workforce fulltime? During this game, you\'ll have a chance to make financial decisions you are likely to face.',
+        url: 'https://financial-game.netlify.app/'
+      }
     }
   },
   head(){
@@ -157,6 +170,14 @@ export default {
       reset: 'budget/reset',
       total: 'budget/total'
     }),
+
+    async share() {
+      try {
+        await navigator.share(this.shareData);
+      } catch (err) {
+        console.error(`Error: ${err}`);
+      }
+    }
 
   }
 

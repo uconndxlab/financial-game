@@ -70,7 +70,7 @@ export default {
       // calculate loan info
       const loan = new Loan(
         this.$store.state.budget.vehicle.price - this.$store.state.budget.downpayment, // amount
-        this.$store.state.budget.installments,   // installments number
+        this.$store.state.budget.installments || 60,   // installments number
         6,    // interest rate,
         false
       );
