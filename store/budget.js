@@ -25,7 +25,8 @@ function initialState(){
     gaming: null,
     reading: null,
     haircut: null,
-    nails: null
+    nails: null,
+    chance: null
   }
 }
 
@@ -248,6 +249,11 @@ export const actions = {
       balance = balance - state.nails
     }
 
+    
+    // Chance
+    if(state?.chance){
+      balance = balance + state.chance
+    }
 
     // commit('property', {prop: 'balance', value: state.initial - runningTotal })
     return balance
