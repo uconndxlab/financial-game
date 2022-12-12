@@ -16,7 +16,7 @@
         <v-btn to="/activities/hair">&lt; Back</v-btn>
         </li>
         <li>
-        <v-btn to="/results" color="secondary">Continue...</v-btn>
+        <v-btn to="/chance" color="secondary">Continue...</v-btn>
         </li>
       </ul>
     </nav>
