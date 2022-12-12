@@ -1,24 +1,33 @@
 <template>
 
+<div>
+  <uconn-banner></uconn-banner>
   <v-app>
+
     <v-main fill-height fluid>
       <Nuxt />
       <v-container class="bottom-display">
       <v-row>
-      <v-col cols="auto" class="breadcrumbs">
-      <v-breadcrumbs large :items="navItems"></v-breadcrumbs>
-      </v-col>
-      <v-col>
-        <div class="budget-display" v-if="$route.name !== 'index'">
-        <animated-number :value="balance" :format-value="$money" :duration="500" />
-      </div>
-
-      </v-col>
+        <v-col v-if="showNavigation()" cols="auto" class="breadcrumbs">
+          <v-breadcrumbs large :items="navItems"></v-breadcrumbs>
+        </v-col>
+        <v-col>
+          <div v-if="showBalance()" class="budget-display">
+            <animated-number :value="balance" :format-value="$money" :duration="500" />
+          </div>
+        </v-col>
       </v-row>
       </v-container>
     </v-main>
-    
+
+    <breadwinner-footer/>
   </v-app>
+
+
+
+</div>
+
+
 </template>
 
 <script>
@@ -61,7 +70,15 @@ export default {
     // }
     ...mapActions({
       calculateBudget: 'budget/total'
-    })
+    }),
+    showBalance(){
+      const routeNames = ['index', 'results']
+      return !routeNames.includes(this.$route.name)
+    },
+    showNavigation(){
+      const routeNames = ['results']
+      return !routeNames.includes(this.$route.name)
+    }
   },
   mounted(){
     this.$store.subscribe( async (mutation, state) => {
@@ -82,7 +99,7 @@ export default {
 
 body {
   padding:0;
-  margin: 40px;
+  /* margin: 40px; */
   /* background-color: var(--primary) */
 
 }
@@ -94,5 +111,8 @@ body > h1 {
 .nuxt-link-active {
   text-decoration: underline;
 }
-
+.v-main__wrap {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
 </style>

@@ -25,7 +25,8 @@ function initialState(){
     gaming: null,
     reading: null,
     haircut: null,
-    nails: null
+    nails: null,
+    loan: null
   }
 }
 
@@ -82,7 +83,7 @@ export const actions = {
 
     // Vehicle
     if(state?.vehicle){
-      balance = balance - state.vehicle
+      // balance = balance - state.vehicle
     }    
 
     // Health Insurance
