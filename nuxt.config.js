@@ -48,7 +48,8 @@ export default {
             }
         }
       }
-    }]
+    }],
+    '@nuxtjs/google-analytics'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -72,6 +73,10 @@ export default {
     },
     // Don't need icon when using SVG file
     icon: false
+  },
+
+  googleAnalytics: {
+    id: 'G-YH6R1Q2SB7'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
