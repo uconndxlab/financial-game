@@ -14,7 +14,12 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/ct-breadwinner-plain.svg' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/ct-breadwinner-plain.svg' }],
+    script: [
+      { src: 'https://www.googletagmanager.com/gtag/js?id=G-YH6R1Q2SB7', async: true },
+      { src: '/ga.js' }
+    ],
+
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -48,8 +53,7 @@ export default {
             }
         }
       }
-    }],
-    '@nuxtjs/google-analytics'
+    }]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -73,10 +77,6 @@ export default {
     },
     // Don't need icon when using SVG file
     icon: false
-  },
-
-  googleAnalytics: {
-    id: 'G-YH6R1Q2SB7'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
