@@ -20,7 +20,9 @@
       </v-container>
     </v-main>
 
+    <breadwinner-footer/>
   </v-app>
+
 
 
 </div>
@@ -109,5 +111,8 @@ body > h1 {
 .nuxt-link-active {
   text-decoration: underline;
 }
-
+.v-main__wrap {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
 </style>
