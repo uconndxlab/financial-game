@@ -4,14 +4,16 @@
     <p>Choose a vehicle:</p>
     <v-row class="mb-5">
       <v-col v-for="option in vehicles" :key="option.id" cols="12" md="6" lg="4" xl="3">
-        <v-card @click="updateSelection(option)" class="ma-1 d-flex flex-column" fill-height height="100%" :color="active === option.id ? 'primary':'white'">
+        <v-card class="ma-1 d-flex flex-column" fill-height height="100%" :color="active === option.id ? 'primary':'white'" @click="updateSelection(option)">
           <!-- <v-img height="250" :src="`${opt.image}?optation=${opt.title}`"></v-img> -->
           <v-row>
-            <v-col cols="6"
+            <v-col
+cols="6"
         md="7">
               <v-card-title class="pb-0" >{{ option.make}} {{ option.model }}</v-card-title>
             </v-col>
-            <v-col cols="6"
+            <v-col
+cols="6"
         md="5">
               <v-card-title class="justify-end pb-0">{{ $money(option.price) }}</v-card-title>
             </v-col>
@@ -63,22 +65,9 @@ export default {
     }
   },
   computed:{
-    vehicle() {
-      return this.$store.state.budget.transport
-    },
-  },
-  methods: {
-    updateSelection(option) {
-      this.active = option.id
-      this.selection = this.vehicle
-      this.update({
-        prop: 'transport',
-        value: 0
-      })
-    },
-    ...mapActions({
-      update: 'budget/update'
-    })
+    // vehicle() {
+    //   return this.$store.state.budget.transport
+    // },
   },
   async mounted() {
     let result
@@ -89,5 +78,18 @@ export default {
     }
     this.vehicles = result.data
   },
+  methods: {
+    updateSelection(option) {
+      this.active = option.id
+      this.selection = option
+      this.update({
+        prop: 'vehicle',
+        value: option
+      })
+    },
+    ...mapActions({
+      update: 'budget/update'
+    })
+  }
 }
 </script>

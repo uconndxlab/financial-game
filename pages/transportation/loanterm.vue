@@ -6,7 +6,7 @@
     <p>How much time will you need to finance your vehicle?</p>
     <v-btn-toggle v-model="selection" mandatory class="d-block" color="primary" @change="selectionChanged()">
       <div v-for="option in loanOptions" :key="option.name" class="ma-4">
-        <v-btn width="100%" left>{{option.name}}</v-btn>
+        <v-btn width="100%" left :value="option.value">{{option.name}}</v-btn>
       </div>
 
     </v-btn-toggle>
@@ -27,8 +27,8 @@
         <v-card-title color="primary" dark>Did You Know?</v-card-title>
         <v-card-text>
           <!-- If user selects 48 moths -->
-          <p v-if="selection">
-            Choosing a shorter loan term length gives you less time to pay it back, but the the total cost of the loan is less.
+          <p v-if="selection == 48">
+            Choosing a shorter loan term length gives you less time to pay it back, but the total cost of the loan is less.
           </p>
 
           <!-- If user selects 60 months -->
@@ -46,6 +46,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import { Loan } from 'loanjs'
 
 export default {
   name: 'TransportationType',
@@ -55,19 +57,38 @@ export default {
       dialog: false,
       loantype: null,
       loanOptions: [
-        { name: '60 months', value: true},
-        { name: '48 months', value: false}
+        { name: '60 months', value: 60},
+        { name: '48 months', value: 48}
       ],
-    }
-  },
-  methods: {
-    selectionChanged(){
-      this.loantype = this.selection
-      this.dialog = true
     }
   },
   mounted(){
     this.dialog = false
-  }
+  },
+  methods: {
+    selectionChanged(){
+      // calculate loan info
+      const loan = new Loan(
+        this.$store.state.budget.vehicle.price - this.$store.state.budget.downpayment, // amount
+        this.$store.state.budget.installments || 60,   // installments number
+        6,    // interest rate,
+        false
+      );
+      this.update({
+        prop: 'loan',
+        value: loan
+      })
+      this.loantype = this.selection
+      this.update({
+        prop: 'installments',
+        value: this.loantype
+      })
+      this.dialog = true
+    },
+    ...mapActions({
+      update: 'budget/update'
+    })
+  },
+
 }
 </script>
