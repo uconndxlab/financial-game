@@ -162,7 +162,7 @@ header {
     display: block;
     z-index: 9999;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-    background: #50af55;
+    background: #fff;
 }
 
 #primary-nav ul {
@@ -214,7 +214,7 @@ header {
     height: 3px;
     bottom: 8px;
     position: absolute;
-    background-color: white;
+    background-color: #071a38;
 
 }
 #primary-nav a::after {
