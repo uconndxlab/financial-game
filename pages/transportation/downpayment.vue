@@ -47,6 +47,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+                        head: {
+        title: 'Transportation: Type/Vehicle/Downpayment',
+    },
   name: 'TransportationType',
   data(){
     return {

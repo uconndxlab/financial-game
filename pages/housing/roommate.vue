@@ -60,6 +60,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+              head: {
+        title: 'Housing: Roommate',
+    },
   name: 'HousingRoommate',
   data(){
     return {

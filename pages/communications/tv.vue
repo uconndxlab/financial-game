@@ -39,6 +39,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+            head: {
+        title: 'Communications: Cable',
+    },
   name: 'tvChoice',
   data(){
     return {

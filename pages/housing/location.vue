@@ -45,6 +45,9 @@
 import 'leaflet/dist/leaflet.css';
 import { mapActions } from 'vuex'
 export default {
+              head: {
+        title: 'Housing: Location',
+    },
   name: 'HousingLocation', 
   components: {
   },

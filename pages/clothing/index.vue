@@ -12,6 +12,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+        head: {
+        title: 'Clothing',
+    },
   name: 'ClothingIndex',
   mounted() {
     // Reset the store

@@ -31,6 +31,9 @@
 import {  mapActions } from 'vuex'
 
 export default {
+                  head: {
+        title: 'Insurance: Health',
+    },
   name: 'HealthInsurance',
   data(){
     return {

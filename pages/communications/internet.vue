@@ -27,6 +27,9 @@
 import {  mapActions } from 'vuex'
 
 export default {
+            head: {
+        title: 'Communications: Internet',
+    },
   name: 'InternetCost',
   data(){
     return {

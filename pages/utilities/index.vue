@@ -11,6 +11,9 @@
 <script>
 
 export default {
+                        head: {
+        title: 'Utilities',
+    },
   name: 'UtilitiesIndex',
 
 }

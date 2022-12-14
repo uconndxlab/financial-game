@@ -31,7 +31,7 @@
         <li>
         </li>
         <li>
-        <v-btn :disabled="selection === null" to="/end" color="secondary">Continue...</v-btn>
+        <v-btn :disabled="selection === null" to="/results" color="secondary">Continue...</v-btn>
         </li>
       </ul>
     </nav>
@@ -44,6 +44,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+        head: {
+        title: 'Chance Card',
+    },
   // head() {
   //     return {
   //       script: [

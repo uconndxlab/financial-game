@@ -25,6 +25,9 @@
 import {  mapActions } from 'vuex'
 
 export default {
+                          head: {
+        title: 'Utilities: Pay',
+    },
   name: 'HousingUtilities',
   data(){
     return {

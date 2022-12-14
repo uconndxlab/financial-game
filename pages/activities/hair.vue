@@ -28,6 +28,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+        head: {
+        title: 'Activities: Hair',
+    },
   name: 'HairType',
   data(){
     return {

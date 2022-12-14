@@ -56,6 +56,9 @@ cols="6"
 import { mapActions } from 'vuex'
 
 export default {
+                      head: {
+        title: 'Transportation: Type/Vehicle',
+    },
   name: 'VehicleType',
   data(){
     return {

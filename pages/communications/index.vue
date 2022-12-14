@@ -12,6 +12,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+            head: {
+        title: 'Communications',
+    },
   name: 'CommunicationsIndex',
   mounted() {
     // Reset the store

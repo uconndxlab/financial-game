@@ -29,6 +29,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+        head: {
+        title: 'Activities: Reading',
+    },
   name: 'BookType',
   data(){
     return {

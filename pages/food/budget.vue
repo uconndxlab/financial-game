@@ -47,6 +47,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+            head: {
+        title: 'Food: Budget',
+    },
   name: 'FoodBudget',
   data(){
     return {

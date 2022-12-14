@@ -28,6 +28,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+            head: {
+        title: 'Communications: TV/Streaming',
+    },
   name: 'StreamingOption',
   data(){
     return {
