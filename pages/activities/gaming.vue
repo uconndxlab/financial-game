@@ -13,7 +13,7 @@
     <nav>
       <ul class="nav-buttons">
         <li>
-        <v-btn to="/activities/streaming">&lt; Back</v-btn>
+        <v-btn to="/activities/pet">&lt; Back</v-btn>
         </li>
         <li>
         <v-btn to="/activities/books" color="secondary">Continue...</v-btn>
