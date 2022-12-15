@@ -65,7 +65,42 @@ export default {
       description: null,
       amount: null,
       chanceOptions: [
-                    {"label":"Party",  "value":-200,  "chance":"You just held a going away party for your friend who has taken a new job in a city 5 hours away. You bought refreshments, balloons, cake, and a gift.", "amount": "Lose $200"}, 
+                    
+                    // {"label":"Pet's Adventure",  "value":-100,  "chance":"While your pet stayed at your mom’s house while you were away, she went exploring and accidentally knocked over her cherished crystal bowl. You searched and bought a replacement.","amount":"Lose $100"}, 
+                    // {"label":"Pet Illness",  "value":-325,  "chance":"Your pet was very sick and needed to visit the vet and get medicine.","amount":"Lose $325"}, 
+                    // {"label":"Rocky Road",  "value":-20,  "chance":"You found a rocky road and had a flat tire, but the good news is it can be repaired!","amount":"Lose $20"},
+                    // {"label":"Tire Trouble",  "value":-270,  "chance":"The right front tire on your car has an irreparable puncture. A new tire and mounting are needed. In addition, you need to replace the left tire as well.","amount":"Lose $270"},  
+
+        ]
+    }
+  },
+  computed: {
+    chance() {
+      return this.$store.state.budget.chance
+    }
+  },
+  methods: {
+    selectionChanged(){
+      const randnum = Math.floor(Math.random()*this.chanceOptions.length)
+      console.log(this.chanceOptions.length)
+      this.selection = randnum
+      this.monthlyChance = this.chanceOptions[this.selection].value
+      this.label = this.chanceOptions[this.selection].label
+      this.description = this.chanceOptions[this.selection].chance
+      this.amount = this.chanceOptions[this.selection].amount
+
+      this.update({
+        prop: 'chance',
+        value: this.monthlyChance
+      })
+    },
+    
+    ...mapActions({
+      update: 'budget/update'
+    })
+  },
+  mounted(){    
+    this.chanceOptions.push({"label":"Party",  "value":-200,  "chance":"You just held a going away party for your friend who has taken a new job in a city 5 hours away. You bought refreshments, balloons, cake, and a gift.", "amount": "Lose $200"}, 
                     {"label":"Laptop Down",  "value":-225,  "chance":"Your laptop needed to be repaired.","amount":"Lose $225"}, 
                     {"label":"Printer Fix",  "value":-45,  "chance":"Replace a cartridge in your printer.","amount":"Lose $45"}, 
                     {"label":"Dinner Date",  "value":-65,  "chance":"You take a friend out to dinner.","amount":"Lose $80"}, 
@@ -88,42 +123,17 @@ export default {
                     {"label":"Online Purchase",  "value":-85,  "chance":"You made a purchase online.","amount":"Lose $85"}, 
                     {"label":"Birthday Gift",  "value":-45,  "chance":"You attend a birthday party and bring a gift.","amount":"Lose $45"}, 
                     {"label":"Tag Sale",  "value":75,  "chance":"You sold unwanted items at a tag sale.","amount":"Gain $75"}, 
-                    {"label":"Win Lottery",  "value":250,  "chance":"You got a winning lottery ticket!","amount":"Gain $250"}
-                    // {"label":"Cat's Adventure",  "value":-100,  "chance":"While your cat stayed at your mom’s house while you were away, she went exploring and accidentally knocked over her cherished crystal bowl. You searched and bought a replacement.","amount":"Lose $100"}, 
-                    // {"label":"Pet Illness",  "value":-325,  "chance":"Your dog was very sick and needed to visit the vet and get medicine.","amount":"Lose $325"}, 
-                    // {"label":"Rocky Road",  "value":-20,  "chance":"You found a rocky road and had a flat tire, but the good news is it can be repaired!","amount":"Lose $20"},
-                    // {"label":"Tire Trouble",  "value":-270,  "chance":"The right front tire on your car has an irreparable puncture. A new tire and mounting are needed. In addition, you need to replace the left tire as well.","amount":"Lose $270"},  
-
-        ]
+                    {"label":"Win Lottery",  "value":250,  "chance":"You got a winning lottery ticket!","amount":"Gain $250"})  
+    // only add if user has vehicle 
+    if (this.$store.state.budget.vehicle != null){
+      this.chanceOptions.push({"label":"Rocky Road",  "value":-20,  "chance":"You found a rocky road and had a flat tire, but the good news is it can be repaired!","amount":"Lose $20"})
+      this.chanceOptions.push({"label":"Tire Trouble",  "value":-270,  "chance":"The right front tire on your car has an irreparable puncture. A new tire and mounting are needed. In addition, you need to replace the left tire as well.","amount":"Lose $270"})
     }
-  },
-  computed: {
-    chance() {
-      return this.$store.state.budget.chance
+    // only add if user has pet
+    if (this.$store.state.budget.pet > 0){
+      this.chanceOptions.push({"label":"Pet's Adventure",  "value":-100,  "chance":"While your pet stayed at your mom’s house while you were away, she went exploring and accidentally knocked over her cherished crystal bowl. You searched and bought a replacement.","amount":"Lose $100"})
+      this.chanceOptions.push({"label":"Pet Illness",  "value":-325,  "chance":"Your pet was very sick and needed to visit the vet and get medicine.","amount":"Lose $325"})
     }
-  },
-  methods: {
-    selectionChanged(){
-      const randnum = Math.floor(Math.random()*this.chanceOptions.length)
-      console.log(randnum)
-      this.selection = randnum
-      this.monthlyChance = this.chanceOptions[this.selection].value
-      this.label = this.chanceOptions[this.selection].label
-      this.description = this.chanceOptions[this.selection].chance
-      this.amount = this.chanceOptions[this.selection].amount
-
-      this.update({
-        prop: 'chance',
-        value: this.monthlyChance
-      })
-    },
-    
-    ...mapActions({
-      update: 'budget/update'
-    })
-  },
-  mounted(){      
-
-  }
+}
 }
 </script>

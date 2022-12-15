@@ -83,9 +83,9 @@ export const actions = {
     }    
 
     // Vehicle
-    if(state?.vehicle){
+    // if(state?.vehicle){
       // balance = balance - state.vehicle
-    }    
+    // }    
 
     // Health Insurance
     if(state?.health){

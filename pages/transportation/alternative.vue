@@ -69,6 +69,10 @@ export default {
   },
   mounted(){
     this.dialog = false
+    this.update({
+        prop: 'vehicle',
+        value: null
+    })
   }
 }
 
