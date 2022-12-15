@@ -213,7 +213,7 @@ header {
     height: 3px;
     bottom: 8px;
     position: absolute;
-    background-color: #071a38;
+    background-color: #69ac5f;
 
 }
 #primary-nav a::after {
