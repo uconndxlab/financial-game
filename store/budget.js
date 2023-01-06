@@ -16,7 +16,7 @@ function initialState(){
     tv: null,
     internet: 0,
     diet: null,
-    food: null,
+    food: 206,
     consignment: null,
     clothing: null,
     activity: null,
@@ -53,59 +53,151 @@ export const actions = {
     commit('property', payload)
   },
 
+  transportation({ state, commit }) {
+
+    let transportation = 0
+
+    // Auto Insurance
+    if (state?.auto) {
+      transportation += state.auto
+    }    
+    // Transport
+    if (state?.transport) {
+      transportation += state.transport
+    }
+    console.log('Transportation Total', transportation)
+    return transportation 
+  },
+
+
+  groceries({ state, commit }) {
+    let groceries = state.food
+    // Food
+    if (state?.food) {
+      // Calculate food
+      if (state.diet === 0 && state.food === 0) {
+        const food = 206
+        groceries =  food
+      }
+      if (state.diet === 0 && state.food === 1) {
+        const food = 262
+        groceries =  food
+      }
+      if (state.diet === 0 && state.food === 2) {
+        const food = 319
+        groceries =  food
+      }
+      if (state.diet === 0 && state.food === 3) {
+        const food = 410
+        groceries =  food
+      }
+      if (state.diet === 1 && state.food === 0) {
+        const food = 237
+        groceries =  food
+      }
+      if (state.diet === 1 && state.food === 1) {
+        const food = 301
+        groceries =  food
+      }
+      if (state.diet === 1 && state.food === 2) {
+        const food = 367
+        groceries =  food
+      }
+      if (state.diet === 1 && state.food === 3) {
+        const food = 472
+        groceries =  food
+      }
+      if (state.diet === 2 && state.food === 0) {
+        const food = 377
+        groceries =  food
+      }
+      if (state.diet === 2 && state.food === 1) {
+        const food = 479
+        groceries =  food
+      }
+      if (state.diet === 2 && state.food === 2) {
+        const food = 584
+        groceries =  food
+      }
+      if (state.diet === 2 && state.food === 3) {
+        const food = 750
+        groceries =  food
+      }
+    }
+    console.log('Groceries', groceries)
+    return groceries
+  },
+  utilities({ state, commit }) {
+    return state.utilities | 0
+  },
+  activities({ state, commit }) {
+
+  },
+  insurance({ state, commit }) {
+    let insurance = 0
+    
+    // Health Insurance
+    insurance += (state.health | 0)
+
+    // Renters Insurance
+    insurance += (state.renters | 0)
+
+    // Life Insurance
+    insurance += (state.life | 0)
+
+    console.log('Insurance', insurance)
+
+    return insurance
+
+  },
+  housing({ state, commit }) {
+    if (state?.apartment) {
+      // Calculate rent
+      const rent = state.roommate === true ? state.apartment.rent / 2 : state.apartment.rent;
+      return rent
+    }else {
+      return 0
+    }
+  },
+  other({ state, commit }) {
+
+  },
+
+
   /**
    * Calculates Remaining Budget and Updates State
    *
    * @param {*} {state, commit}
    */
-  total( {state, commit} ){
+  async total( {state, commit, dispatch} ){
     let balance = 0
 
       // Salary
     if(state?.occupation){
       balance = state.occupation.monthly_gross - state.occupation.monthly_taxes;
     }
-    // Apartment
-    if(state?.apartment){
-      // Calculate rent
-      const rent = state.roommate === true ? state.apartment.rent / 2 : state.apartment.rent;
-      balance = balance - rent
-    }
+
+    // Housing Category
+    balance -= await dispatch('housing')
 
     // Utilities
-    if(state?.utilities){
-      balance = balance - state.utilities
-    }
+    balance -= await dispatch('utilities')
 
-    // Transportation
-    if(state?.transport){
-      balance = balance - state.transport
-    }    
+    // Transportation Category
+    balance -= await dispatch('transportation')
+
+    // Grocery Category
+    balance -= await dispatch('groceries')
 
     // Vehicle
     // if(state?.vehicle){
       // balance = balance - state.vehicle
     // }    
 
-    // Health Insurance
-    if(state?.health){
-      balance = balance - state.health
-    }
 
-    // Auto Insurance
-    if(state?.auto){
-      balance = balance - state.auto
-    }
+    // Insurance Category
+    balance -= await dispatch('insurance')
 
-    // Renters Insurance
-    if(state?.renters){
-      balance = balance - state.renters
-    }
-
-    // Life Insurance
-    if(state?.life){
-      balance = balance - state.life
-    }
 
     // Landline
     if(state?.landline){
@@ -127,58 +219,7 @@ export const actions = {
       balance = balance - state.internet
     }
 
-    // Food
-    if(state?.food){
-      // Calculate food
-      if (state.diet === 0 && state.food === 0){
-        const food = 206
-        balance = balance - food
-      }
-      if (state.diet === 0 && state.food === 1){
-        const food = 262
-        balance = balance - food
-      }
-      if (state.diet === 0 && state.food === 2){
-        const food = 319
-        balance = balance - food
-      }
-      if (state.diet === 0 && state.food === 3){
-        const food = 410
-        balance = balance - food
-      }
-      if (state.diet === 1 && state.food === 0){
-        const food = 237
-        balance = balance - food
-      }
-      if (state.diet === 1 && state.food === 1){
-        const food = 301
-        balance = balance - food
-      }
-      if (state.diet === 1 && state.food === 2){
-        const food = 367
-        balance = balance - food
-      }
-      if (state.diet === 1 && state.food === 3){
-        const food = 472
-        balance = balance - food
-      }
-      if (state.diet === 2 && state.food === 0){
-        const food = 377
-        balance = balance - food
-      }
-      if (state.diet === 2 && state.food === 1){
-        const food = 479
-        balance = balance - food
-      }
-      if (state.diet === 2 && state.food === 2){
-        const food = 584
-        balance = balance - food
-      }
-      if (state.diet === 2 && state.food === 3){
-        const food = 750
-        balance = balance - food
-      }
-    }
+
 
     // Clothing
     if(state?.clothing){

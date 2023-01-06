@@ -33,12 +33,12 @@
           </v-col>
 
 
-          <v-col>
+          <v-col v-if="$store.state.budget.loan">
           <figure>
             <div id="red" class="counter red-bg">
               <animated-number :value="$store.state.budget.loan.interestSum" :format-value="$money" :duration="500" />
 
-            </div>
+            </div> 
             <figcaption>
               Interest Costs
             </figcaption>
@@ -111,13 +111,13 @@ export default {
   },
   data(){
     return {
-        balance: 0,
-       chartData: {
+      balance: 0,
+      chartData: {
         labels: ['Transportation', 'Groceries', 'Utilities', 'Activities', 'Insurance', 'Housing', 'Other'],
         datasets: [
           {
             label: 'Dataset 1',
-            data: [15, 9, 8, 7, 4, 55, 2],
+            data: [],
             backgroundColor: [
               'rgb(255, 99, 132)',
               'rgb(54, 162, 235)',
@@ -163,6 +163,17 @@ export default {
   },
   async mounted() {
     this.balance = await this.$store.dispatch('budget/total')
+
+        // labels: ['Transportation', 'Groceries', 'Utilities', 'Activities', 'Insurance', 'Housing', 'Other'],
+    this.chartData.datasets[0].data.push(
+      await this.transportation(), 
+      await this.groceries(), 
+      await this.utilities(), 
+      await this.activities(), 
+      await this.insurance(), 
+      await this.housing(), 
+      await this.other()
+    )
   },
   methods: {
 
@@ -170,7 +181,14 @@ export default {
     ...mapActions({
       update: 'budget/update',
       reset: 'budget/reset',
-      total: 'budget/total'
+      total: 'budget/total',
+      transportation: 'budget/transportation',
+      groceries: 'budget/groceries',
+      utilities: 'budget/utilities',
+      activities: 'budget/activities',
+      insurance: 'budget/insurance',
+      housing: 'budget/housing',
+      other: 'budget/other'
     }),
 
     async share() {
