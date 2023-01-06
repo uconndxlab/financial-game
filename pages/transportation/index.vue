@@ -8,6 +8,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+                  head: {
+        title: 'Transportation',
+    },
     name: "TransportationIndex",
 
     mounted() {

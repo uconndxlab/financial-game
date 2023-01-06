@@ -50,6 +50,16 @@ occupation later.
 import { mapActions } from 'vuex'
 
 export default {
+   head: {
+    title: 'Breadwinner',
+    meta: [
+      {
+        hid: 'financial game',
+        name: 'Breadwinner Home',
+        content: 'During this game, you’ll have a chance to make financial decisions you are likely to face.'
+      }
+    ],
+  },
   name: 'IndexPage',
   async asyncData({$supabase}) {
     let result

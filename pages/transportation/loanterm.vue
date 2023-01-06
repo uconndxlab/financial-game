@@ -50,6 +50,9 @@ import { mapActions } from 'vuex'
 import { Loan } from 'loanjs'
 
 export default {
+                        head: {
+        title: 'Transportation: Type/Vehicle/Loan Term',
+    },
   name: 'TransportationType',
   data(){
     return {

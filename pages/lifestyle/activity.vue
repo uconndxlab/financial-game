@@ -47,6 +47,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+                  head: {
+        title: 'Lifestyle: Activity',
+    },
   name: 'ActivityType',
   data(){
     return {

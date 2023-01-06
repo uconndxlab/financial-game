@@ -28,6 +28,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+                        head: {
+        title: 'Transportation: Type/Private',
+    },
   name: 'TransportationType',
   data(){
     return {

@@ -54,6 +54,9 @@ You will have the freedom to go where and when you want to go. However, owning, 
 <script>
 
 export default {
+                    head: {
+        title: 'Transportation: Type',
+    },
   name: 'TransportationType',
   data(){
     return {

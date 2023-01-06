@@ -38,6 +38,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+            head: {
+        title: 'Communications: Phone',
+    },
   name: 'mobilePhone',
   data(){
     return {

@@ -28,6 +28,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+            head: {
+        title: 'Communications: Phone/Name Brand',
+    },
   name: 'PhoneDataType',
   data(){
     return {

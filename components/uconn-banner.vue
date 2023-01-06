@@ -162,7 +162,7 @@ header {
     display: block;
     z-index: 9999;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-    background: #50af55;
+    background: #fff;
 }
 
 #primary-nav ul {
@@ -193,7 +193,6 @@ header {
     list-style: none;
     box-sizing: border-box;
     outline: 0;
-    text-decoration: none !important;
     position: relative;
     display: block;
     padding: 10px 15px;
@@ -214,7 +213,7 @@ header {
     height: 3px;
     bottom: 8px;
     position: absolute;
-    background-color: white;
+    background-color: #69ac5f;
 
 }
 #primary-nav a::after {
@@ -243,9 +242,9 @@ header {
     
 }
 #uc-site-parent a {
+    text-decoration:none!important;
     box-sizing: border-box;
     background-color: transparent;
-    text-decoration: none;
     padding: 0;
     margin: 0;
     line-height: 1em;
@@ -260,7 +259,6 @@ header {
 }
 
 #uc-site-title {
-
     box-sizing: border-box;
     padding: 0;
     margin: 0;
@@ -291,6 +289,11 @@ header {
     max-width: 100%;
     color: #1e1e1e !important;
 }
+
+#uc-site-title a:hover,#uc-site-parent a:hover {
+    text-decoration:underline!important;
+}
+
 #uc-site-header {
     /* padding-left: 8px; */
     padding-top: 30px;

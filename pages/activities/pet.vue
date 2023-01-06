@@ -27,6 +27,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+        head: {
+        title: 'Activities: Pet',
+    },
   name: 'PetType',
   data(){
     return {

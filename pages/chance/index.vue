@@ -31,7 +31,7 @@
         <li>
         </li>
         <li>
-        <v-btn :disabled="selection === null" to="/end" color="secondary">Continue...</v-btn>
+        <v-btn :disabled="selection === null" to="/results" color="secondary">Continue...</v-btn>
         </li>
       </ul>
     </nav>
@@ -44,6 +44,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+        head: {
+        title: 'Chance Card',
+    },
   // head() {
   //     return {
   //       script: [
@@ -62,16 +65,12 @@ export default {
       description: null,
       amount: null,
       chanceOptions: [
-                    {"label":"Win Lottery",  "value":5000,  "chance":"You won the lottery!", "amount": "Gain $5000"}, 
-                    {"label":"Inheritance",  "value":2500,  "chance":"You acquired an inheritance!","amount":"Gain $2500"}, 
-                    {"label":"Injury",  "value":-500,  "chance":"Oh no! You had a hospital visit.","amount":"Lose $500"}, 
-                    {"label":"Bingo Night",  "value":500,  "chance":"You won Bingo night!","amount":"Gain $500"}, 
-                    {"label":"Legal Fees",  "value":-1000,  "chance":"You've been sued!","amount":"Lose $1000"}, 
-                    {"label":"Legal Win",  "value":2000,  "chance":"You won a lawsuit!","amount":"Gain $2000"}, 
-                    {"label":"Home Damage",  "value":-200,  "chance":"Water damage!","amount":"Lose $200"}, 
-                    {"label":"Bet Paid Off",  "value":100,  "chance":"You won a bet!","amount":"Gain $100"}, 
-                    {"label":"Lost Change",  "value":100,  "chance":"You found some loose change!","amount":"Gain $100"}, 
-                    {"label":"Antique Item", "value":1000, "chance":"You sold a rare antique item!","amount":"Gain $1000"}
+                    
+                    // {"label":"Pet's Adventure",  "value":-100,  "chance":"While your pet stayed at your mom’s house while you were away, she went exploring and accidentally knocked over her cherished crystal bowl. You searched and bought a replacement.","amount":"Lose $100"}, 
+                    // {"label":"Pet Illness",  "value":-325,  "chance":"Your pet was very sick and needed to visit the vet and get medicine.","amount":"Lose $325"}, 
+                    // {"label":"Rocky Road",  "value":-20,  "chance":"You found a rocky road and had a flat tire, but the good news is it can be repaired!","amount":"Lose $20"},
+                    // {"label":"Tire Trouble",  "value":-270,  "chance":"The right front tire on your car has an irreparable puncture. A new tire and mounting are needed. In addition, you need to replace the left tire as well.","amount":"Lose $270"},  
+
         ]
     }
   },
@@ -82,7 +81,9 @@ export default {
   },
   methods: {
     selectionChanged(){
-      this.selection = Math.floor(Math.random()*10)
+      const randnum = Math.floor(Math.random()*this.chanceOptions.length)
+      console.log(this.chanceOptions.length)
+      this.selection = randnum
       this.monthlyChance = this.chanceOptions[this.selection].value
       this.label = this.chanceOptions[this.selection].label
       this.description = this.chanceOptions[this.selection].chance
@@ -98,8 +99,41 @@ export default {
       update: 'budget/update'
     })
   },
-  mounted(){      
-
-  }
+  mounted(){    
+    this.chanceOptions.push({"label":"Party",  "value":-200,  "chance":"You just held a going away party for your friend who has taken a new job in a city 5 hours away. You bought refreshments, balloons, cake, and a gift.", "amount": "Lose $200"}, 
+                    {"label":"Laptop Down",  "value":-225,  "chance":"Your laptop needed to be repaired.","amount":"Lose $225"}, 
+                    {"label":"Printer Fix",  "value":-45,  "chance":"Replace a cartridge in your printer.","amount":"Lose $45"}, 
+                    {"label":"Dinner Date",  "value":-65,  "chance":"You take a friend out to dinner.","amount":"Lose $80"}, 
+                    {"label":"Boston Trip",  "value":-145,  "chance":"You visit a friend in Boston for the weekend.","amount":"Lose $145"}, 
+                    {"label":"Working Harder",  "value":250,  "chance":"You spend extra time at work completing a special project. Your boss expresses appreciation with a bonus.","amount":"Gain $250"}, 
+                    {"label":"New Do",  "value":-85,  "chance":"You’ve decided it’s time to get a new look.","amount":"Lose $85"}, 
+                    {"label":"Tax Refund",  "value":625,  "chance":"Your income tax refund check arrives.","amount":"Gain $625"}, 
+                    {"label":"Dental", "value":-225, "chance":"You need a new filling.","amount":"Lose $225"},
+                    {"label":"Stockup",  "value":-35,  "chance":"You’ve running out of shampoo, conditioner, toothpaste, etc. It’s time to stock up.", "amount": "Lose $35"}, 
+                    {"label":"Speeding",  "value":-225,  "chance":"You were caught speeding on the interstate.","amount":"Lose $225"}, 
+                    {"label":"Dog Sit",  "value":100,  "chance":"Your neighbor paid you to feed and walk his dog for the long weekend.","amount":"Gain $100"}, 
+                    {"label":"Lost & Found",  "value":25,  "chance":"You found a lost wallet and receive a reward.","amount":"Gain $25"}, 
+                    {"label":"Flowers",  "value":-20,  "chance":"You buy flowers for your home.","amount":"Lose $20"}, 
+                    {"label":"Spilt Drink",  "value":-65,  "chance":"You spilled a drink on your leather jacket and need to pay to have it cleaned.","amount":"Lose $65"}, 
+                    {"label":"Bounced Checks",  "value":-70,  "chance":"Last month you bounced 2 checks and must pay fees.","amount":"Lose $70"}, 
+                    {"label":"Bedroom Redecoration",  "value":-110,  "chance":"You redecorated your bedroom and bought new supplies.","amount":"Lose $110"}, 
+                    {"label":"Credit Delay", "value":-265, "chance":"You are late paying your credit bill and have to pay a late fee in addition to the bill.","amount":"Lose $265"},
+                    {"label":"City Trip", "value":-36, "chance":"You take the train into the city.","amount":"Lose $36"},
+                    {"label":"Credit Bill",  "value":-225,  "chance":"Your credit bill arrived.", "amount": "Lose $225"}, 
+                    {"label":"Online Purchase",  "value":-85,  "chance":"You made a purchase online.","amount":"Lose $85"}, 
+                    {"label":"Birthday Gift",  "value":-45,  "chance":"You attend a birthday party and bring a gift.","amount":"Lose $45"}, 
+                    {"label":"Tag Sale",  "value":75,  "chance":"You sold unwanted items at a tag sale.","amount":"Gain $75"}, 
+                    {"label":"Win Lottery",  "value":250,  "chance":"You got a winning lottery ticket!","amount":"Gain $250"})  
+    // only add if user has vehicle 
+    if (this.$store.state.budget.vehicle != null){
+      this.chanceOptions.push({"label":"Rocky Road",  "value":-20,  "chance":"You found a rocky road and had a flat tire, but the good news is it can be repaired!","amount":"Lose $20"})
+      this.chanceOptions.push({"label":"Tire Trouble",  "value":-270,  "chance":"The right front tire on your car has an irreparable puncture. A new tire and mounting are needed. In addition, you need to replace the left tire as well.","amount":"Lose $270"})
+    }
+    // only add if user has pet
+    if (this.$store.state.budget.pet > 0){
+      this.chanceOptions.push({"label":"Pet's Adventure",  "value":-100,  "chance":"While your pet stayed at your mom’s house while you were away, she went exploring and accidentally knocked over her cherished crystal bowl. You searched and bought a replacement.","amount":"Lose $100"})
+      this.chanceOptions.push({"label":"Pet Illness",  "value":-325,  "chance":"Your pet was very sick and needed to visit the vet and get medicine.","amount":"Lose $325"})
+    }
+}
 }
 </script>

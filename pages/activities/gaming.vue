@@ -13,7 +13,7 @@
     <nav>
       <ul class="nav-buttons">
         <li>
-        <v-btn to="/activities/streaming">&lt; Back</v-btn>
+        <v-btn to="/activities/pet">&lt; Back</v-btn>
         </li>
         <li>
         <v-btn to="/activities/books" color="secondary">Continue...</v-btn>
@@ -28,6 +28,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+        head: {
+        title: 'Activities: Gaming',
+    },
   name: 'GamingType',
   data(){
     return {

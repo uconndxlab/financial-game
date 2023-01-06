@@ -91,6 +91,7 @@ ChartJS.defaults.plugins.legend.labels.color = '#999'
 
 
 export default {
+  
   name: 'ResultsPage',
     components: {
     AnimatedNumber,
@@ -149,6 +150,7 @@ export default {
   },
   head(){
     return {
+      title: 'Results'
       // script: [
       //   {
       //     src: 'https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.3.2/countUp.umd.js',

@@ -58,6 +58,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+    head: {
+        title: 'Clothing: Purchase',
+    },
   name: 'ClothingOption',
   data(){
     return {

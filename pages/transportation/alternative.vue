@@ -29,6 +29,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+                        head: {
+        title: 'Transportation: Type/Alternative',
+    },
   name: 'TransportationType',
   data(){
     return {
@@ -66,6 +69,10 @@ export default {
   },
   mounted(){
     this.dialog = false
+    this.update({
+        prop: 'vehicle',
+        value: null
+    })
   }
 }
 

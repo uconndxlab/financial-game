@@ -9,7 +9,7 @@
 <li id="menu-item-19" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-19"><a class="external" href="https://cahnr.uconn.edu/extension/" rel="noopener">UConn Family and Community Development</a></li>
 </ul>
 </div>
-		 </div></aside><aside class="col-sm-6 "><div id="uc-contact-widget-4" class="uc-contact-widget widget"><div class="widget-head"><h2 class="widget-title">Contact Us</h2></div><div class="table-responsive"><table class="uc-table table"><tbody><tr class="uc-row"><th class="uc-label uc-label-phone">Phone: </th><td class="uc-output uc-output-phone">(203) 407-3160</td></tr><tr class="uc-row"><th class="uc-label uc-label-email">E-mail: </th><td class="uc-output uc-output-email"><a href="mailto:faye.griffiths-smith@uconn.edu">faye.griffiths-smith@uconn.edu</a></td></tr><tr class="uc-row"><th class="uc-label uc-label-addr">Address: </th><td class="uc-output uc-output-addr">305 Skiff Street<br>
+		 </div></aside><aside class="col-sm-6 "><div id="uc-contact-widget-4" class="uc-contact-widget widget"><div class="widget-head"><h2 class="widget-title">Contact Us</h2></div><div class="table-responsive"><table class="uc-table table"><tbody><tr class="uc-row"><th class="uc-label uc-label-phone v-icon mdi mdi-phone"></th><td class="uc-output uc-output-phone">(203) 407-3160</td></tr><tr class="uc-row"><th class="uc-label uc-label-email v-icon mdi mdi-email"></th><td class="uc-output uc-output-email"><a href="mailto:faye.griffiths-smith@uconn.edu">faye.griffiths-smith@uconn.edu</a></td></tr><tr class="uc-row"><th class="uc-label uc-label-addr v-icon mdi mdi-map-marker"></th><td class="uc-output uc-output-addr">305 Skiff Street<br>
 North Haven, CT 06473</td></tr></tbody></table></div> </div></aside>		</div>
 	</div>
 </footer>		<footer id="footer" class="site-footer" role="contentinfo">
@@ -94,6 +94,10 @@ export default {
     background-color: transparent;
     text-decoration: none;
     color: rgba(255, 255, 255, 0.7);
+}
+
+.v-icon {
+color:#727272
 }
 
 #uc-footer-links {

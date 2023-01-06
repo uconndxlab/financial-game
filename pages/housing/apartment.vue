@@ -79,6 +79,9 @@ Do you want laundry facilities on site? What about parking? Do you want to have 
 import { mapActions } from 'vuex'
 
 export default {
+            head: {
+        title: 'Housing: Apartment',
+    },
   name: 'HousingApartment',
   data() {
     return {

@@ -28,6 +28,9 @@
 import {  mapActions } from 'vuex'
 
 export default {
+                  head: {
+        title: 'Insurance: Auto',
+    },
   name: 'AutoInsurance',
   data(){
     return {

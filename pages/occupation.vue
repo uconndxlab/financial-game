@@ -45,6 +45,9 @@
 <script>
 
 export default {
+    head: {
+        title: 'Occupation',
+    },
     name: 'OccupationPage',
     data() {
         return {
