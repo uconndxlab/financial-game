@@ -20,7 +20,8 @@
 
           </v-col>
 
-          <v-col>
+          <!-- @todo Implement savings feature and reporting -->
+          <v-col v-if="false">
           <figure>
             <div id="green" class="counter green-bg">
               <animated-number :value="2589" :format-value="$money" :duration="500" />
@@ -33,12 +34,12 @@
           </v-col>
 
 
-          <v-col>
+          <v-col v-if="$store.state.budget.loan">
           <figure>
             <div id="red" class="counter red-bg">
               <animated-number :value="$store.state.budget.loan.interestSum" :format-value="$money" :duration="500" />
 
-            </div>
+            </div> 
             <figcaption>
               Interest Costs
             </figcaption>
@@ -46,7 +47,7 @@
       </v-col>
     </v-row>
 
-    <h2 class="text-center py-6 mt-6 ">Spending Breakdown</h2>
+    <h2 class="text-center py-6 mt-6 ">Monthly Spending Breakdown</h2>
     <v-row class="center mb-5">
 
       <v-col>
@@ -63,7 +64,8 @@
 
         <v-btn to="/">Play Again!<v-icon right>mdi-refresh</v-icon></v-btn>
 
-        <v-btn @click="share()">Share Results<v-icon right>mdi-share</v-icon></v-btn>
+        <!-- @todo implement sharing (saving and restoring state) -->
+        <v-btn  @click="share()">Share w/ Friends!<v-icon right>mdi-share</v-icon></v-btn>
     </div>
 
 
@@ -111,21 +113,33 @@ export default {
   },
   data(){
     return {
-        balance: 0,
-       chartData: {
-        labels: ['Transportation', 'Groceries', 'Utilities', 'Activities', 'Insurance', 'Housing', 'Other'],
+      balance: 0,
+      chartData: {
+        labels: [
+          'Housing', 
+          'Transportation', 
+          'Insurance', 
+          'Utilities',
+          'Communications',
+          'Food',
+          'Clothing',
+          'Lifestyle', 
+          'Activities'
+        ],
         datasets: [
           {
             label: 'Dataset 1',
-            data: [15, 9, 8, 7, 4, 55, 2],
+            data: [],
             backgroundColor: [
-              'rgb(255, 99, 132)',
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)',
-              'purple',
-              'pink',
-              'orange',
-              'blue'
+              "#d8652b",
+              "#d8872b",
+              "#d8aa2b",
+              "#d8cd2b",
+              "#b6cbef",
+              "#4582a5",
+              "#d2d82b",
+              "#7bd82b",
+              "#1d51a5"
             ]
           }
         ]
@@ -163,6 +177,17 @@ export default {
   },
   async mounted() {
     this.balance = await this.$store.dispatch('budget/total')
+    this.chartData.datasets[0].data.push(
+      await this.housing(), 
+      await this.transportation(), 
+      await this.insurance(), 
+      await this.utilities(), 
+      await this.communications(), 
+      await this.food(), 
+      await this.clothing(), 
+      await this.lifestyle(), 
+      await this.activities()
+    )
   },
   methods: {
 
@@ -170,7 +195,17 @@ export default {
     ...mapActions({
       update: 'budget/update',
       reset: 'budget/reset',
-      total: 'budget/total'
+      total: 'budget/total',
+      housing: 'budget/housing',
+      transportation: 'budget/transportation',
+      insurance: 'budget/insurance',
+      utilities: 'budget/utilities',
+      communications: 'budget/communications',
+      food: 'budget/food',
+      clothing: 'budget/clothing',
+      lifestyle: 'budget/lifestyle',
+      activities: 'budget/activities',
+      other: 'budget/other'
     }),
 
     async share() {

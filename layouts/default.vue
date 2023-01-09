@@ -83,7 +83,8 @@ export default {
   mounted(){
     this.$store.subscribe( async (mutation, state) => {
       this.balance = await this.calculateBudget()
-      console.warn('Updating balance')
+
+      console.warn('Updating balance', this.balance)
     })
   }
 }
