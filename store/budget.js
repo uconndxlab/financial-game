@@ -53,6 +53,15 @@ export const actions = {
     commit('property', payload)
   },
 
+  housing({ state, commit }) {
+    if (state?.apartment) {
+      // Calculate rent
+      const rent = state.roommate === true ? state.apartment.rent / 2 : state.apartment.rent;
+      return rent
+    } else {
+      return 0
+    }
+  },
   transportation({ state, commit }) {
 
     let transportation = 0
@@ -69,8 +78,47 @@ export const actions = {
     return transportation 
   },
 
+  insurance({ state, commit }) {
+    let insurance = 0
+    
+    // Health Insurance
+    insurance += (state.health | 0)
 
-  groceries({ state, commit }) {
+    // Renters Insurance
+    insurance += (state.renters | 0)
+
+    // Life Insurance
+    insurance += (state.life | 0)
+
+    console.log('Insurance', insurance)
+
+    return insurance
+
+  },
+  utilities({ state, commit }) {
+    return state.utilities | 0
+  }, 
+  communications({ state, commit }) {
+
+    let communications = 0
+
+    // Landline
+    communications += (state.landline | 0)
+
+    // Data plan
+    communications += (state.dataplan | 0)
+
+    // TV
+    communications += (state.tv | 0)
+
+    // Internet
+    communications += (state.internet | 0)
+
+    console.log('Communications', communications)
+
+    return communications
+  },
+  food({ state, commit }) {
     let groceries = state.food
     // Food
     if (state?.food) {
@@ -127,38 +175,41 @@ export const actions = {
     console.log('Groceries', groceries)
     return groceries
   },
-  utilities({ state, commit }) {
-    return state.utilities | 0
+  clothing({ state, commit }) {
+    return (state.clothing | 0)
   },
+
+  lifestyle({ state, commit }) {
+    return state.activity | 0
+  },
+
   activities({ state, commit }) {
-
-  },
-  insurance({ state, commit }) {
-    let insurance = 0
+    let activities = 0
     
-    // Health Insurance
-    insurance += (state.health | 0)
+    // Pet
+    activities +=  state.pet
 
-    // Renters Insurance
-    insurance += (state.renters | 0)
+    // Streaming
+    activities +=  state.streaming
 
-    // Life Insurance
-    insurance += (state.life | 0)
+    // Gaming
+    activities +=  state.gaming
 
-    console.log('Insurance', insurance)
+    // Reading
+    activities +=  state.reading
 
-    return insurance
+    // Haircut
+    activities +=  state.haircut
+
+    // Nails
+    activities +=  state.nails
+
+    console.log('Activities', activities)
+
+    return activities
 
   },
-  housing({ state, commit }) {
-    if (state?.apartment) {
-      // Calculate rent
-      const rent = state.roommate === true ? state.apartment.rent / 2 : state.apartment.rent;
-      return rent
-    }else {
-      return 0
-    }
-  },
+
   other({ state, commit }) {
 
   },
@@ -187,111 +238,23 @@ export const actions = {
     balance -= await dispatch('transportation')
 
     // Grocery Category
-    balance -= await dispatch('groceries')
-
-    // Vehicle
-    // if(state?.vehicle){
-      // balance = balance - state.vehicle
-    // }    
-
+    balance -= await dispatch('food')
 
     // Insurance Category
     balance -= await dispatch('insurance')
 
+    // Communications Category
+    balance -= await dispatch('communications')
 
-    // Landline
-    if(state?.landline){
-      balance = balance - state.landline
-    }
+    // Clothing Category
+    balance -= await dispatch('clothing')
 
-    // Data plan
-    if(state?.dataplan){
-      balance = balance - state.dataplan
-    }
+    // Lifestyle Category
+    balance -= await dispatch('lifestyle')
 
-    // TV
-    if(state?.tv){
-      balance = balance - state.tv
-    }
+    // Activities Category
+    balance -= await dispatch('activities')
 
-    // Internet
-    if(state?.internet){
-      balance = balance - state.internet
-    }
-
-
-
-    // Clothing
-    if(state?.clothing){
-      balance = balance - state.clothing
-      // if (state.clothing === 2){
-      //   state.consignment = true
-      // }
-      // else{
-      //   state.consignment = false
-      // }
-
-      // if (state.occupation.monthly_gross > 5800){
-      //   state.clothing = 250;
-      // }
-      // else if (state.occupation.monthly_gross > 4000){
-      //   state.clothing = 200;
-      // }
-      // else if (state.occupation.monthly_gross > 3500){
-      //   state.clothing = 160;
-      // }
-      // else if (state.occupation.monthly_gross > 2500){
-      //   state.clothing = 140;
-      // }
-      // else if (state.occupation.monthly_gross > 1700){
-      //   state.clothing = 100;
-      // }
-      // else if (state.occupation.monthly_gross > 1200){
-      //   state.clothing = 70;
-      // }
-      // else{
-      //   state.clothing = 50;
-      // }
-
-      // balance = state.consignment === true? (balance - (state.clothing * .33)) : (balance - state.clothing)
-    }
-
-     // Activity
-     if(state?.activity){
-      balance = balance - state.activity
-    }
-
-     // Pet
-     if(state?.pet){
-      balance = balance - state.pet
-    }
-
-     // Streaming
-     if(state?.streaming){
-      balance = balance - state.streaming
-    }
-
-    // Gaming
-    if(state?.gaming){
-      balance = balance - state.gaming
-    }
-
-    // Reading
-    if(state?.reading){
-      balance = balance - state.reading
-    }
-
-    // Haircut
-    if(state?.haircut){
-      balance = balance - state.haircut
-    }
-
-    // Nails
-    if(state?.nails){
-      balance = balance - state.nails
-    }
-
-    
     // Chance
     if(state?.chance){
       balance = balance + state.chance
