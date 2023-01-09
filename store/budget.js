@@ -15,8 +15,8 @@ function initialState(){
     dataplan: null,
     tv: null,
     internet: 0,
-    diet: null,
-    food: 206,
+    diet: 0,
+    food: 0,
     consignment: null,
     clothing: null,
     activity: null,
@@ -119,60 +119,47 @@ export const actions = {
     return communications
   },
   food({ state, commit }) {
-    let groceries = state.food
-    // Food
-    if (state?.food) {
-      // Calculate food
-      if (state.diet === 0 && state.food === 0) {
-        const food = 206
-        groceries =  food
-      }
-      if (state.diet === 0 && state.food === 1) {
-        const food = 262
-        groceries =  food
-      }
-      if (state.diet === 0 && state.food === 2) {
-        const food = 319
-        groceries =  food
-      }
-      if (state.diet === 0 && state.food === 3) {
-        const food = 410
-        groceries =  food
-      }
-      if (state.diet === 1 && state.food === 0) {
-        const food = 237
-        groceries =  food
-      }
-      if (state.diet === 1 && state.food === 1) {
-        const food = 301
-        groceries =  food
-      }
-      if (state.diet === 1 && state.food === 2) {
-        const food = 367
-        groceries =  food
-      }
-      if (state.diet === 1 && state.food === 3) {
-        const food = 472
-        groceries =  food
-      }
-      if (state.diet === 2 && state.food === 0) {
-        const food = 377
-        groceries =  food
-      }
-      if (state.diet === 2 && state.food === 1) {
-        const food = 479
-        groceries =  food
-      }
-      if (state.diet === 2 && state.food === 2) {
-        const food = 584
-        groceries =  food
-      }
-      if (state.diet === 2 && state.food === 3) {
-        const food = 750
-        groceries =  food
-      }
+    let groceries = 0
+
+    // Calculate food
+    if (state.diet === 0 && state.food === 0) {
+      groceries = 206
     }
-    console.log('Groceries', groceries)
+    if (state.diet === 0 && state.food === 1) {
+      groceries = 262
+    }
+    if (state.diet === 0 && state.food === 2) {
+      groceries = 319
+    }
+    if (state.diet === 0 && state.food === 3) {
+      groceries = 410
+    }
+    if (state.diet === 1 && state.food === 0) {
+      groceries = 237
+    }
+    if (state.diet === 1 && state.food === 1) {
+      groceries = 301
+    }
+    if (state.diet === 1 && state.food === 2) {
+      groceries = 367
+    }
+    if (state.diet === 1 && state.food === 3) {
+      groceries = 472
+    }
+    if (state.diet === 2 && state.food === 0) {
+      groceries = 377
+    }
+    if (state.diet === 2 && state.food === 1) {
+      groceries = 479
+    }
+    if (state.diet === 2 && state.food === 2) {
+      groceries = 584
+    }
+    if (state.diet === 2 && state.food === 3) {
+      groceries = 750
+    }
+
+    console.log('Food', groceries)
     return groceries
   },
   clothing({ state, commit }) {
@@ -187,22 +174,22 @@ export const actions = {
     let activities = 0
     
     // Pet
-    activities +=  state.pet
+    activities +=  (state.pet | 0)
 
     // Streaming
-    activities +=  state.streaming
+    activities += (state.streaming | 0)
 
     // Gaming
-    activities +=  state.gaming
+    activities += (state.gaming | 0)
 
     // Reading
-    activities +=  state.reading
+    activities += (state.reading | 0)
 
     // Haircut
-    activities +=  state.haircut
+    activities += (state.haircut | 0)
 
     // Nails
-    activities +=  state.nails
+    activities += (state.nails | 0)
 
     console.log('Activities', activities)
 
