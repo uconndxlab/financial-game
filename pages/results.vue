@@ -60,13 +60,20 @@
     </v-row>
 
 
-    <div class="d-flex justify-center mt-6" style="gap:50px">
+    <div class="d-flex justify-center mt-6 mb-6" style="gap:50px">
 
         <v-btn to="/">Play Again!<v-icon right>mdi-refresh</v-icon></v-btn>
 
         <!-- @todo implement sharing (saving and restoring state) -->
         <v-btn  @click="share()">Share w/ Friends!<v-icon right>mdi-share</v-icon></v-btn>
+
     </div>
+
+    <div class="d-flex justify-center" style="gap:50px">
+
+        <a href="https://s.uconn.edu/breadwinner-feedback" class="feedback-link">Please help us improve the game!</a>
+
+      </div>
 
 
     </v-container>
@@ -261,5 +268,13 @@ canvas {
 max-height: 500px;
 max-width: 800px;
 margin: 0 auto;
+}
+
+.feedback-link {
+  text-decoration: none;
+}
+.feedback-link:hover {
+  color: white;
+  text-decoration: underline;
 }
 </style>
