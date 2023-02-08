@@ -15,7 +15,7 @@
     <nav>
       <ul class="nav-buttons">
         <li>
-          <v-btn to="/insurance/auto">&lt; Back</v-btn>
+          <v-btn to="/insurance/health">&lt; Back</v-btn>
         </li>
         <li>
           <v-btn v-if="renterstype !== null" to="/insurance/life" color="secondary">Continue...</v-btn>
