@@ -72,6 +72,10 @@ export default {
     this.update({
         prop: 'vehicle',
         value: null
+    },
+    {
+      prop: 'auto',
+      value: 0
     })
   }
 }

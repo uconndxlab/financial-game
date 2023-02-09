@@ -30,7 +30,7 @@ Do you want laundry facilities on site? What about parking? Do you want to have 
                   {{ apt.features}}
 
                   <v-divider class="my-5" style="opacity:0" ></v-divider>
-                  <template v-if="apt.utilities">
+                  <template v-if=apt.utilities>
                     <div><strong>Utilities</strong>:</div>
                     <v-chip v-for="utility in apt.utilities" :key="utility" class="ma-1">
                       {{utility}}
@@ -87,7 +87,8 @@ export default {
     return {
       active:-1,
       apartments: [],
-      apartmentSelection: null
+      apartmentSelection: null,
+      utilities: null
     }
   },
   computed: {
@@ -119,10 +120,22 @@ export default {
   methods: {
     updateSelection(option){
       this.active = option.id
-      this.update({
+      if (option.utilities != null){
+        this.utilities = 5
+      }
+      else{
+        this.utilities = null
+      }
+      this.update(
+        {
         prop: 'apartment',
         value: option
-      })
+      }
+      )
+      this.update(
+      {prop:'hasutilities',
+      value: this.utilities}
+      )
     },
     ...mapActions({
       update: 'budget/update'
