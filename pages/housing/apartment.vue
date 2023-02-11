@@ -121,7 +121,7 @@ export default {
     updateSelection(option){
       this.active = option.id
       if (option.utilities != null){
-        this.utilities = 5
+        this.utilities = option.utilities.length
       }
       else{
         this.utilities = null
