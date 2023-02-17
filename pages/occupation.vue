@@ -4,7 +4,6 @@
 
     <v-col>
         <h1>{{occupation.name}}</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem quia a eveniet aut porro, dolores dicta, non inventore voluptatem voluptates amet quas rem itaque hic quis dolor corrupti, eius et!</p>
         <v-simple-table v-if="occupation">
             <template v-slot:default>
                 <thead>
