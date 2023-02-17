@@ -18,7 +18,8 @@
         <li>
         </li>
         <li>
-          <v-btn :disabled="!paid" to="/insurance/auto" color="secondary">Continue...</v-btn>
+          <v-btn v-if=hasCar to="/insurance/auto" color="secondary">Continue...</v-btn>
+          <v-btn v-else to="/insurance/renters" color="secondary">Continue...</v-btn>
         </li>
       </ul>
     </nav>
@@ -44,6 +45,14 @@ export default {
   computed: {
       health() {
         return this.$store.state.budget.health
+      },
+      hasCar(){
+        if (this.$store.state.budget.vehicle != null){
+          return true
+        }
+        else{
+          return false
+        }
       }
     },
     methods: {

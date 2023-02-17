@@ -5,6 +5,7 @@ function initialState(){
     roommate: null,
     apartment: null,
     utilities: 0,
+    hasutilities: null,
     transport: null,
     vehicle: null,
     health: 0,

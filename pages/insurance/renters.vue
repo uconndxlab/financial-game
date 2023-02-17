@@ -15,7 +15,8 @@
     <nav>
       <ul class="nav-buttons">
         <li>
-          <v-btn to="/insurance/auto">&lt; Back</v-btn>
+          <v-btn v-if=hasCar to="/insurance/auto" color="secondary">Back</v-btn>
+          <v-btn v-else to="/insurance/health" color="secondary">Back</v-btn>
         </li>
         <li>
           <v-btn v-if="renterstype !== null" to="/insurance/life" color="secondary">Continue...</v-btn>
@@ -71,7 +72,15 @@ export default {
   computed: {
     renters() {
       return this.$store.state.budget.renters
-    }
+    },
+      hasCar(){
+        if (this.$store.state.budget.vehicle != null){
+          return true
+        }
+        else{
+          return false
+        }
+      }
   },
   methods: {
     selectionChanged(){
