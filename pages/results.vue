@@ -59,6 +59,44 @@
       </v-col>
     </v-row>
 
+     <v-row class="center mb-5">
+
+      <v-col>
+        <Bar 
+          :chart-options="{responsive: true}"
+          :chart-data="{
+            labels: chartData.labels,
+            datasets: [ 
+              { 
+                label: 'Your Spending',
+                // Convert monthly to yearly 
+                data: chartData.datasets[0].data.map( num => num * 12),
+                backgroundColor: 'blue' 
+              },
+              {
+                // US Bureau of Labor Statistics 2020,
+                label: 'Ave',
+                data: [
+                  14745,  // Housing
+                  7300,   // Transportation
+                  3776,   // Insurance
+                  2315,   // Utitlities
+                  1266,   // Communications (Using Entertainment Numbers)
+                  4526,   // Food
+                  1164,   // Clothing
+                  1266,   // Lifestyle (Entertainment),
+                  0,      // Activities
+
+                ],
+                backgroundColor: 'red'
+              } 
+            ]
+      }"
+          :width="600"
+
+        />
+      </v-col>
+    </v-row>   
 
     <div class="d-flex justify-center mt-6 mb-6" style="gap:50px">
 
@@ -83,7 +121,7 @@
 import { mapActions } from 'vuex'
 import AnimatedNumber from "animated-number-vue";
 
-import { Doughnut } from 'vue-chartjs/legacy'
+import { Doughnut, Bar } from 'vue-chartjs/legacy'
 
 import {
   Chart as ChartJS,
@@ -91,10 +129,12 @@ import {
   Tooltip,
   Legend,
   ArcElement,
-  CategoryScale
+  CategoryScale,
+  LinearScale,
+  BarElement
 } from 'chart.js'
 
-ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale)
+ChartJS.register(Title, Tooltip, Legend, BarElement, ArcElement, CategoryScale, LinearScale)
 
 ChartJS.defaults.plugins.legend.labels.color = '#999'
 
@@ -104,7 +144,8 @@ export default {
   name: 'ResultsPage',
     components: {
     AnimatedNumber,
-    Doughnut
+    Doughnut,
+    Bar
   },
   async asyncData({$supabase}) {
     // let result
@@ -195,6 +236,8 @@ export default {
       await this.lifestyle(), 
       await this.activities()
     )
+
+    console.log(this.chartData.datasets[0].data.map( num => num * 12))
   },
   methods: {
 
