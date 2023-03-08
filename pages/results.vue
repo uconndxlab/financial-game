@@ -59,11 +59,13 @@
       </v-col>
     </v-row>
 
+    <h2 class="text-center py-6 mt-6 ">Yearly Spending Breakdown</h2>
+
      <v-row class="center mb-5">
 
       <v-col>
         <Bar 
-          :chart-options="{responsive: true}"
+          :chart-options="barChartOptions"
           :chart-data="{
             labels: chartData.labels,
             datasets: [ 
@@ -71,30 +73,32 @@
                 label: 'Your Spending',
                 // Convert monthly to yearly 
                 data: chartData.datasets[0].data.map( num => num * 12),
-                backgroundColor: 'blue' 
+                backgroundColor: '#6bd5cb', 
               },
               {
                 // US Bureau of Labor Statistics 2020,
-                label: 'Ave',
+                label: 'National Average*',
                 data: [
-                  14745,  // Housing
-                  7300,   // Transportation
-                  3776,   // Insurance
-                  2315,   // Utitlities
-                  1266,   // Communications (Using Entertainment Numbers)
-                  4526,   // Food
-                  1164,   // Clothing
-                  1266,   // Lifestyle (Entertainment),
-                  0,      // Activities
+                  14745-2315, // Housing (subtract utilities)
+                  7300,       // Transportation
+                  3776,       // Insurance
+                  2315,       // Utilities
+                  1266,       // Communications (Using Entertainment Numbers)
+                  4526,       // Food
+                  1164,       // Clothing
+                  1266,       // Lifestyle (Entertainment),
+                  51+468+317, // Activities (reading + personal care + Misc)
 
                 ],
-                backgroundColor: 'red'
+                backgroundColor: '#366f79', 
+
               } 
             ]
       }"
-          :width="600"
+          :width="800"
 
         />
+        <p style="text-align: center; color: rgba(255,255,255,.3)"><small><sup>*</sup>2020 U.S. Bureau of Labor Statistics. Ages 25 and under.</small></p>
       </v-col>
     </v-row>   
 
@@ -131,16 +135,15 @@ import {
   ArcElement,
   CategoryScale,
   LinearScale,
-  BarElement
+  BarElement,
 } from 'chart.js'
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, ArcElement, CategoryScale, LinearScale)
 
-ChartJS.defaults.plugins.legend.labels.color = '#999'
-
+// Text label colors
+ChartJS.defaults.plugins.legend.labels.color = '#dcdcdc'
 
 export default {
-  
   name: 'ResultsPage',
     components: {
     AnimatedNumber,
@@ -201,6 +204,38 @@ export default {
           }
         }
 
+      },
+      barChartOptions: {
+        scales: {
+          y: {
+            ticks: {
+              color: ChartJS.defaults.plugins.legend.labels.color,
+
+              // Include a dollar sign in the ticks
+              callback: (value, _index, _ticks) => {
+                console.log(this)
+                return this.$money(value)
+              }
+            },
+            grid: {
+              color: '#cfcfcf30'
+            }
+          },
+          x: {
+            ticks: {
+              color: ChartJS.defaults.plugins.legend.labels.color
+            },
+            grid: {
+              color: '#cfcfcf30'
+            }
+          }
+        },
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top'
+          }
+        }
       },
       plugins: [ 'legend' ],
       shareData: {
