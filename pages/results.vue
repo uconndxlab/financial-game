@@ -59,6 +59,48 @@
       </v-col>
     </v-row>
 
+    <h2 class="text-center py-6 mt-6 ">Yearly Spending Breakdown</h2>
+
+     <v-row class="center mb-5">
+
+      <v-col>
+        <Bar 
+          :chart-options="barChartOptions"
+          :chart-data="{
+            labels: chartData.labels,
+            datasets: [ 
+              { 
+                label: 'Your Spending',
+                // Convert monthly to yearly 
+                data: chartData.datasets[0].data.map( num => num * 12),
+                backgroundColor: '#6bd5cb', 
+              },
+              {
+                // US Bureau of Labor Statistics 2020,
+                label: 'National Average*',
+                data: [
+                  14745-2315, // Housing (subtract utilities)
+                  7300,       // Transportation
+                  3776,       // Insurance
+                  2315,       // Utilities
+                  1266,       // Communications (Using Entertainment Numbers)
+                  4526,       // Food
+                  1164,       // Clothing
+                  1266,       // Lifestyle (Entertainment),
+                  51+468+317, // Activities (reading + personal care + Misc)
+
+                ],
+                backgroundColor: '#366f79', 
+
+              } 
+            ]
+      }"
+          :width="800"
+
+        />
+        <p style="text-align: center; color: rgba(255,255,255,.3)"><small><sup>*</sup>2020 U.S. Bureau of Labor Statistics. Ages 25 and under.</small></p>
+      </v-col>
+    </v-row>   
 
     <div class="d-flex justify-center mt-6 mb-6" style="gap:50px">
 
@@ -83,7 +125,7 @@
 import { mapActions } from 'vuex'
 import AnimatedNumber from "animated-number-vue";
 
-import { Doughnut } from 'vue-chartjs/legacy'
+import { Doughnut, Bar } from 'vue-chartjs/legacy'
 
 import {
   Chart as ChartJS,
@@ -91,20 +133,22 @@ import {
   Tooltip,
   Legend,
   ArcElement,
-  CategoryScale
+  CategoryScale,
+  LinearScale,
+  BarElement,
 } from 'chart.js'
 
-ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale)
+ChartJS.register(Title, Tooltip, Legend, BarElement, ArcElement, CategoryScale, LinearScale)
 
-ChartJS.defaults.plugins.legend.labels.color = '#999'
-
+// Text label colors
+ChartJS.defaults.plugins.legend.labels.color = '#dcdcdc'
 
 export default {
-  
   name: 'ResultsPage',
     components: {
     AnimatedNumber,
-    Doughnut
+    Doughnut,
+    Bar
   },
   async asyncData({$supabase}) {
     // let result
@@ -161,6 +205,38 @@ export default {
         }
 
       },
+      barChartOptions: {
+        scales: {
+          y: {
+            ticks: {
+              color: ChartJS.defaults.plugins.legend.labels.color,
+
+              // Include a dollar sign in the ticks
+              callback: (value, _index, _ticks) => {
+                console.log(this)
+                return this.$money(value)
+              }
+            },
+            grid: {
+              color: '#cfcfcf30'
+            }
+          },
+          x: {
+            ticks: {
+              color: ChartJS.defaults.plugins.legend.labels.color
+            },
+            grid: {
+              color: '#cfcfcf30'
+            }
+          }
+        },
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top'
+          }
+        }
+      },
       plugins: [ 'legend' ],
       shareData: {
         title: 'Breadwinner',
@@ -195,6 +271,8 @@ export default {
       await this.lifestyle(), 
       await this.activities()
     )
+
+    console.log(this.chartData.datasets[0].data.map( num => num * 12))
   },
   methods: {
 
