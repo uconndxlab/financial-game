@@ -4,9 +4,9 @@
   <uconn-banner></uconn-banner>
   <v-app>
 
-    <v-main fill-height fluid>
+    <v-main fill-height fluid id="v-main-body">
       <Nuxt />
-      <v-container class="bottom-display">
+      <v-container class="bottom-display" id="bottom-nav">
       <v-row>
         <v-col v-if="showNavigation()" cols="auto" class="breadcrumbs">
           <v-breadcrumbs large :items="navItems"></v-breadcrumbs>
@@ -19,7 +19,6 @@
       </v-row>
       </v-container>
     </v-main>
-
     <breadwinner-footer/>
   </v-app>
 
