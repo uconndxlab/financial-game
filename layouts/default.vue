@@ -71,7 +71,7 @@ export default {
       calculateBudget: 'budget/total'
     }),
     showBalance(){
-      const routeNames = ['index', 'results']
+      const routeNames = ['index', 'results', 'occupation-selection']
       return !routeNames.includes(this.$route.name)
     },
     showNavigation(){
