@@ -62,7 +62,8 @@ export default {
   async asyncData({$supabase}) {
     let result
     try {
-      result = await $supabase.from('occupations').select('*')
+      // get all occupations ordered by name  (ascending)   
+      result = await $supabase.from('occupations').select('*').order('name', { ascending: true }) 
     } catch (error) {
       console.log(error)
     }
