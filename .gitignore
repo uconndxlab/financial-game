@@ -91,3 +91,6 @@ sw.*
 
 # Yarn nonsense
 /yarn.lock
+
+# nohup output
+/nohup.out

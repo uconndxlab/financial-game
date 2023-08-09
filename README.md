@@ -1,6 +1,23 @@
-# financial-game
+# Breadwinner
 
-## Build Setup
+## Local Development with Docker (preferred)
+
+[Dev Containers](https://code.visualstudio.com/remote/advancedcontainers/overview), using Docker, is the preferred method for development because the environment is standardized through a consistent Docker image. In order to develop using a Docker Dev Container, you must have the following items installed and configured.
+
+* [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+* [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) for VS Code
+
+### Instructions
+
+1. Open the repository in VS Code
+1. VS Code will detect the presence of a `devcontainer.json` file and ask if you'd like to rebuild the container. Proceed with the build of the dev container.
+1. The container will boot and automatically install dependencies (`npm install`) and start the web server (`npm run dev`). VS Code will detect the webserver and prompt whether you'd like to open the app in your browser window
+1. Develop as you normally would.
+
+
+
+
+## Local Development without Docker
 
 ```bash
 # install dependencies
@@ -8,10 +25,13 @@ $ npm install
 
 # serve with hot reload at localhost:3000
 $ npm run dev
+```
 
-# build for production and launch server
+## Build for Production
+
+```bash
+# build for production
 $ npm run build
-$ npm run start
 
 # generate static project
 $ npm run generate
