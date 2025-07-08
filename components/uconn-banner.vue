@@ -19,7 +19,8 @@
                             <a id="uconn-search" class="btn" href="https://uconn.edu/search">
                                 <span class="no-css">Search University of Connecticut</span>
 
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 32 32"
+                                <svg
+version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 32 32"
                                     aria-hidden="true" class="banner-icon">
                                     <title>Search UConn</title>
                                     <path
@@ -34,7 +35,8 @@
 
                             <a id="uconn-az" class="btn" href="https://uconn.edu/az">
                                 <span class="no-css">A to Z Index</span>
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 32 32"
+                                <svg
+version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 32 32"
                                     aria-hidden="true" class="banner-icon">
                                     <title>UConn A to Z Search</title>
                                     <path
@@ -56,91 +58,32 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8">
-                            <div class="site-branding" id="uc-site-header">
-                                <p id="uc-site-parent"><a href="http://extension.uconn.edu">CAHNR Extension</a></p>
-                                <h1 id="uc-site-title"><a href="https://financialliteracy.uconn.edu/"
-                                        rel="home">Financial Education and Literacy</a></h1>
+                            <div id="uc-site-header" class="site-branding">
+                                <p id="uc-site-parent"><a href="https://financialliteracy.uconn.edu/">UConn Extension
+                                        Financial Education and Literacy</a></p>
+                                <h1 id="uc-site-title"><a href="/" rel="home">Breadwinner Game</a></h1>
                             </div>
                         </div>
 
                         <div class="col-sm-4 header-widget-area">
-                            <!-- <div class="searchform">
-                                <form action="https://financialliteracy.uconn.edu/" method="get" class="form-inline"
-                                    role="form">
-                                    <div class="form-group">
-                                        <fieldset>
-                                            <legend class="sr-only">Search this Site</legend><label for="searchfield-1"
-                                                class="sr-only">Search in
-                                                https://financialliteracy.uconn.edu/&gt;</label><input type="text"
-                                                name="s" id="searchfield-1" value="" class="form-control search"
-                                                title="Search this site... " placeholder="Search this site... "><button
-                                                type="submit" class="btn btn-default" title="Search"><i
-                                                    class="glyphicon glyphicon-search"></i><span
-                                                    class="sr-only">Search</span></button>
-                                        </fieldset>
-                                    </div>
-                                </form>
-                            </div>  -->
+                            <div id="tooltip-wrapper" class="text-center d-flex align-center justify-space-around">
+                                <v-tooltip left color="red" attach="#tooltip-wrapper">
+                                    <template #activator="{ on, attrs }">
+                                        <v-btn
+outlined v-bind="attrs" href="https://financialliteracy.uconn.edu/"
+                                            v-on="on">
+                                            <v-icon left>mdi-arrow-left-thin</v-icon>
+                                            Return
+                                        </v-btn>
+                                    </template>
+                                    <span>Back to the Financial Education and Literacy website</span>
+                                </v-tooltip>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="nav-wrapper">
 
-
-                <div id="nav-dropdown">
-                    <div id="dropdown-wrapper">
-                        <nav id="dropdown" class="container">
-                            <nav id="site-navigation" class="navbar navbar-default" style="min-height:0"
-                                role="navigation">
-                                <!-- <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                        data-target="#primary-nav">
-                                        <span class="sr-only">Toggle navigation</span>
-                                        <span class="menu-icon">
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                        </span>
-                                        <span class="menu-label">Menu</span>
-                                    </button>
-                                    <a class="navbar-brand visible-xs"
-                                        href="https://financialliteracy.uconn.edu/">Financial Education and Literacy</a>
-                                </div> -->
-                                <!-- <a class="skip-link screen-reader-text sr-only" href="#content">Skip to content</a> -->
-                                <div class="collapse navbar-collapse" id="primary-nav">
-                                    <ul id="menu-top-nav" class="nav navbar-nav ">
-                                        <li><a href="https://financialliteracy.uconn.edu">Home</a></li>
-                                        <li id="menu-item-13"
-                                            class="menu-item menu-item-type-post_type menu-item-object-page"><a
-                                                href="https://financialliteracy.uconn.edu/aboutus/">About Us</a></li>
-                                        <li id="menu-item-14"
-                                            class="menu-item menu-item-type-post_type menu-item-object-page"><a
-                                                href="https://financialliteracy.uconn.edu/blog/">News</a></li>
-                                        <li id="menu-item-173"
-                                            class="menu-item menu-item-type-post_type menu-item-object-page"><a
-                                                href="https://financialliteracy.uconn.edu/workshops/">Workshops</a></li>
-                                        <li id="menu-item-190"
-                                            class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-189 current_page_item active ">
-                                            <a href="https://financialliteracy.uconn.edu/resources/">Resources</a></li>
-                                        <li id="menu-item-166"
-                                            class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                                target="_blank" href="http://extension.uconn.edu" class="external"
-                                                rel="noopener">UConn Extension<span
-                                                    class="glyphicon glyphicon-new-window"></span></a></li>
-                                    </ul>
-                                    <div class="visible-xs-block">
-                                        <div class="navbar-form navbar-right">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </nav>
-                        </nav>
-                    </div>
-                </div>
-                <!-- #site-navigation -->
-            </div>
         </header>
     </div>
 
@@ -152,6 +95,74 @@ export default {}
 </script>
 
 <style>
+/* Override the old fonts in banner.css */
+@font-face {
+    font-family: "UConn";
+    src: url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/uconn/uconn.eot');
+    src: url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/uconn/uconn.eot?#iefix') format('embedded-opentype'),
+        url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/uconn/uconn.svg') format('svg'),
+        url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/uconn/uconn.woff') format('woff'),
+        url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/uconn/uconn.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-bold-webfont.eot');
+    src: url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-bold-webfont.eot?#iefix') format('embedded-opentype'),
+        url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-bold-webfont.svg') format('svg'),
+        url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-bold-webfont.woff') format('woff'),
+        url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-bold-webfont.ttf') format('truetype');
+    font-weight: bold;
+    /* or 700 */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-boldit-webfont.eot');
+    src: url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-boldit-webfont.eot?#iefix') format('embedded-opentype'),
+        url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-boldit-webfont.svg') format('svg'),
+        url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-boldit-webfont.woff') format('woff'),
+        url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-boldit-webfont.ttf') format('truetype');
+    font-weight: bold;
+    /* or 700 */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-sbold-webfont.eot');
+    src: url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-sbold-webfont.eot?#iefix') format('embedded-opentype'),
+        url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-sbold-webfont.svg') format('svg'),
+        url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-sbold-webfont.woff') format('woff'),
+        url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-sbold-webfont.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-reg-webfont.eot');
+    src: url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-reg-webfont.eot?#iefix') format('embedded-opentype'),
+        url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-reg-webfont.svg') format('svg'),
+        url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-reg-webfont.woff') format('woff'),
+        url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-reg-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-regit-webfont.eot');
+    src: url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-regit-webfont.eot?#iefix') format('embedded-opentype'),
+        url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-regit-webfont.svg') format('svg'),
+        url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-regit-webfont.woff') format('woff'),
+        url('https://github.uconn.edu/pages/bpd01001/uconn-webfonts/fonts/proximanova/proximanova-regit-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
 header {
 
     line-height: 1.428571429;
@@ -308,5 +319,12 @@ header {
 
 #menu-top-nav li:first-child > a{
     padding-left: 0;
+}
+
+.header-widget-area {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
 }
 </style>
