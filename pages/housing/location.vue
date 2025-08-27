@@ -29,7 +29,11 @@
       :attribution="attribution">
       <l-tile-layer :url="tileUrl" :attribution="attribution"></l-tile-layer>
       <l-marker v-for="loc in locations" :key="loc.id" :lat-lng="[loc.latitude, loc.longitude]" @click="setLocation(loc)">
-        <l-popup>
+        <l-popup class="pop-up" >
+          <h2 class="title">{{ loc.city }}</h2>
+          <ul v-if="loc.details" class="mt-2 mb-3">
+            <li v-for="line in loc.details" :key="line">{{ line }}</li>
+          </ul>
           <v-btn to="/housing/roommate" color=primary>Choose {{loc.city}}</v-btn>
         </l-popup>
       </l-marker>
@@ -94,3 +98,18 @@ export default {
   }
 }
 </script>
+
+
+<style scoped>
+
+.pop-up ul li{
+  list-style-type: disc;
+  color: var(--v-secondary-lighten3);
+
+}
+
+.pop-up h2 {
+  color: var(--v-secondary-base);
+}
+
+</style>
