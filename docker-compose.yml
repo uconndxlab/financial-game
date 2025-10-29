@@ -1,0 +1,45 @@
+version: "3.9"
+
+name: financial-game
+
+volumes:
+  node_modules:
+
+services:
+  web-dev:
+    build:
+      context: .
+      target: development
+    image: financial-game:dev
+    container_name: financial-game-dev
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3000
+      CHOKIDAR_USEPOLLING: "true"
+      # Optional Nuxt env for compatibility
+      NUXT_HOST: 0.0.0.0
+      NUXT_PORT: 3000
+    env_file:
+      - ./.env
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+      - node_modules:/app/node_modules
+    # Faster restarts; restart unless stopped manually
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      target: production
+      args:
+        SUPABASE_URL: ${SUPABASE_URL}
+        SUPABASE_KEY: ${SUPABASE_KEY}
+    image: financial-game:prod
+    container_name: financial-game
+    ports:
+      - "8080:80"
+    # Use a production profile to avoid starting with dev
+    profiles: ["prod"]
+    restart: unless-stopped
