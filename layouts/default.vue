@@ -4,9 +4,9 @@
   <uconn-banner></uconn-banner>
   <v-app>
 
-    <v-main fill-height fluid id="v-main-body">
+    <v-main id="v-main-body" fill-height fluid>
       <Nuxt />
-      <v-container class="bottom-display" id="bottom-nav">
+      <v-container id="bottom-nav" class="bottom-display">
       <v-row>
         <v-col v-if="showNavigation()" cols="auto" class="breadcrumbs">
           <v-breadcrumbs large :items="navItems"></v-breadcrumbs>
@@ -55,13 +55,12 @@ export default {
       ]
     }
   },
-  computed: {
-    // balance(){
-    //   return this.$store.state.budget.balance
-    // },
-    // monthlyBudget() {
-    //   return this.balance
-    // }
+  mounted(){
+    this.$store.subscribe( async (mutation, state) => {
+      this.balance = await this.calculateBudget()
+
+      console.info('Updating balance', this.balance)
+    })
   },
   methods: {
     // formatNumber(val){
@@ -79,13 +78,6 @@ export default {
       return !routeNames.includes(this.$route.name)
     }
   },
-  mounted(){
-    this.$store.subscribe( async (mutation, state) => {
-      this.balance = await this.calculateBudget()
-
-      console.warn('Updating balance', this.balance)
-    })
-  }
 }
 </script>
 
