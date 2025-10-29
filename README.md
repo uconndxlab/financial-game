@@ -40,7 +40,7 @@ Images/targets:
 Notes:
 - A git client and build tools are installed in build stages to support the `uconn-banner` git dependency and any native modules.
 - For SSR deployments, switch to `npm run build && nuxt start` in a Node runtime. This repo is configured for static generation (ssr:false, target:static), so nginx is optimal.
- - If your build requires environment variables (e.g., `SUPABASE_URL`, `SUPABASE_KEY`), set them in your shell or `.env` file before building the production image; compose passes them as build args so they are available during `nuxt generate`.
+- If your build requires environment variables (e.g., `SUPABASE_URL`, `SUPABASE_KEY`), set them in your shell or `.env` file before building the production image; compose passes them as build args so they are available during `nuxt generate`.
 
 ## Special Directories
 
