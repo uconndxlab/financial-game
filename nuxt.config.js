@@ -14,7 +14,11 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/ct-breadwinner-plain.svg' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/ct-breadwinner-plain.svg' },
+      { rel: 'stylesheet', href: '/banner.css' }
+      
+    ],
     script: [
       { src: 'https://www.googletagmanager.com/gtag/js?id=G-YH6R1Q2SB7', async: true },
       { src: '/ga.js' }
