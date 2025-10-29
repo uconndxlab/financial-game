@@ -39,17 +39,17 @@ id="menu-item-19"
                                 <table class="uc-table table">
                                     <tbody>
                                         <tr class="uc-row">
-                                            <th class="uc-label uc-label-phone v-icon mdi mdi-phone"></th>
+                                            <th scope="row" class="uc-label uc-label-phone v-icon mdi mdi-phone"><span class="d-sr-only">Phone</span></th>
                                             <td class="uc-output uc-output-phone"><a href="tel:+12034073160">(203) 407-3160</a></td>
                                         </tr>
                                         <tr class="uc-row">
-                                            <th class="uc-label uc-label-email v-icon mdi mdi-email"></th>
+                                            <th scope="row" class="uc-label uc-label-email v-icon mdi mdi-email"><span class="d-sr-only">Email</span></th>
                                             <td class="uc-output uc-output-email"><a
                                                     href="mailto:faye.griffiths-smith@uconn.edu">faye.griffiths-smith@uconn.edu</a>
                                             </td>
                                         </tr>
                                         <tr class="uc-row">
-                                            <th class="uc-label uc-label-addr v-icon mdi mdi-map-marker"></th>
+                                            <th scope="row" class="uc-label uc-label-addr v-icon mdi mdi-map-marker"><span class="d-sr-only">Address</span></th>
                                             <td class="uc-output uc-output-addr">305 Skiff Street<br>
                                                 North Haven, CT 06473</td>
                                         </tr>
