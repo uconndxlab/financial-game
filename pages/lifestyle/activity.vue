@@ -4,7 +4,7 @@
     <p>Choose an activity:</p>
     <v-row class="mb-5">
       <v-col v-for="option in activity" :key="option.id" cols="12" sm=6 lg="4" xl="3">
-        <v-card @click="selectionChanged(option)" class="ma-1 d-flex flex-column" fill-height height="100%" :color="isActive(option) ? 'primary':'white'">
+        <v-card class="ma-1 d-flex flex-column" fill-height height="100%" :color="isActive(option) ? 'primary':'white'" @click="selectionChanged(option)">
           <!-- <v-img height="250" :src="`${opt.image}?optation=${opt.title}`"></v-img> -->
           <v-row>
             <v-col>
@@ -47,9 +47,6 @@
 import { mapActions } from 'vuex'
 
 export default {
-                  head: {
-        title: 'Lifestyle: Activity',
-    },
   name: 'ActivityType',
   data(){
     return {
@@ -68,16 +65,22 @@ export default {
       {id:6,name:'Ice Cream Treat',description:'Hot days, cold days, rainy days, any day is great for ice cream!', value: 6},
       {id:7,name:'Breakfast Out',description:'Eggs, bacon, and toast!', value: 12},
       {id:8,name:'Lunch Out',description:'Grab a quick bite!', value: 11},
-      {id:9,name:'Dinner Out',description:'Try something new or go to your favorite resturant, treat yourself!', value: 13},
+      {id:9,name:'Dinner Out',description:'Try something new or go to your favorite restaurant, treat yourself!', value: 13},
       {id:10,name:'Night Out with Friends',description:'Hit the streets with your friends, catch up on old times and make new memories.', value: 80},
       {id:11,name:'Host a Party',description:'Did someone say buffalo dip? Get your hosting shoes on and send out some invites!', value: 197},
       {id:12,name:'Weekend Getaway',description:'Relax and enjoy some time away.', value: 395}]
     }
   },
+  head: {
+    title: 'Lifestyle: Activity',
+  },
   computed: {
     activityChoice() {
       return this.$store.state.budget.activity
     }
+  },
+  mounted(){
+    this.selection = false
   },
   methods: {
     isActive(option){
@@ -87,7 +90,6 @@ export default {
           return true
         }
       }
-
     },
     selectionChanged(option){
       if (this.isActive(option)){
@@ -110,9 +112,6 @@ export default {
       update: 'budget/update'
     })
   },
-  mounted(){
-    this.selection = false
-  }
 }
 
 </script>
