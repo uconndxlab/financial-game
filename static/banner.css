@@ -103,7 +103,7 @@
     box-sizing: border-box;
     height: 60px;
     margin: 0px auto;
-    padding: 14px 16px;
+    padding: 0px 16px;
     width: 100%
 }
 
@@ -114,7 +114,7 @@
 
 #uconn-banner .row-fluid>div {
     display: table-cell;
-    vertical-align: inherit;
+    vertical-align: middle;
     float: none
 }
 
@@ -146,7 +146,9 @@
 }
 
 #home-link {
-    height: 20px;
+    display:inline-block;
+    line-height: 60px;
+    /* height: 60px; */
     overflow: hidden
 }
 
