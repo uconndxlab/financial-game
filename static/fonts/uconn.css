@@ -1,0 +1,10 @@
+@font-face {
+    font-family: "UConn";
+    src: url('/fonts/uconn/uconn.eot');
+    src: url('/fonts/uconn/uconn.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/uconn/uconn.svg') format('svg'),
+        url('/fonts/uconn/uconn.woff') format('woff'),
+        url('/fonts/uconn/uconn.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
