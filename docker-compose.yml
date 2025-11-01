@@ -1,5 +1,5 @@
 
-name: financial-game
+version: "3.9"
 
 volumes:
   node_modules:
@@ -10,7 +10,7 @@ services:
       context: .
       target: development
     image: financial-game:dev
-    container_name: financial-game-dev
+    profiles: ["dev"]
     environment:
       HOST: 0.0.0.0
       PORT: 3000
@@ -36,9 +36,6 @@ services:
         SUPABASE_URL: ${SUPABASE_URL}
         SUPABASE_KEY: ${SUPABASE_KEY}
     image: financial-game:prod
-    container_name: financial-game
     ports:
       - "8080:80"
-    # Use a production profile to avoid starting with dev
-    profiles: ["prod"]
     restart: unless-stopped

@@ -4,43 +4,54 @@
 
 This project includes a multi-stage Docker setup that uses Node 20 in development and builds a static site for production served by nginx.
 
-### Development (hot reload)
-
-Runs `nuxt` in watch mode inside a Node 20 container. Your source files are mounted, so edits reflect instantly.
-
-```bash
-# start dev server on http://localhost:3000
-docker compose up web-dev
-
-# stop
-docker compose down
-```
-
-Environment variables are loaded from `.env` automatically (see `.env.example`). If file watching is slow on your platform, we already enable polling inside the container.
-
-### Production (static, nginx)
+### Production (static, nginx) - Default
 
 Builds the app with `npm run generate` (Nuxt 2, ssr:false + target:static) and serves the `dist` folder with `nginx`.
 
 ```bash
 # build and run production image on http://localhost:8080
-docker compose --profile prod up --build web
+docker compose up --build web
 
 # or just build the image
-docker compose --profile prod build web
+docker compose build web
 
 # stop
-docker compose --profile prod down
+docker compose down
 ```
 
-Images/targets:
-- `financial-game:dev` – Node 20, hot reload
-- `financial-game:prod` – nginx serving the generated static site
+**For Portainer deployment:**
+1. Create a new stack in Portainer
+2. Paste the contents of `docker-compose.yml`
+3. Add environment variables: `SUPABASE_URL` and `SUPABASE_KEY`
+4. Deploy the stack
 
-Notes:
+The production service runs by default (no profile needed). It will be available on port 8080. Change the port mapping to `80:80` in `docker-compose.yml` if you want it on the standard HTTP port.
+
+### Development (hot reload)
+
+Runs `nuxt` in watch mode inside a Node 20 container. Your source files are mounted, so edits reflect instantly.
+
+```bash
+# start dev server on http://localhost:3000 (requires --profile dev)
+docker compose --profile dev up web-dev
+
+# stop
+docker compose --profile dev down
+```
+
+Environment variables are loaded from `.env` automatically (see `.env.example`). If file watching is slow on your platform, we already enable polling inside the container.
+
+### Images/targets
+
+- `financial-game:dev` – Node 20, hot reload (dev profile)
+- `financial-game:prod` – nginx serving the generated static site (default)
+
+### Notes
+
 - A git client and build tools are installed in build stages to support the `uconn-banner` git dependency and any native modules.
 - For SSR deployments, switch to `npm run build && nuxt start` in a Node runtime. This repo is configured for static generation (ssr:false, target:static), so nginx is optimal.
 - If your build requires environment variables (e.g., `SUPABASE_URL`, `SUPABASE_KEY`), set them in your shell or `.env` file before building the production image; compose passes them as build args so they are available during `nuxt generate`.
+- Container names are managed automatically by Docker Compose to avoid conflicts in Portainer stacks.
 
 ## Special Directories
 
